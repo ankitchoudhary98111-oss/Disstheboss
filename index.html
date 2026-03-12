@@ -1,0 +1,1907 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>DissTheBoss — Workplace Stress Arcade</title>
+  <style>
+    :root {
+      --red: #e8001d;
+      --orange: #ff5500;
+      --yellow: #ffb800;
+      --green: #00c864;
+      --dark: #0c0b0b;
+      --dark2: #141212;
+      --dark3: #1e1a1a;
+      --dark4: #2a2424;
+      --grey: #8e8383;
+      --cream: #f5efe0;
+      --nav-h: 56px;
+      --bottom-h: 64px;
+    }* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--dark);
+  color: var(--cream);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background: rgba(12, 11, 11, 0.96);
+  border-bottom: 1px solid var(--dark4);
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.brand span {
+  color: var(--red);
+}
+
+.top-btn {
+  border: none;
+  background: var(--red);
+  color: #fff;
+  padding: 0.55rem 0.9rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.screen {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  bottom: var(--bottom-h);
+  overflow-y: auto;
+  display: none;
+  padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.screen.active {
+  display: block;
+}
+
+.section-label {
+  color: var(--orange);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.title span {
+  color: var(--red);
+}
+
+.subtext {
+  color: #cdbcbc;
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+.hero {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem 0.25rem 2rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  line-height: 0.95;
+  margin-bottom: 0.8rem;
+  font-weight: 900;
+}
+
+.hero h1 span {
+  color: var(--red);
+}
+
+.tagline {
+  display: inline-block;
+  margin: 0 auto 1rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--orange);
+  border: 1px solid rgba(255, 85, 0, 0.28);
+  background: rgba(255, 85, 0, 0.08);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+}
+
+.stat-grid,
+.cta-grid,
+.game-grid,
+.profile-stats {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.stat-grid,
+.profile-stats {
+  grid-template-columns: repeat(3, 1fr);
+  margin: 1.4rem 0;
+}
+
+.cta-grid,
+.game-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card,
+.game-card,
+.stat-card,
+.profile-card,
+.feed-card,
+.info-box {
+  background: var(--dark2);
+  border: 1px solid var(--dark4);
+  border-radius: 8px;
+}
+
+.stat-card,
+.profile-card {
+  text-align: center;
+  padding: 0.8rem 0.5rem;
+}
+
+.stat-value,
+.profile-value {
+  color: var(--red);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stat-label,
+.profile-label {
+  color: var(--grey);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+  letter-spacing: 1px;
+}
+
+.game-card {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.game-card.featured {
+  grid-column: span 2;
+}
+
+.game-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.game-name {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.game-name span {
+  color: var(--red);
+}
+
+.game-desc {
+  color: var(--grey);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.pill {
+  display: inline-block;
+  margin-top: 0.55rem;
+  padding: 0.18rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.pill.safe {
+  color: var(--green);
+  border: 1px solid rgba(0, 200, 100, 0.3);
+  background: rgba(0, 200, 100, 0.08);
+}
+
+.pill.demo {
+  color: var(--yellow);
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  background: rgba(255, 184, 0, 0.08);
+}
+
+.panel {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.row3,
+.row2 {
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.row3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.row2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.score-box {
+  background: var(--dark3);
+  border: 1px solid var(--dark4);
+  border-radius: 8px;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.score-value {
+  font-weight: 800;
+  font-size: 1.55rem;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-top: 0.2rem;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  background: var(--dark3);
+  border: 1px solid var(--dark4);
+  border-radius: 6px;
+  color: var(--cream);
+  padding: 0.8rem 0.9rem;
+  outline: none;
+  margin-bottom: 0.7rem;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.btn,
+.btn-outline,
+.react-btn,
+.tab-btn,
+.nav-btn {
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.btn:active,
+.btn-outline:active,
+.nav-btn:active {
+  transform: scale(0.98);
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  background: var(--red);
+  color: #fff;
+  padding: 0.9rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.btn-outline {
+  width: 100%;
+  border: 1px solid var(--dark4);
+  background: transparent;
+  color: var(--cream);
+  padding: 0.9rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.upload-box,
+.notice,
+.message-box {
+  background: var(--dark3);
+  border: 1px solid var(--dark4);
+  border-radius: 8px;
+  padding: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.notice {
+  color: #d6caca;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.notice strong {
+  color: var(--orange);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto 0.9rem;
+}
+
+#dartCanvas {
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(232, 0, 29, 0.22);
+  background: #120808;
+}
+
+.pool-frame {
+  background: #0b4a18;
+  border: 5px solid #6e4422;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+}
+
+#poolCanvas {
+  width: 100%;
+  display: block;
+  touch-action: none;
+}
+
+.boss-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 0.9rem;
+}
+
+.boss-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.8rem;
+  background: var(--dark3);
+  border: 1px solid var(--dark4);
+  border-radius: 8px;
+}
+
+.boss-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.boss-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  outline: none;
+  min-width: 0;
+}
+
+.boss-chip-wrap {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.8rem;
+}
+
+.boss-chip-wrap::-webkit-scrollbar,
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.boss-chip {
+  white-space: nowrap;
+  background: var(--dark2);
+  border: 1px solid var(--dark4);
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.74rem;
+  color: var(--cream);
+  opacity: 1;
+}
+
+.boss-chip.potted {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+
+.power-track {
+  width: 100%;
+  height: 8px;
+  background: var(--dark4);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+}
+
+.power-fill {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, #00c864, #ffb800, #e8001d);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.2rem;
+}
+
+.tab-btn {
+  border: 1px solid var(--dark4);
+  background: var(--dark3);
+  color: var(--grey);
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  white-space: nowrap;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.tab-btn.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.feed-card {
+  padding: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.feed-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(232, 0, 29, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feed-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.feed-time {
+  color: var(--grey);
+  font-size: 0.72rem;
+}
+
+.feed-tag {
+  margin-left: auto;
+  color: var(--red);
+  font-size: 0.66rem;
+  font-weight: 700;
+  border: 1px solid rgba(232, 0, 29, 0.2);
+  background: rgba(232, 0, 29, 0.08);
+  padding: 0.18rem 0.45rem;
+  border-radius: 999px;
+}
+
+.feed-text {
+  line-height: 1.55;
+  color: #d7c8c8;
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+
+.react-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.react-btn {
+  border: 1px solid var(--dark4);
+  background: var(--dark3);
+  color: var(--grey);
+  border-radius: 999px;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.76rem;
+}
+
+.react-btn.active {
+  color: var(--cream);
+  border-color: rgba(232, 0, 29, 0.3);
+  background: rgba(232, 0, 29, 0.08);
+}
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.gate-box {
+  width: 100%;
+  max-width: 380px;
+  background: var(--dark2);
+  border: 2px solid var(--red);
+  border-radius: 12px;
+  padding: 1.4rem;
+  text-align: center;
+}
+
+.gate-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.gate-title span {
+  color: var(--red);
+}
+
+.gate-list {
+  text-align: left;
+  margin: 0.9rem 0 1rem;
+  color: #d1c2c2;
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.gate-list li {
+  margin-left: 1rem;
+}
+
+.toast {
+  position: fixed;
+  bottom: calc(var(--bottom-h) + 1rem);
+  right: 1rem;
+  left: 1rem;
+  z-index: 80;
+  margin-left: auto;
+  max-width: 320px;
+  background: var(--dark2);
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: all 0.25s ease;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-h);
+  z-index: 25;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: var(--dark2);
+  border-top: 1px solid var(--dark4);
+}
+
+.nav-btn {
+  border: none;
+  background: transparent;
+  color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12rem;
+  font-size: 0.68rem;
+}
+
+.nav-btn.active {
+  color: var(--red);
+}
+
+.center-fire {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-fire .dot {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transform: translateY(-12px);
+  border: 3px solid var(--dark2);
+}
+
+.profile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--dark2);
+  border: 1px solid var(--dark4);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  color: var(--cream);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--dark);
+  display: none;
+  overflow-y: auto;
+  padding: calc(var(--nav-h) + 1rem) 1rem calc(var(--bottom-h) + 1rem);
+}
+
+.overlay.open {
+  display: block;
+}
+
+.overlay-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.overlay-back {
+  color: var(--grey);
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.overlay-copy {
+  color: #d8caca;
+  line-height: 1.7;
+  font-size: 0.92rem;
+}
+
+.overlay-copy h3 {
+  margin: 1rem 0 0.35rem;
+  color: var(--cream);
+  font-size: 0.92rem;
+}
+
+@media (min-width: 720px) {
+  .hero h1 {
+    font-size: 4.2rem;
+  }
+
+  .panel {
+    max-width: 640px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="gate hidden" id="emailGate">
+    <div class="gate-box">
+      <div style="font-size:2.2rem; margin-bottom:0.4rem;">🔥</div>
+      <div class="gate-title">JOIN THE <span>ARCADE</span></div>
+      <div class="subtext">Free access to the fictional workplace stress arcade.</div>
+      <ul class="gate-list">
+        <li>Safe archetype-based gameplay</li>
+        <li>AI writing via backend only</li>
+        <li>2 free caricatures</li>
+        <li>No secrets exposed in browser</li>
+      </ul>
+      <input class="input" id="gateEmail" type="email" placeholder="your@email.com" autocomplete="email" />
+      <button class="btn" id="gateSubmitBtn">Join Free</button>
+      <button class="btn-outline" style="margin-top:0.5rem;" id="gateCloseBtn">Maybe Later</button>
+    </div>
+  </div>  <div class="toast" id="toast"></div>  <nav class="top-nav">
+    <div class="brand" onclick="showScreen('home')">DISS<span>THE</span>BOSS</div>
+    <button class="top-btn" id="joinTopBtn">Join Free</button>
+  </nav>  <section class="screen active" id="screen-home">
+    <div class="hero panel">
+      <div class="tagline">Workplace stress arcade · fictional archetypes only</div>
+      <h1>DISS<br /><span>THE BOSS</span></h1>
+      <p class="subtext">Throw darts, clear the pool table, generate caricatures, and vent about fictional workplace archetypes. No real names. No real companies. No targeting.</p><div class="stat-grid">
+    <div class="stat-card"><div class="stat-value" id="homeDarts">47,395</div><div class="stat-label">Darts Thrown</div></div>
+    <div class="stat-card"><div class="stat-value">2,841</div><div class="stat-label">Arcade Runs</div></div>
+    <div class="stat-card"><div class="stat-value">98%</div><div class="stat-label">Felt Better</div></div>
+  </div>
+
+  <div class="cta-grid">
+    <div class="game-card" onclick="showScreen('dart')">
+      <div class="game-icon">🎯</div>
+      <div class="game-name">THROW <span>DARTS</span></div>
+      <div class="game-desc">Play against a fictional archetype target.</div>
+    </div>
+    <div class="game-card" onclick="showScreen('pool')">
+      <div class="game-icon">🎱</div>
+      <div class="game-name">CLEAR <span>POOL</span></div>
+      <div class="game-desc">Name 9 workplace archetypes and clear the table.</div>
+    </div>
+    <div class="game-card" onclick="showScreen('caricature')">
+      <div class="game-icon">🎨</div>
+      <div class="game-name">AI <span>CARICATURE</span></div>
+      <div class="game-desc">Generate a fictional manager-style cartoon.</div>
+    </div>
+    <div class="game-card" onclick="showScreen('roast')">
+      <div class="game-icon">🔥</div>
+      <div class="game-name">ROAST <span>ARENA</span></div>
+      <div class="game-desc">Post safe, anonymous archetype-based vents.</div>
+    </div>
+  </div>
+</div>
+
+  </section>  <section class="screen" id="screen-games">
+    <div class="panel">
+      <div class="section-label">All Games</div>
+      <div class="title">THE BOSS <span>ARCADE</span></div>
+      <div class="game-grid" style="margin-top:1rem;">
+        <div class="game-card featured" onclick="showScreen('dart')">
+          <div class="game-icon">🎯</div>
+          <div class="game-name">ARCHETYPE <span>DARTBOARD</span></div>
+          <div class="game-desc">Upload a local avatar if you want, or just play against the default bullseye face. Photo remains local to the device.</div>
+          <div class="pill safe">SAFE MVP</div>
+        </div>
+        <div class="game-card featured" onclick="showScreen('pool')">
+          <div class="game-icon">🎱</div>
+          <div class="game-name">WORKPLACE <span>POOL</span></div>
+          <div class="game-desc">Create 9 fictional archetypes like The Micromanager, The Ghost Approver, and The Credit Collector.</div>
+          <div class="pill safe">SAFE MVP</div>
+        </div>
+        <div class="game-card" onclick="showScreen('caricature')">
+          <div class="game-icon">🎨</div>
+          <div class="game-name">FICTIONAL <span>CARICATURE</span></div>
+          <div class="game-desc">AI-generated from safe description text via backend function.</div>
+          <div class="pill safe">BACKEND ONLY</div>
+        </div>
+        <div class="game-card" onclick="showToast('More safe mini-games can be added later.')">
+          <div class="game-icon">🧩</div>
+          <div class="game-name">MORE <span>COMING</span></div>
+          <div class="game-desc">Spin, trivia, quizzes, and safe office satire modes.</div>
+          <div class="pill demo">ROADMAP</div>
+        </div>
+      </div>
+    </div>
+  </section>  <section class="screen" id="screen-dart">
+    <div class="panel">
+      <div class="section-label">Game 01</div>
+      <div class="title">DART <span>BOARD</span></div>
+      <div class="notice"><strong>Safe mode:</strong> use fictional nicknames and archetypes only. Do not upload or target real identifiable people.</div><div class="row3">
+    <div class="score-box"><div class="score-value" id="dScore">0</div><div class="score-label">Score</div></div>
+    <div class="score-box"><div class="score-value" id="dBest">—</div><div class="score-label">Best Hit</div></div>
+    <div class="score-box"><div class="score-value" id="dThrows">5</div><div class="score-label">Throws Left</div></div>
+  </div>
+
+  <div class="upload-box">
+    <div style="font-weight:700; margin-bottom:0.45rem;">Optional local avatar</div>
+    <div style="font-size:0.82rem; color:var(--grey); margin-bottom:0.55rem;">Used locally in canvas only. Not sent anywhere.</div>
+    <input type="file" id="dartFile" accept="image/*" />
+  </div>
+
+  <input class="input" id="dartBossName" type="text" maxlength="24" placeholder="Archetype nickname e.g. The Micromanager" />
+  <canvas id="dartCanvas" width="320" height="320"></canvas>
+  <div class="message-box" id="dartResult" style="display:none; text-align:center; font-weight:700;"></div>
+  <div class="row2">
+    <button class="btn" onclick="autoThrow()">Auto Throw</button>
+    <button class="btn-outline" onclick="resetDarts()">New Game</button>
+  </div>
+</div>
+
+  </section>  <section class="screen" id="screen-pool">
+    <div class="panel" id="poolSetupPanel">
+      <div class="section-label">Game 02</div>
+      <div class="title">WORKPLACE <span>POOL</span></div>
+      <div class="notice"><strong>Safe mode:</strong> fictional nicknames only. No real names, no company names, no abuse.</div>
+      <div class="boss-list" id="bossSetupList"></div>
+      <div class="row2">
+        <button class="btn" onclick="startPool()">Start Table</button>
+        <button class="btn-outline" onclick="useDefaultNames()">Use Defaults</button>
+      </div>
+    </div><div class="panel hidden" id="poolGamePanel">
+  <div class="pool-frame"><canvas id="poolCanvas"></canvas></div>
+  <div class="row2">
+    <div class="score-box"><div class="score-value" id="pPotted">0</div><div class="score-label">Cleared</div></div>
+    <div class="score-box"><div class="score-value" id="pShots">0</div><div class="score-label">Shots</div></div>
+  </div>
+  <div style="font-size:0.76rem; color:var(--grey); margin-bottom:0.25rem;">Shot Power <span id="powerPct">50%</span></div>
+  <div class="power-track"><div class="power-fill" id="powerFill"></div></div>
+  <div class="boss-chip-wrap" id="bossScroll"></div>
+  <div class="message-box" id="poolMsg" style="text-align:center;">Tap the table to shoot.</div>
+  <div class="row2">
+    <button class="btn-outline" onclick="resetPool()">New Game</button>
+    <button class="btn-outline" onclick="showPoolSetup()">Rename Archetypes</button>
+  </div>
+</div>
+
+  </section>  <section class="screen" id="screen-caricature">
+    <div class="panel">
+      <div class="section-label">AI Feature</div>
+      <div class="title">FICTIONAL <span>CARICATURE</span></div>
+      <div class="notice"><strong>Important:</strong> uploaded image is local preview only. The backend generates a fictional archetype caricature from your text description, not from the uploaded face.</div><div class="score-box" style="margin-bottom:0.8rem;">
+    <div class="score-value" id="cariLeft">2</div>
+    <div class="score-label">Free Caricatures Left</div>
+  </div>
+
+  <div class="upload-box">
+    <div style="font-weight:700; margin-bottom:0.45rem;">Optional local preview image</div>
+    <input type="file" id="cariFile" accept="image/*" />
+    <div style="font-size:0.8rem; color:var(--grey); margin-top:0.45rem;">Preview stays on the device and is not sent to the backend.</div>
+  </div>
+
+  <select class="select" id="cariStyle">
+    <option value="angry_cartoon">Angry Cartoon</option>
+    <option value="villain">Comic Villain</option>
+    <option value="office_clown">Office Clown</option>
+    <option value="chaos_manager">Chaos Manager</option>
+  </select>
+  <textarea class="textarea" id="cariDesc" maxlength="140" placeholder="Describe a fictional archetype, e.g. always reschedules, loves status decks, gives vague feedback."></textarea>
+  <button class="btn" id="cariBtn" onclick="generateCari()">Generate Fictional Caricature</button>
+  <div class="feed-card hidden" id="cariResult" style="margin-top:0.8rem; text-align:center;">
+    <img id="cariOutput" alt="Caricature result" style="width:100%; border-radius:8px; border:1px solid var(--dark4);" />
+  </div>
+</div>
+
+  </section>  <section class="screen" id="screen-roast">
+    <div class="panel">
+      <div class="section-label">Community</div>
+      <div class="title">ROAST <span>ARENA</span></div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('feed', this)">Feed</button>
+        <button class="tab-btn" onclick="switchTab('vent', this)">Vent</button>
+        <button class="tab-btn" onclick="switchTab('aboutsafe', this)">Safe Rules</button>
+      </div><div class="tab-panel active" id="tab-feed">
+    <div class="feed-card">
+      <div style="font-weight:800; margin-bottom:0.7rem;">Post a safe roast</div>
+      <input class="input" id="roastName" maxlength="24" placeholder="Anonymous nickname" />
+      <select class="select" id="roastBossType">
+        <option>Micromanager</option>
+        <option>Credit Collector</option>
+        <option>Ghost Approver</option>
+        <option>Meeting Addict</option>
+        <option>Process Zombie</option>
+        <option>Status Deck King</option>
+      </select>
+      <div class="notice" style="margin-bottom:0.7rem;">AI copy should be generated by a secure backend function. This demo includes a safe local fallback.</div>
+      <button class="btn-outline" style="margin-bottom:0.7rem;" onclick="safeGenerateRoast()">AI Write Roast</button>
+      <textarea class="textarea" id="roastText" maxlength="280" placeholder="Write about a fictional workplace archetype only."></textarea>
+      <button class="btn" onclick="postRoast()">Post Roast</button>
+    </div>
+    <div id="roastFeed"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-vent">
+    <div class="feed-card">
+      <div style="font-weight:800; margin-bottom:0.7rem;">Post a safe anonymous vent</div>
+      <input class="input" id="ventName" maxlength="24" placeholder="Anonymous nickname" />
+      <select class="select" id="ventBossType">
+        <option>Micromanager</option>
+        <option>Ghost Approver</option>
+        <option>Meeting Addict</option>
+        <option>Credit Collector</option>
+        <option>Chaos Scheduler</option>
+      </select>
+      <textarea class="textarea" id="ventText" maxlength="280" placeholder="Keep it fictional, safe, and non-identifiable."></textarea>
+      <button class="btn" onclick="submitVent()">Post Vent</button>
+    </div>
+    <div id="ventFeed"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-aboutsafe">
+    <div class="feed-card">
+      <div style="font-weight:800; margin-bottom:0.65rem;">What is allowed</div>
+      <div class="overlay-copy">
+        <h3>Allowed</h3>
+        <p>Fictional archetypes, generic workplace satire, anonymous jokes about vague office patterns, and non-identifiable frustration posts.</p>
+        <h3>Not allowed</h3>
+        <p>Real names, company names, threats, targeted harassment, slurs, doxxing, calls for harm, sexual content, or anything that identifies a real person.</p>
+        <h3>Launch recommendation</h3>
+        <p>Keep reads public, but use backend moderation for inserts. Add rate limiting and logging before full launch.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </section>  <section class="screen" id="screen-profile">
+    <div class="panel">
+      <div class="title" style="font-size:1.6rem; margin-bottom:0.2rem;">YOUR <span>PROFILE</span></div>
+      <div class="subtext" id="profileEmail">Not signed in</div>
+      <div class="profile-stats" style="margin-top:1rem;">
+        <div class="profile-card"><div class="profile-value" id="profDarts">0</div><div class="profile-label">Darts</div></div>
+        <div class="profile-card"><div class="profile-value" id="profRoasts">0</div><div class="profile-label">Posts</div></div>
+        <div class="profile-card"><div class="profile-value" id="profCari">2</div><div class="profile-label">Caricatures</div></div>
+      </div>
+      <div class="profile-menu">
+        <div class="menu-item" onclick="openOverlay('about')"><span>About</span><span>›</span></div>
+        <div class="menu-item" onclick="openOverlay('privacy')"><span>Privacy</span><span>›</span></div>
+        <div class="menu-item" onclick="openOverlay('terms')"><span>Terms</span><span>›</span></div>
+        <div class="menu-item" onclick="document.getElementById('emailGate').classList.remove('hidden')"><span>Join / Sign In</span><span>›</span></div>
+      </div>
+    </div>
+  </section>  <nav class="bottom-nav">
+    <button class="nav-btn active" id="nav-home" onclick="showScreen('home')"><span>🏠</span><span>Home</span></button>
+    <button class="nav-btn" id="nav-games" onclick="showScreen('games')"><span>🎮</span><span>Games</span></button>
+    <button class="nav-btn" id="nav-roast" onclick="showScreen('roast')"><span class="center-fire"><span class="dot">🔥</span></span></button>
+    <button class="nav-btn" id="nav-caricature" onclick="showScreen('caricature')"><span>🎨</span><span>AI</span></button>
+    <button class="nav-btn" id="nav-profile" onclick="showScreen('profile')"><span>👤</span><span>Me</span></button>
+  </nav>  <div class="overlay" id="overlay-about">
+    <div class="overlay-inner">
+      <div class="overlay-back" onclick="closeOverlay('about')">← Back</div>
+      <div class="title">ABOUT <span>THIS MVP</span></div>
+      <div class="overlay-copy">
+        <p>This production-safe MVP keeps the fun visual concept but reframes the experience as workplace stress satire based on fictional archetypes only.</p>
+        <h3>Why this version is safer</h3>
+        <p>It removes browser-side secret usage, avoids claims that do not match behavior, and narrows the product to non-identifiable workplace satire.</p>
+        <h3>Backend expectation</h3>
+        <p>AI writing and caricature generation should be handled through secure server or edge functions, never with keys in frontend code.</p>
+      </div>
+    </div>
+  </div>  <div class="overlay" id="overlay-privacy">
+    <div class="overlay-inner">
+      <div class="overlay-back" onclick="closeOverlay('privacy')">← Back</div>
+      <div class="title">PRIVACY <span>NOTES</span></div>
+      <div class="overlay-copy">
+        <p>Local image uploads in this file are used only for local canvas preview. They are not sent to any backend from this static HTML alone.</p>
+        <h3>AI functions</h3>
+        <p>If you connect backend AI generation, only send minimal safe prompt text. Do not send real names, real company names, or identifiable personal data.</p>
+        <h3>Launch note</h3>
+        <p>Keep your actual privacy policy aligned with the exact deployed behavior.</p>
+      </div>
+    </div>
+  </div>  <div class="overlay" id="overlay-terms">
+    <div class="overlay-inner">
+      <div class="overlay-back" onclick="closeOverlay('terms')">← Back</div>
+      <div class="title">TERMS <span>NOTES</span></div>
+      <div class="overlay-copy">
+        <p>This app is for fictional workplace satire and stress relief only.</p>
+        <h3>Users must not</h3>
+        <p>Post real names, company names, threats, hate, sexual content, or defamatory claims. Violations should be filtered and removed.</p>
+        <h3>Deployment note</h3>
+        <p>Before public launch, add moderation, rate limiting, and a proper report-and-remove process.</p>
+      </div>
+    </div>
+  </div>  <script>
+    const APP_CONFIG = {
+      SUPABASE_URL: "https://YOUR_PROJECT.supabase.co",
+      SUPABASE_ANON_KEY: "YOUR_PUBLIC_ANON_KEY",
+      FUNCTIONS_BASE: "https://YOUR_PROJECT.supabase.co/functions/v1"
+    };
+
+    const SCREENS = ["home", "games", "dart", "pool", "caricature", "roast", "profile"];
+    const NAV_MAP = {
+      home: "nav-home",
+      games: "nav-games",
+      roast: "nav-roast",
+      caricature: "nav-caricature",
+      profile: "nav-profile"
+    };
+
+    const DEFAULT_NAMES = [
+      "The Micromanager",
+      "The Credit Collector",
+      "The Ghost Approver",
+      "The Meeting Magnet",
+      "The Process Zombie",
+      "The Slide Reviewer",
+      "The Late Ping",
+      "The Chaos Scheduler",
+      "The Status Deck King"
+    ];
+
+    const BALL_COLORS = ["#e8001d", "#ff5500", "#7b68ee", "#ff69b4", "#8b0000", "#32cd32", "#ffb800", "#00ced1", "#9370db"];
+    const BALL_EMOJIS = ["😤", "🐍", "👻", "📅", "🧟", "📊", "⏰", "🌀", "👑"];
+
+    const SAFE_LINES = {
+      Micromanager: [
+        "Approved version two, rejected version three, then asked to go back to version two.",
+        "Asked for ownership, then reviewed the bullet spacing for forty minutes."
+      ],
+      "Credit Collector": [
+        "Presented the whole idea like it appeared in a dream, not in my draft.",
+        "My work had two authors: me and his confidence."
+      ],
+      "Ghost Approver": [
+        "Offline for every decision, online for every update request.",
+        "Reply time: three business days. Follow-up time: fourteen minutes."
+      ],
+      "Meeting Addict": [
+        "We had a meeting to align on when to align next.",
+        "Calendar full, progress pending, optimism unlimited."
+      ],
+      "Process Zombie": [
+        "If there is a faster path, he opens a tracker to stop it.",
+        "He calls friction governance."
+      ],
+      "Status Deck King": [
+        "The work is optional. The update slide is mandatory.",
+        "He tracks momentum with colors, not outcomes."
+      ]
+    };
+
+    const state = {
+      userEmail: localStorage.getItem("dtb_email") || "",
+      profDarts: parseInt(localStorage.getItem("dtb_darts") || "0", 10),
+      profRoasts: parseInt(localStorage.getItem("dtb_roasts") || "0", 10),
+      cariUsed: parseInt(localStorage.getItem("dtb_cari_used") || "0", 10),
+      dThrows: 5,
+      dScore: 0,
+      dBest: 0,
+      dartFaceImg: null,
+      poolNames: [...DEFAULT_NAMES],
+      poolPhotos: new Array(9).fill(null),
+      poolPhotoImgs: new Array(9).fill(null),
+      poolClickBound: false,
+      poolInited: false,
+      pShots: 0,
+      pPotted: 0,
+      pPower: 50,
+      pPowerDir: 1,
+      pPowerInterval: null,
+      balls: [],
+      cueBall: null,
+      pAnimating: false,
+      roastFeed: [
+        { name: "Anon_404", boss: "Micromanager", text: "Approved the plan, changed the template, then called the delay a team learning moment.", at: new Date().toISOString() },
+        { name: "DeckSurvivor", boss: "Status Deck King", text: "The deck had sixteen slides. The decision had zero sentences.", at: new Date(Date.now() - 3600000).toISOString() }
+      ],
+      ventFeed: [
+        { name: "QuietTab", boss: "Ghost Approver", text: "Disappears during risk, appears during recap.", at: new Date(Date.now() - 7200000).toISOString() }
+      ]
+    };
+
+    const dartCanvas = document.getElementById("dartCanvas");
+    const dartCtx = dartCanvas.getContext("2d");
+    const poolCanvas = document.getElementById("poolCanvas");
+    const poolCtx = poolCanvas.getContext("2d");
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => t.classList.remove("show"), 2500);
+    }
+
+    function showScreen(screen) {
+      SCREENS.forEach((s) => {
+        const el = document.getElementById(`screen-${s}`);
+        if (el) el.classList.toggle("active", s === screen);
+      });
+
+      Object.entries(NAV_MAP).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle("active", key === screen);
+      });
+
+      if (screen === "pool" && !state.poolInited && !document.getElementById("poolGamePanel").classList.contains("hidden")) {
+        initPoolCanvas();
+      }
+    }
+
+    function openOverlay(name) {
+      document.getElementById(`overlay-${name}`).classList.add("open");
+    }
+
+    function closeOverlay(name) {
+      document.getElementById(`overlay-${name}`).classList.remove("open");
+    }
+
+    function updateProfile() {
+      document.getElementById("profileEmail").textContent = state.userEmail || "Not signed in";
+      document.getElementById("profDarts").textContent = state.profDarts;
+      document.getElementById("profRoasts").textContent = state.profRoasts;
+      document.getElementById("profCari").textContent = Math.max(2 - state.cariUsed, 0);
+      document.getElementById("cariLeft").textContent = Math.max(2 - state.cariUsed, 0);
+      document.getElementById("joinTopBtn").textContent = state.userEmail ? "Member" : "Join Free";
+    }
+
+    function initGate() {
+      if (!state.userEmail && !localStorage.getItem("dtb_gate_dismissed")) {
+        setTimeout(() => document.getElementById("emailGate").classList.remove("hidden"), 1500);
+      }
+    }
+
+    function submitGate() {
+      const email = document.getElementById("gateEmail").value.trim();
+      if (!email || !email.includes("@")) {
+        showToast("Enter a valid email.");
+        return;
+      }
+      state.userEmail = email;
+      localStorage.setItem("dtb_email", email);
+      document.getElementById("emailGate").classList.add("hidden");
+      updateProfile();
+      showToast("Joined successfully.");
+    }
+
+    function dismissGate() {
+      localStorage.setItem("dtb_gate_dismissed", "1");
+      document.getElementById("emailGate").classList.add("hidden");
+    }
+
+    function drawBoard() {
+      const ctx = dartCtx;
+      const cx = 160;
+      const cy = 160;
+      ctx.clearRect(0, 0, 320, 320);
+
+      const rings = [
+        { r: 155, c: "#100202" },
+        { r: 140, c: "#1a0000" },
+        { r: 115, c: "#330000" },
+        { r: 90, c: "#1a0000" },
+        { r: 65, c: "#420000" },
+        { r: 42, c: "#780000" },
+        { r: 24, c: "#cc0000" },
+        { r: 10, c: "#ffb800" }
+      ];
+
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = "rgba(232,0,29,0.24)";
+      rings.forEach((ring) => {
+        ctx.beginPath();
+        ctx.arc(cx, cy, ring.r, 0, Math.PI * 2);
+        ctx.fillStyle = ring.c;
+        ctx.fill();
+      });
+      ctx.shadowBlur = 0;
+
+      [140, 115, 90, 65, 42].forEach((r) => {
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(255,255,255,0.12)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(cx, 8);
+      ctx.lineTo(cx, 312);
+      ctx.strokeStyle = "rgba(255,255,255,0.08)";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(8, cy);
+      ctx.lineTo(312, cy);
+      ctx.stroke();
+
+      if (state.dartFaceImg) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.drawImage(state.dartFaceImg, cx - 22, cy - 22, 44, 44);
+        ctx.restore();
+      } else {
+        ctx.font = "22px serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("😤", cx, cy + 1);
+      }
+    }
+
+    function getDartScore(x, y) {
+      const d = Math.sqrt((x - 160) ** 2 + (y - 160) ** 2);
+      if (d <= 10) return 50;
+      if (d <= 24) return 40;
+      if (d <= 42) return 30;
+      if (d <= 65) return 20;
+      if (d <= 90) return 10;
+      if (d <= 115) return 5;
+      if (d <= 140) return 2;
+      return 0;
+    }
+
+    function throwDart(event) {
+      if (state.dThrows <= 0) return;
+      const rect = dartCanvas.getBoundingClientRect();
+      const sx = dartCanvas.width / rect.width;
+      const sy = dartCanvas.height / rect.height;
+      const x = (event.clientX - rect.left) * sx;
+      const y = (event.clientY - rect.top) * sy;
+      placeDart(x, y);
+    }
+
+    function autoThrow() {
+      if (state.dThrows <= 0) return;
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.pow(Math.random(), 1.5) * 100;
+      placeDart(160 + Math.cos(angle) * distance, 160 + Math.sin(angle) * distance);
+    }
+
+    function placeDart(x, y) {
+      if (state.dThrows <= 0) return;
+      state.dThrows -= 1;
+      const hit = getDartScore(x, y);
+      state.dScore += hit;
+      state.dBest = Math.max(state.dBest, hit);
+
+      document.getElementById("dScore").textContent = state.dScore;
+      document.getElementById("dBest").textContent = state.dBest || "—";
+      document.getElementById("dThrows").textContent = state.dThrows;
+
+      dartCtx.beginPath();
+      dartCtx.arc(x, y, 5.5, 0, Math.PI * 2);
+      dartCtx.fillStyle = "#ffd700";
+      dartCtx.fill();
+      dartCtx.beginPath();
+      dartCtx.moveTo(x, y - 8);
+      dartCtx.lineTo(x, y + 8);
+      dartCtx.strokeStyle = "rgba(170,170,170,0.8)";
+      dartCtx.lineWidth = 2;
+      dartCtx.stroke();
+
+      state.profDarts += 1;
+      localStorage.setItem("dtb_darts", String(state.profDarts));
+      updateProfile();
+
+      const nickname = document.getElementById("dartBossName").value.trim() || "The Archetype";
+      showToast(`${nickname}: ${hit >= 40 ? "bullseye" : "hit"}.`);
+
+      if (state.dThrows <= 0) {
+        const result = document.getElementById("dartResult");
+        result.style.display = "block";
+        if (state.dScore >= 150) result.textContent = `Legendary run: ${state.dScore} points.`;
+        else if (state.dScore >= 80) result.textContent = `Solid run: ${state.dScore} points.`;
+        else result.textContent = `Run complete: ${state.dScore} points.`;
+      }
+    }
+
+    function resetDarts() {
+      state.dThrows = 5;
+      state.dScore = 0;
+      state.dBest = 0;
+      document.getElementById("dScore").textContent = "0";
+      document.getElementById("dBest").textContent = "—";
+      document.getElementById("dThrows").textContent = "5";
+      document.getElementById("dartResult").style.display = "none";
+      drawBoard();
+    }
+
+    function buildSetupList() {
+      const wrap = document.getElementById("bossSetupList");
+      wrap.innerHTML = DEFAULT_NAMES.map((name, i) => `
+        <div class="boss-item">
+          <div class="boss-num" style="background:${BALL_COLORS[i]}">${i + 1}</div>
+          <input class="boss-input" id="boss_name_${i}" maxlength="24" placeholder="${name}" />
+          <input type="file" accept="image/*" onchange="loadBossPhoto(${i}, this)" />
+        </div>
+      `).join("");
+    }
+
+    function loadBossPhoto(index, input) {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const src = e.target.result;
+        state.poolPhotos[index] = src;
+        const img = new Image();
+        img.onload = () => {
+          state.poolPhotoImgs[index] = img;
+          drawPool();
+        };
+        img.src = src;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function startPool() {
+      for (let i = 0; i < 9; i += 1) {
+        const value = document.getElementById(`boss_name_${i}`).value.trim();
+        state.poolNames[i] = value || DEFAULT_NAMES[i];
+      }
+      document.getElementById("poolSetupPanel").classList.add("hidden");
+      document.getElementById("poolGamePanel").classList.remove("hidden");
+      initPoolCanvas();
+    }
+
+    function useDefaultNames() {
+      state.poolNames = [...DEFAULT_NAMES];
+      document.getElementById("poolSetupPanel").classList.add("hidden");
+      document.getElementById("poolGamePanel").classList.remove("hidden");
+      initPoolCanvas();
+    }
+
+    function showPoolSetup() {
+      document.getElementById("poolGamePanel").classList.add("hidden");
+      document.getElementById("poolSetupPanel").classList.remove("hidden");
+      buildSetupList();
+    }
+
+    function renderBossChips() {
+      document.getElementById("bossScroll").innerHTML = state.poolNames.map((name, i) => `
+        <div class="boss-chip" id="boss_chip_${i}">${BALL_EMOJIS[i]} ${name}</div>
+      `).join("");
+    }
+
+    function initPoolCanvas() {
+      const width = poolCanvas.parentElement.clientWidth;
+      const height = Math.round(width * 0.52);
+      poolCanvas.width = width;
+      poolCanvas.height = height;
+      state.poolInited = true;
+
+      setupPoolBalls();
+      renderBossChips();
+      drawPool();
+
+      if (!state.poolClickBound) {
+        poolCanvas.addEventListener("click", shootPool);
+        state.poolClickBound = true;
+      }
+
+      clearInterval(state.pPowerInterval);
+      state.pPowerInterval = setInterval(() => {
+        if (state.pAnimating) return;
+        state.pPower += state.pPowerDir * 3;
+        if (state.pPower >= 100 || state.pPower <= 8) state.pPowerDir *= -1;
+        document.getElementById("powerFill").style.width = `${state.pPower}%`;
+        document.getElementById("powerPct").textContent = `${Math.round(state.pPower)}%`;
+      }, 45);
+    }
+
+    function setupPoolBalls() {
+      const w = poolCanvas.width;
+      const h = poolCanvas.height;
+      const r = 14;
+      state.pShots = 0;
+      state.pPotted = 0;
+      state.balls = [];
+      state.cueBall = { x: w * 0.22, y: h / 2, vx: 0, vy: 0, r, potted: false, isCue: true };
+
+      const rx = w * 0.64;
+      const ry = h / 2;
+      const spacing = r * 2.05;
+      [[0,0],[1,-0.5],[1,0.5],[2,-1],[2,0],[2,1],[3,-1.5],[3,-0.5],[3,0.5]].forEach(([row, col], i) => {
+        state.balls.push({ x: rx + row * spacing, y: ry + col * spacing, vx: 0, vy: 0, r, potted: false, isCue: false, idx: i });
+      });
+
+      document.getElementById("pShots").textContent = "0";
+      document.getElementById("pPotted").textContent = "0";
+      document.getElementById("poolMsg").textContent = "Tap the table to shoot.";
+    }
+
+    function getPockets() {
+      const w = poolCanvas.width;
+      const h = poolCanvas.height;
+      const m = 18;
+      return [
+        { x: m, y: m },
+        { x: w / 2, y: 7 },
+        { x: w - m, y: m },
+        { x: m, y: h - m },
+        { x: w / 2, y: h - 7 },
+        { x: w - m, y: h - m }
+      ];
+    }
+
+    function shootPool(event) {
+      if (state.pAnimating) return;
+      const rect = poolCanvas.getBoundingClientRect();
+      const sx = poolCanvas.width / rect.width;
+      const sy = poolCanvas.height / rect.height;
+      const mx = (event.clientX - rect.left) * sx;
+      const my = (event.clientY - rect.top) * sy;
+
+      const dx = mx - state.cueBall.x;
+      const dy = my - state.cueBall.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 3) return;
+
+      const power = (state.pPower / 100) * 12 + 3;
+      state.cueBall.vx = (dx / dist) * power;
+      state.cueBall.vy = (dy / dist) * power;
+      state.pShots += 1;
+      document.getElementById("pShots").textContent = String(state.pShots);
+      state.pAnimating = true;
+      animatePool();
+    }
+
+    function animatePool() {
+      const all = [state.cueBall, ...state.balls];
+      const pockets = getPockets();
+      let moving = false;
+
+      all.forEach((ball) => {
+        if (ball.potted) return;
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        ball.vx *= 0.985;
+        ball.vy *= 0.985;
+
+        if (Math.abs(ball.vx) < 0.1 && Math.abs(ball.vy) < 0.1) {
+          ball.vx = 0;
+          ball.vy = 0;
+        } else {
+          moving = true;
+        }
+
+        if (ball.x - ball.r < 0) {
+          ball.x = ball.r;
+          ball.vx = Math.abs(ball.vx) * 0.82;
+        }
+        if (ball.x + ball.r > poolCanvas.width) {
+          ball.x = poolCanvas.width - ball.r;
+          ball.vx = -Math.abs(ball.vx) * 0.82;
+        }
+        if (ball.y - ball.r < 0) {
+          ball.y = ball.r;
+          ball.vy = Math.abs(ball.vy) * 0.82;
+        }
+        if (ball.y + ball.r > poolCanvas.height) {
+          ball.y = poolCanvas.height - ball.r;
+          ball.vy = -Math.abs(ball.vy) * 0.82;
+        }
+
+        pockets.forEach((pocket) => {
+          if (ball.potted) return;
+          const d = Math.sqrt((ball.x - pocket.x) ** 2 + (ball.y - pocket.y) ** 2);
+          if (d < ball.r * 1.45) {
+            ball.potted = true;
+            ball.vx = 0;
+            ball.vy = 0;
+
+            if (!ball.isCue) {
+              state.pPotted += 1;
+              document.getElementById("pPotted").textContent = String(state.pPotted);
+              const chip = document.getElementById(`boss_chip_${ball.idx}`);
+              if (chip) chip.classList.add("potted");
+              document.getElementById("poolMsg").textContent = `${state.poolNames[ball.idx]} cleared.`;
+              if (state.pPotted === 9) {
+                document.getElementById("poolMsg").textContent = "Table cleared. Legendary run.";
+              }
+            } else {
+              setTimeout(() => {
+                state.cueBall.potted = false;
+                state.cueBall.x = poolCanvas.width * 0.22;
+                state.cueBall.y = poolCanvas.height / 2;
+              }, 500);
+            }
+          }
+        });
+      });
+
+      for (let i = 0; i < all.length; i += 1) {
+        for (let j = i + 1; j < all.length; j += 1) {
+          const a = all[i];
+          const b = all[j];
+          if (a.potted || b.potted) continue;
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < a.r + b.r && dist > 0) {
+            const nx = dx / dist;
+            const ny = dy / dist;
+            const overlap = (a.r + b.r - dist) / 2;
+            a.x -= nx * overlap;
+            a.y -= ny * overlap;
+            b.x += nx * overlap;
+            b.y += ny * overlap;
+            const rel = ((a.vx - b.vx) * nx) + ((a.vy - b.vy) * ny);
+            if (rel > 0) {
+              a.vx -= rel * nx;
+              a.vy -= rel * ny;
+              b.vx += rel * nx;
+              b.vy += rel * ny;
+            }
+          }
+        }
+      }
+
+      drawPool();
+      if (moving) requestAnimationFrame(animatePool);
+      else state.pAnimating = false;
+    }
+
+    function drawPool() {
+      const w = poolCanvas.width;
+      const h = poolCanvas.height;
+      const ctx = poolCtx;
+      const pockets = getPockets();
+      ctx.clearRect(0, 0, w, h);
+
+      const gradient = ctx.createLinearGradient(0, 0, w, h);
+      gradient.addColorStop(0, "#0d5020");
+      gradient.addColorStop(1, "#0a3d16");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = "rgba(255,255,255,0.05)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(w / 2, 0);
+      ctx.lineTo(w / 2, h);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(w / 2, h / 2, h * 0.12, 0, Math.PI * 2);
+      ctx.stroke();
+
+      pockets.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 18, 0, Math.PI * 2);
+        ctx.fillStyle = "#070707";
+        ctx.fill();
+      });
+
+      state.balls.forEach((ball) => {
+        if (ball.potted) return;
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+        ctx.fillStyle = BALL_COLORS[ball.idx];
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255,255,255,0.12)";
+        ctx.stroke();
+
+        if (state.poolPhotoImgs[ball.idx]) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(ball.x, ball.y, ball.r * 0.62, 0, Math.PI * 2);
+          ctx.clip();
+          ctx.drawImage(state.poolPhotoImgs[ball.idx], ball.x - ball.r * 0.62, ball.y - ball.r * 0.62, ball.r * 1.24, ball.r * 1.24);
+          ctx.restore();
+        } else {
+          ctx.beginPath();
+          ctx.arc(ball.x, ball.y, ball.r * 0.42, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(255,255,255,0.92)";
+          ctx.fill();
+          ctx.fillStyle = "#333";
+          ctx.font = "bold 11px Arial";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(String(ball.idx + 1), ball.x, ball.y + 0.5);
+        }
+      });
+
+      if (!state.cueBall.potted) {
+        ctx.beginPath();
+        ctx.arc(state.cueBall.x, state.cueBall.y, state.cueBall.r, 0, Math.PI * 2);
+        ctx.fillStyle = "#e9e9e9";
+        ctx.fill();
+        ctx.strokeStyle = "#aaa";
+        ctx.stroke();
+      }
+    }
+
+    function resetPool() {
+      setupPoolBalls();
+      renderBossChips();
+      drawPool();
+    }
+
+    function containsBlockedContent(text) {
+      const blocked = [
+        "kill", "die", "suicide", "murder", "attack", "rape", "stalk", "dox", "address", "phone number"
+      ];
+      const lower = text.toLowerCase();
+      return blocked.some((term) => lower.includes(term));
+    }
+
+    function looksLikeFullName(text) {
+      return /\b[A-Z][a-z]+\s[A-Z][a-z]+\b/.test(text);
+    }
+
+    function looksLikeCompany(text) {
+      return /\b(inc|llc|ltd|limited|corp|corporation|bank|technologies|solutions|private limited)\b/i.test(text);
+    }
+
+    function validateSafeText(text) {
+      if (!text.trim()) return "Please write something first.";
+      if (containsBlockedContent(text)) return "That content is not allowed.";
+      if (looksLikeFullName(text)) return "Use fictional nicknames only.";
+      if (looksLikeCompany(text)) return "Do not mention real company names.";
+      return "";
+    }
+
+    function safeGenerateRoast() {
+      const archetype = document.getElementById("roastBossType").value;
+      const options = SAFE_LINES[archetype] || SAFE_LINES.Micromanager;
+      const line = options[Math.floor(Math.random() * options.length)];
+      document.getElementById("roastText").value = line;
+      showToast("Safe roast generated.");
+    }
+
+    function formatTime(ts) {
+      const diff = Date.now() - new Date(ts).getTime();
+      const mins = Math.floor(diff / 60000);
+      if (mins < 1) return "just now";
+      if (mins < 60) return `${mins}m ago`;
+      const hrs = Math.floor(mins / 60);
+      if (hrs < 24) return `${hrs}h ago`;
+      return `${Math.floor(hrs / 24)}d ago`;
+    }
+
+    function renderRoastFeed() {
+      const wrap = document.getElementById("roastFeed");
+      wrap.innerHTML = state.roastFeed.map((item, index) => `
+        <div class="feed-card">
+          <div class="feed-head">
+            <div class="avatar">😤</div>
+            <div>
+              <div class="feed-name">${escapeHtml(item.name)}</div>
+              <div class="feed-time">${formatTime(item.at)}</div>
+            </div>
+            <div class="feed-tag">${escapeHtml(item.boss)}</div>
+          </div>
+          <div class="feed-text">${escapeHtml(item.text)}</div>
+          <div class="react-row">
+            <button class="react-btn" onclick="toggleReact(this)">😤 Relatable</button>
+            <button class="react-btn" onclick="toggleReact(this)">🔥 Sharp</button>
+            <button class="react-btn" onclick="toggleReact(this)">💀 Dead On</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderVentFeed() {
+      const wrap = document.getElementById("ventFeed");
+      wrap.innerHTML = state.ventFeed.map((item) => `
+        <div class="feed-card">
+          <div class="feed-head">
+            <div class="avatar">💬</div>
+            <div>
+              <div class="feed-name">${escapeHtml(item.name)}</div>
+              <div class="feed-time">${formatTime(item.at)}</div>
+            </div>
+            <div class="feed-tag">${escapeHtml(item.boss)}</div>
+          </div>
+          <div class="feed-text">${escapeHtml(item.text)}</div>
+        </div>
+      `).join("");
+    }
+
+    function toggleReact(btn) {
+      btn.classList.toggle("active");
+    }
+
+    function postRoast() {
+      if (!state.userEmail) {
+        document.getElementById("emailGate").classList.remove("hidden");
+        showToast("Join free to post.");
+        return;
+      }
+
+      const name = document.getElementById("roastName").value.trim() || `Anon_${Math.floor(Math.random() * 9999)}`;
+      const boss = document.getElementById("roastBossType").value;
+      const text = document.getElementById("roastText").value.trim();
+      const error = validateSafeText(`${name} ${boss} ${text}`);
+      if (error) {
+        showToast(error);
+        return;
+      }
+
+      state.roastFeed.unshift({ name, boss, text, at: new Date().toISOString() });
+      state.profRoasts += 1;
+      localStorage.setItem("dtb_roasts", String(state.profRoasts));
+      updateProfile();
+      renderRoastFeed();
+      document.getElementById("roastText").value = "";
+      showToast("Roast posted.");
+    }
+
+    function submitVent() {
+      if (!state.userEmail) {
+        document.getElementById("emailGate").classList.remove("hidden");
+        showToast("Join free to post.");
+        return;
+      }
+
+      const name = document.getElementById("ventName").value.trim() || `Anon_${Math.floor(Math.random() * 9999)}`;
+      const boss = document.getElementById("ventBossType").value;
+      const text = document.getElementById("ventText").value.trim();
+      const error = validateSafeText(`${name} ${boss} ${text}`);
+      if (error) {
+        showToast(error);
+        return;
+      }
+
+      state.ventFeed.unshift({ name, boss, text, at: new Date().toISOString() });
+      renderVentFeed();
+      document.getElementById("ventText").value = "";
+      showToast("Vent posted.");
+    }
+
+    function switchTab(name, btn) {
+      document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(`tab-${name}`).classList.add("active");
+    }
+
+    async function generateCari() {
+      if (state.cariUsed >= 2 && !state.userEmail) {
+        document.getElementById("emailGate").classList.remove("hidden");
+        showToast("Join free to use your 2 free caricatures.");
+        return;
+      }
+
+      const description = document.getElementById("cariDesc").value.trim();
+      const error = validateSafeText(description || "generic fictional archetype");
+      if (error && description) {
+        showToast(error);
+        return;
+      }
+
+      const btn = document.getElementById("cariBtn");
+      btn.disabled = true;
+      btn.textContent = "Generating...";
+
+      try {
+        const style = document.getElementById("cariStyle").value;
+        const fallbackSvg = `data:image/svg+xml;utf8,${encodeURIComponent(`
+          <svg xmlns='http://www.w3.org/2000/svg' width='1024' height='1024'>
+            <rect width='100%' height='100%' fill='#1e1a1a'/>
+            <circle cx='512' cy='360' r='180' fill='#e8001d'/>
+            <circle cx='452' cy='330' r='18' fill='white'/>
+            <circle cx='572' cy='330' r='18' fill='white'/>
+            <rect x='372' y='560' width='280' height='180' rx='24' fill='#ff5500'/>
+            <text x='512' y='860' text-anchor='middle' fill='#f5efe0' font-size='42' font-family='Arial'>${style.replace(/_/g, ' ')}</text>
+            <text x='512' y='915' text-anchor='middle' fill='#f5efe0' font-size='28' font-family='Arial'>fictional archetype only</text>
+          </svg>
+        `)}`;
+
+        document.getElementById("cariOutput").src = fallbackSvg;
+        document.getElementById("cariResult").classList.remove("hidden");
+        state.cariUsed += 1;
+        localStorage.setItem("dtb_cari_used", String(state.cariUsed));
+        updateProfile();
+        showToast("Caricature ready. Replace fallback with backend function call.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Generate Fictional Caricature";
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function animateHomeCounter() {
+      let count = 47395;
+      setInterval(() => {
+        if (Math.random() > 0.7) {
+          count += Math.floor(Math.random() * 3 + 1);
+          document.getElementById("homeDarts").textContent = count.toLocaleString();
+        }
+      }, 4000);
+    }
+
+    document.getElementById("joinTopBtn").addEventListener("click", () => {
+      document.getElementById("emailGate").classList.remove("hidden");
+    });
+    document.getElementById("gateSubmitBtn").addEventListener("click", submitGate);
+    document.getElementById("gateCloseBtn").addEventListener("click", dismissGate);
+    dartCanvas.addEventListener("click", throwDart);
+
+    document.getElementById("dartFile").addEventListener("change", (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          state.dartFaceImg = img;
+          drawBoard();
+          showToast("Local avatar loaded.");
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    document.getElementById("cariFile").addEventListener("change", () => {
+      showToast("Local preview selected. Backend should not receive the image.");
+    });
+
+    buildSetupList();
+    updateProfile();
+    drawBoard();
+    renderRoastFeed();
+    renderVentFeed();
+    animateHomeCounter();
+    initGate();
+  </script></body>
+</html>
+{"updates":[{"pattern":"^[\s\S]*$","replacement":"\n<html lang="en">\n\n  <meta charset="UTF-8" />\n  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />\n  DissTheBoss — Arcade Therapy\n  \n    :root{--red:#e8001d;--orange:#ff5500;--yellow:#ffb800;--green:#00c864;--blue:#3aa8ff;--dark:#0c0b0b;--dark2:#141212;--dark3:#1e1a1a;--dark4:#2a2424;--dark5:#3a3333;--cream:#f5efe0;--grey:#8e8383;--nav-h:58px;--bottom-h:66px}\n    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent} html,body{height:100%;overflow:hidden;background:var(--dark);color:var(--cream);font-family:Inter,Arial,Helvetica,sans-serif} button,input,textarea,select{font:inherit} .hidden{display:none!important}\n    .top-nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:40;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;background:rgba(12,11,11,.96);border-bottom:1px solid var(--dark4)} .brand{font-size:1.2rem;font-weight:900;letter-spacing:1px;cursor:pointer}.brand span{color:var(--red)} .top-actions{display:flex;gap:.5rem}.top-btn,.mini-btn,.btn,.btn-outline,.nav-btn,.tab-btn,.react-btn,.chip{cursor:pointer;transition:.15s ease all}.top-btn,.mini-btn{border:none;background:var(--red);color:#fff;padding:.55rem .9rem;border-radius:10px;font-size:.82rem;font-weight:800}.mini-btn{padding:.46rem .72rem;font-size:.74rem;background:var(--dark3);border:1px solid var(--dark4)}\n    .screen{position:fixed;top:var(--nav-h);left:0;right:0;bottom:var(--bottom-h);overflow-y:auto;display:none;padding:1rem;-webkit-overflow-scrolling:touch}.screen.active{display:block}.panel{max-width:820px;margin:0 auto}.hero{min-height:100%;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:1.2rem .25rem 2rem}.tagline{display:inline-block;margin:0 auto 1rem;font-size:.74rem;font-weight:700;color:var(--orange);border:1px solid rgba(255,85,0,.28);background:rgba(255,85,0,.08);border-radius:999px;padding:.42rem .9rem} .hero h1{font-size:3.2rem;line-height:.92;font-weight:950;margin-bottom:.75rem}.hero h1 span{color:var(--red)} .section-label{color:var(--orange);font-size:.72rem;text-transform:uppercase;letter-spacing:2px;font-weight:800;margin-bottom:.4rem}.title{font-size:2rem;font-weight:900;line-height:1;margin-bottom:.55rem}.title span{color:var(--red)} .subtext{color:#d0c2c2;line-height:1.55;font-size:.95rem}\n    .grid2,.grid3,.grid4,.hero-cta,.tabs,.stat-grid,.feed-grid,.plans-grid{display:grid;gap:.8rem}.grid2,.hero-cta,.plans-grid{grid-template-columns:repeat(2,1fr)}.grid3,.stat-grid{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(4,1fr)}\n    .card,.hero-box,.stat-card,.feed-card,.notice,.score-box,.panel-box,.mission,.leader,.plan,.battle,.overlay-card{background:var(--dark2);border:1px solid var(--dark4);border-radius:14px}.hero-box,.feed-card,.notice,.panel-box,.plan,.battle,.overlay-card{padding:1rem}.stat-card,.score-box,.mission,.leader{text-align:center;padding:.85rem .55rem}.stat-value,.score-value{font-size:1.6rem;font-weight:900;line-height:1;color:var(--yellow)}.stat-card .stat-value{color:var(--red)}.stat-label,.score-label{color:var(--grey);font-size:.66rem;text-transform:uppercase;margin-top:.23rem;letter-spacing:1px}\n    .btn,.btn-outline{width:100%;padding:.92rem 1rem;border-radius:10px;font-weight:800}.btn{border:none;background:var(--red);color:#fff}.btn-outline{border:1px solid var(--dark5);background:transparent;color:var(--cream)} .btn.blue{background:var(--blue)} .btn.green{background:var(--green);color:#04130a}\n    .input,.textarea,.select{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;color:var(--cream);padding:.82rem .95rem;outline:none;margin-bottom:.7rem}.textarea{resize:vertical;min-height:100px}\n    .notice{color:#d7caca;font-size:.84rem;line-height:1.52;margin-bottom:.85rem}.notice strong{color:var(--orange)}\n    .pill{display:inline-block;margin-top:.45rem;padding:.2rem .48rem;border-radius:999px;font-size:.66rem;font-weight:800}.pill.safe{color:var(--green);border:1px solid rgba(0,200,100,.3);background:rgba(0,200,100,.08)}.pill.hot{color:#fff;border:1px solid rgba(232,0,29,.35);background:rgba(232,0,29,.18)}.pill.demo{color:var(--yellow);border:1px solid rgba(255,184,0,.3);background:rgba(255,184,0,.08)}\n    .tabs{grid-auto-flow:column;overflow-x:auto;padding-bottom:.2rem;margin-bottom:.85rem}.tabs::-webkit-scrollbar,.chips::-webkit-scrollbar,.rank-list::-webkit-scrollbar{display:none}.tab-btn{border:1px solid var(--dark4);background:var(--dark3);color:var(--grey);border-radius:999px;padding:.45rem .82rem;white-space:nowrap;font-size:.76rem;font-weight:800}.tab-btn.active{background:var(--red);border-color:var(--red);color:#fff}.tab-panel{display:none}.tab-panel.active{display:block}\n    .feed-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem}.avatar{width:36px;height:36px;border-radius:50%;background:rgba(232,0,29,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}.feed-name{font-size:.9rem;font-weight:800}.feed-time{color:var(--grey);font-size:.72rem}.feed-tag{margin-left:auto;color:var(--red);font-size:.66rem;font-weight:800;border:1px solid rgba(232,0,29,.2);background:rgba(232,0,29,.08);padding:.18rem .45rem;border-radius:999px}.feed-text{line-height:1.58;color:#d9caca;font-size:.92rem;margin-bottom:.7rem}.react-row{display:flex;flex-wrap:wrap;gap:.45rem}.react-btn{border:1px solid var(--dark4);background:var(--dark3);color:var(--grey);border-radius:999px;padding:.28rem .55rem;font-size:.76rem}.react-btn.active{color:var(--cream);border-color:rgba(232,0,29,.3);background:rgba(232,0,29,.08)}\n    .bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--bottom-h);z-index:35;display:grid;grid-template-columns:repeat(5,1fr);background:var(--dark2);border-top:1px solid var(--dark4)} .nav-btn{border:none;background:transparent;color:var(--grey);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.12rem;font-size:.68rem}.nav-btn.active{color:var(--red)} .center-fire{display:flex;align-items:center;justify-content:center}.center-fire .dot{width:52px;height:52px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.32rem;transform:translateY(-12px);border:3px solid var(--dark2)}\n    .toast{position:fixed;bottom:calc(var(--bottom-h) + 1rem);right:1rem;left:1rem;z-index:90;margin-left:auto;max-width:340px;background:var(--dark2);border:1px solid var(--red);border-radius:12px;padding:.85rem 1rem;opacity:0;transform:translateY(18px);transition:.25s ease all;font-size:.84rem;font-weight:800}.toast.show{opacity:1;transform:translateY(0)}\n    .gate{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,.82)} .gate-box{width:100%;max-width:390px;background:var(--dark2);border:2px solid var(--red);border-radius:16px;padding:1.4rem;text-align:center}.gate-title{font-size:1.85rem;font-weight:950;line-height:1;margin-bottom:.55rem}.gate-title span{color:var(--red)} .gate-list{text-align:left;margin:.9rem 0 1rem;color:#d1c2c2;font-size:.84rem;line-height:1.6}.gate-list li{margin-left:1rem}\n    canvas{display:block;width:100%;margin:0 auto .9rem} #whackCanvas{max-width:420px;height:auto;border-radius:14px;background:#1c120d;border:4px solid #6e4422} #dartCanvas{max-width:340px;border-radius:50%;background:#120808;box-shadow:0 0 28px rgba(232,0,29,.22)} #poolCanvas{background:#0b4a18;border-radius:12px}\n    .chips{display:flex;gap:.45rem;overflow-x:auto;padding-bottom:.2rem}.chip{background:var(--dark3);border:1px solid var(--dark4);color:var(--grey);border-radius:999px;padding:.35rem .65rem;font-size:.74rem;font-weight:700;white-space:nowrap}.chip.active{background:rgba(232,0,29,.12);border-color:rgba(232,0,29,.35);color:var(--cream)}\n    .rank-list{display:flex;flex-direction:column;gap:.45rem;max-height:260px;overflow:auto}.rank-row{display:flex;justify-content:space-between;align-items:center;background:var(--dark3);border:1px solid var(--dark4);padding:.6rem .75rem;border-radius:10px;font-size:.82rem}\n    .page-overlay{position:fixed;inset:0;background:var(--dark);z-index:70;display:none;overflow-y:auto;padding:calc(var(--nav-h) + 1rem) 1rem calc(var(--bottom-h) + 1rem)}.page-overlay.open{display:block}.overlay-inner{max-width:760px;margin:0 auto}.overlay-back{color:var(--grey);margin-bottom:1rem;cursor:pointer;font-weight:800}.overlay-copy{color:#d7caca;line-height:1.7;font-size:.92rem}.overlay-copy h3{margin:1rem 0 .35rem;color:var(--cream)}\n    @media (max-width:720px){.grid2,.hero-cta,.plans-grid,.grid4{grid-template-columns:1fr}.grid3,.stat-grid{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:3rem}}\n  \n\n\n  <div class="gate hidden" id="emailGate">\n    <div class="gate-box">\n      <div style="font-size:2.2rem;margin-bottom:.35rem;">🔥\n      <div class="gate-title">JOIN THE ARCADE\n      <div class="subtext">Free AI roast writing, free AI mirror, whack mode, community vents, and 2 caricatures free.\n      <ul class="gate-list">\n        Whack The Boss hero game\n        AI boss builder + battle links\n        AI writing and AI Mirror\n        About, legal, FAQ, contact, analytics hooks\n      \n      <input class="input" id="gateEmail" type="email" placeholder="your@email.com" autocomplete="email">\n      <button class="btn" id="gateSubmitBtn">Join Free\n      <button class="btn-outline" style="margin-top:.5rem" id="gateCloseBtn">Maybe Later\n    \n  \n\n  <div class="toast" id="toast">\n\n  <nav class="top-nav">\n    <div class="brand" onclick="showScreen('home')">DISSTHEBOSS\n    <div class="top-actions">\n      <button class="mini-btn" onclick="openOverlay('faq')">FAQ\n      <button class="top-btn" id="joinTopBtn">Join Free\n    \n  \n\n  <section class="screen active" id="screen-home">\n    <div class="hero panel">\n      <div class="tagline">Arcade therapy for work stress\n      WHACK.ROAST.SURVIVE.\n      <p class="subtext">Build an AI boss, whack it for points, write anonymous roasts, vent with the community, and use the AI Mirror to decode your frustration. This is the full loop.\n      <div class="stat-grid">\n        <div class="stat-card"><div class="stat-value" id="homeWhacks">18240<div class="stat-label">Whacks\n        <div class="stat-card"><div class="stat-value" id="homeBosses">4921<div class="stat-label">Bosses Built\n        <div class="stat-card"><div class="stat-value" id="homeStreak">7<div class="stat-label">Day Streak\n      \n      <div class="hero-cta">\n        <div class="hero-box" style="background:linear-gradient(135deg,rgba(232,0,29,.16),rgba(255,85,0,.08));text-align:left">\n          <div class="section-label">Hero Mode\n          <div class="title" style="font-size:1.45rem">WHACK THE BOSS\n          <p class="subtext" style="margin-bottom:.8rem">60-second chaos, combos, final boss, daily leaderboard, and battle links for coworkers.\n          <div class="grid2">\n            <button class="btn" onclick="showScreen('whack')">Play Whack\n            <button class="btn-outline" onclick="showScreen('builder')">Generate AI Boss\n          \n        \n        <div class="hero-box" style="background:linear-gradient(135deg,rgba(58,168,255,.14),rgba(0,200,100,.08));text-align:left">\n          <div class="section-label" style="color:var(--blue)">Free Tool\n          <div class="title" style="font-size:1.35rem">AI <span style="color:var(--blue)">MIRROR\n          <p class="subtext" style="margin-bottom:.8rem">Describe what happened at work and the AI Mirror reflects the deeper frustration and what you may need most.\n          <button class="btn blue" onclick="showScreen('mirror')">Open AI Mirror\n        \n      \n      <div class="grid3" style="margin-top:1rem;">\n        <div class="mission"><div class="score-value" style="font-size:1.1rem">+25<div class="stat-label">Play 1 Whack Round\n        <div class="mission"><div class="score-value" style="font-size:1.1rem">+40<div class="stat-label">Generate 1 AI Boss\n        <div class="mission"><div class="score-value" style="font-size:1.1rem">+30<div class="stat-label">Post 1 Vent/Roast\n      \n    \n  \n\n  <section class="screen" id="screen-whack">\n    <div class="panel">\n      <div class="section-label">Hero Game\n      <div class="title">WHACK THE BOSS\n      <div class="notice">Main loop: Create or pick a boss, whack for 60 seconds, beat your score, then share a battle link.\n      <div class="grid3">\n        <div class="score-box"><div class="score-value" id="wScore">0<div class="score-label">Score\n        <div class="score-box"><div class="score-value" id="wTime">60<div class="score-label">Seconds\n        <div class="score-box"><div class="score-value" id="wCombo">x1<div class="score-label">Combo\n      \n      <div class="chips" id="bossChips">\n      <canvas id="whackCanvas" width="420" height="520">\n      <div class="message-box" id="whackMsg" style="text-align:center">Press start to begin. Tap the boss when it appears.\n      <div class="grid2">\n        <button class="btn" id="whackStartBtn" onclick="startWhack()">Start Whack\n        <button class="btn-outline" onclick="shareBattleLink()">Share Battle Link\n      \n      <div class="battle" style="margin-top:.8rem;">\n        <div class="section-label">Daily Leaderboard\n        <div class="rank-list" id="whackLeaderboard">\n      \n    \n  \n\n  <section class="screen" id="screen-builder">\n    <div class="panel">\n      <div class="section-label">AI Engine\n      <div class="title">AI BOSS GENERATOR\n      <div class="notice">Viral loop: describe the boss, generate the archetype, then fight it in Whack The Boss.\n      <textarea class="textarea" id="bossPrompt" placeholder="Example: Manager who schedules 9pm meetings, asks for version 12, and says let's align every day.">\n      <div class="grid2">\n        <button class="btn" onclick="generateBoss()">Generate AI Boss\n        <button class="btn-outline" onclick="useBuilderBossInWhack()">Use In Whack\n      \n      <div class="feed-card hidden" id="bossResult" style="margin-top:.8rem;">\n        <div class="feed-head"><div class="avatar">🤖<div class="feed-name" id="bossName">Boss Name<div class="feed-time">AI-generated boss archetype<div class="feed-tag" id="bossWeakness">Weakness\n        <div class="feed-text" id="bossLore">\n        <div class="chips" id="bossTraits">\n      \n    \n  \n\n  <section class="screen" id="screen-community">\n    <div class="panel">\n      <div class="section-label">Community\n      <div class="title">VENT. ROAST. RELATE.\n      <div class="tabs">\n        <button class="tab-btn active" onclick="switchTab('roasts',this)">Roasts\n        <button class="tab-btn" onclick="switchTab('vents',this)">Vents\n        <button class="tab-btn" onclick="switchTab('events',this)">Events\n      \n      <div class="tab-panel active" id="tab-roasts">\n        <div class="feed-card">\n          <div class="feed-name" style="margin-bottom:.7rem">AI Roast Writing\n          <input class="input" id="roastName" maxlength="24" placeholder="Anonymous nickname">\n          <select class="select" id="roastBossType">MicromanagerCredit CollectorGhost ApproverMeeting AddictStatus Deck King\n          <button class="btn-outline" style="margin-bottom:.7rem" onclick="safeGenerateRoast()">AI Write Roast\n          <textarea class="textarea" id="roastText" maxlength="280" placeholder="Write or generate your roast.">\n          <button class="btn" onclick="postRoast()">Post Roast\n        \n        <div id="roastFeed">\n      \n      <div class="tab-panel" id="tab-vents">\n        <div class="feed-card">\n          <div class="feed-name" style="margin-bottom:.7rem">AI Vent Writing\n          <input class="input" id="ventName" maxlength="24" placeholder="Anonymous nickname">\n          <select class="select" id="ventBossType">MicromanagerGhost ApproverMeeting AddictChaos Scheduler\n          <button class="btn-outline" style="margin-bottom:.7rem" onclick="safeGenerateVent()">AI Write Vent\n          <textarea class="textarea" id="ventText" maxlength="280" placeholder="Keep it safe and fictional.">\n          <button class="btn" onclick="submitVent()">Post Vent\n        \n        <div id="ventFeed">\n      \n      <div class="tab-panel" id="tab-events">\n        <div class="grid2">\n          <div class="battle"><div class="section-label">Community Event<div class="title" style="font-size:1.25rem">Boss Battle Friday<p class="subtext">Top whack score today wins the Office Slayer badge.<div class="pill hot">LIVE EVENT\n          <div class="battle"><div class="section-label">Theme<div class="title" style="font-size:1.25rem">Meeting Monster<p class="subtext">Generate or fight meeting-heavy bosses all day today.<div class="pill demo">THEME DAY\n        \n      \n    \n  \n\n  <section class="screen" id="screen-mirror">\n    <div class="panel">\n      <div class="section-label">Free Tool\n      <div class="title">AI <span style="color:var(--blue)">MIRROR\n      <div class="notice">Purpose: not just to vent — to understand whether what you feel is anger, helplessness, disrespect, overload, or burnout.\n      <textarea class="textarea" id="mirrorInput" placeholder="Tell the AI Mirror what happened at work today.">\n      <div class="grid2">\n        <button class="btn blue" onclick="runMirror()">Reflect My Frustration\n        <button class="btn-outline" onclick="copyMirrorResult()">Copy Reflection\n      \n      <div class="feed-card hidden" id="mirrorResult" style="margin-top:.8rem;">\n        <div class="feed-head"><div class="avatar" style="background:rgba(58,168,255,.12)">🪞<div class="feed-name">AI Mirror Reflection<div class="feed-time">Free emotional reflection tool\n        <div class="feed-text" id="mirrorText">\n      \n    \n
