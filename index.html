@@ -11,1052 +11,222 @@
 :root{--red:#E8001D;--orange:#FF5500;--yellow:#FFB800;--dark:#0C0B0B;--dark2:#161414;--dark3:#201D1D;--dark4:#2E2929;--cream:#F5EFE0;--grey:#7A7070;}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
 body{background:var(--dark);color:var(--cream);font-family:'Barlow',sans-serif;overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(12,11,11,.97);}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;cursor:pointer;}.nav-logo span{color:var(--red);}
-.nav-links{display:flex;gap:1.2rem;align-items:center;}
-.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;cursor:pointer;transition:color .2s;}
-.nav-links a:hover{color:var(--cream);}.nav-cta{background:var(--red)!important;color:white!important;padding:.4rem 1rem;border-radius:2px;}
-.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;}
-.popup-overlay.hidden{display:none;}
-.popup-box{background:var(--dark2);border:1px solid var(--red);border-radius:6px;padding:2.5rem 2rem;max-width:420px;width:100%;position:relative;text-align:center;}
-.popup-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--grey);font-size:1.5rem;cursor:pointer;}
-.popup-title{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;margin-bottom:.5rem;}.popup-title span{color:var(--red);}
-.popup-sub{font-size:.9rem;color:#B8A8A8;margin-bottom:1.5rem;line-height:1.5;}
-.popup-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:3px;color:var(--cream);font-family:'Barlow',sans-serif;font-size:.95rem;padding:.8rem 1rem;outline:none;margin-bottom:.8rem;}
-.popup-input:focus{border-color:var(--red);}
-.popup-btn{width:100%;background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.9rem;cursor:pointer;}
-.popup-skip{display:block;margin-top:.8rem;font-size:.75rem;color:var(--grey);cursor:pointer;text-decoration:underline;}
-.popup-spots{font-size:.75rem;color:var(--orange);margin-bottom:1rem;font-weight:700;}
-.page{display:none;min-height:100vh;padding:5rem 1.5rem 3rem;}.page.active{display:block;}
-.page-inner{max-width:800px;margin:0 auto;}
-.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,8vw,5rem);margin-bottom:1rem;}.page-title span{color:var(--red);}
-.page-content{color:#C8B8B8;line-height:1.8;font-size:.95rem;}
-.page-content h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;color:var(--cream);margin:1.5rem 0 .5rem;}
-.page-content p{margin-bottom:1rem;}
-.back-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);cursor:pointer;margin-bottom:2rem;}
-.form-group{margin-bottom:1rem;}
-.form-group label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:.4rem;}
-.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:3px;color:var(--cream);font-family:'Barlow',sans-serif;font-size:.95rem;padding:.7rem 1rem;outline:none;resize:none;}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--red);}
-.submit-btn{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.9rem 2rem;cursor:pointer;}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,#2a0808 0%,transparent 70%),var(--dark);}
-.hero-tag{position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);background:rgba(255,85,0,.12);border:1px solid rgba(255,85,0,.3);padding:.4rem 1.2rem;border-radius:2px;margin-bottom:1.5rem;}
-.hero-title{position:relative;z-index:1;font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,15vw,9rem);line-height:.95;letter-spacing:4px;}
+
+/* GATE */
+.gate-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#0a0000,#0C0B0B);z-index:9998;display:flex;align-items:center;justify-content:center;padding:1.5rem;}
+.gate-box{background:var(--dark2);border:1px solid rgba(232,0,29,.35);border-radius:10px;padding:2.2rem 2rem;max-width:420px;width:100%;text-align:center;box-shadow:0 0 60px rgba(232,0,29,.08);}
+.gate-logo{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:4px;line-height:1;margin-bottom:.3rem;}
+.gate-logo span{color:var(--red);}
+.gate-sub{color:#B8A8A8;font-size:.9rem;line-height:1.6;margin-bottom:1.2rem;font-style:italic;}
+.gate-badge{display:inline-block;background:rgba(255,85,0,.12);border:1px solid rgba(255,85,0,.3);color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;padding:.28rem .8rem;border-radius:2px;margin-bottom:1rem;}
+.gate-spots{font-size:.72rem;color:var(--orange);margin-bottom:.9rem;font-weight:700;}
+.gate-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:4px;color:var(--cream);font-family:'Barlow',sans-serif;font-size:1rem;padding:.85rem 1rem;outline:none;margin-bottom:.75rem;transition:border-color .2s;}
+.gate-input:focus{border-color:var(--red);}
+.gate-btn{width:100%;background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:3px;padding:1rem;cursor:pointer;transition:background .2s;}
+.gate-btn:hover{background:#c0001a;}
+.gate-skip{display:block;margin-top:.75rem;font-size:.72rem;color:var(--grey);cursor:pointer;text-decoration:underline;}
+.gate-perks{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.9rem 0 1rem;}
+.gate-perk{background:rgba(255,255,255,.04);border:1px solid var(--dark4);border-radius:4px;padding:.5rem .6rem;font-size:.72rem;color:#B8A8A8;}
+.gate-perk strong{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.78rem;color:var(--cream);margin-bottom:.15rem;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,11,11,.97);border-bottom:1px solid var(--dark4);padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;text-decoration:none;color:var(--cream);white-space:nowrap;}
+.nav-logo span{color:var(--red);}
+.nav-links{display:flex;gap:.1rem;align-items:center;flex-wrap:nowrap;overflow-x:auto;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--grey);text-decoration:none;padding:.32rem .5rem;border-radius:2px;white-space:nowrap;transition:color .2s;}
+.nav-links a:hover{color:var(--cream);}
+.nav-cta{background:var(--red)!important;color:white!important;border-radius:2px;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 40%,#2a0808 0%,transparent 65%),var(--dark);}
+.hero-tag{position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);background:rgba(255,85,0,.1);border:1px solid rgba(255,85,0,.28);padding:.38rem 1.2rem;border-radius:2px;margin-bottom:1.5rem;display:inline-block;}
+.hero-title{position:relative;z-index:1;font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,18vw,10rem);line-height:.9;letter-spacing:4px;}
 .hero-title .red{color:var(--red);}
-.hero-sub{position:relative;z-index:1;font-size:1rem;color:#B8A8A8;max-width:500px;margin:.8rem auto 2rem;line-height:1.6;font-style:italic;}
-.hero-btns{position:relative;z-index:1;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
-.btn-primary{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2rem;border:none;border-radius:2px;cursor:pointer;}
-.btn-secondary{background:transparent;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2rem;border:1px solid var(--dark4);border-radius:2px;cursor:pointer;}
-.hero-stats{position:relative;z-index:1;display:flex;gap:2rem;margin-top:3rem;flex-wrap:wrap;justify-content:center;}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--red);line-height:1;}
-.stat-label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:.2rem;}
-.section-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);margin-bottom:.6rem;}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.5rem);line-height:1;margin-bottom:.8rem;}
-.game-desc{font-size:.92rem;color:#B8A8A8;line-height:1.6;margin-bottom:1.2rem;}
-.score-display{background:var(--dark3);border:1px solid var(--dark4);border-radius:4px;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
-.score-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);}
-.score-value{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--yellow);line-height:1;}
-/* DART */
-.game-section{background:var(--dark2);padding:4rem 1.5rem;border-top:1px solid var(--dark4);}
-.game-layout{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-.dart-wrap{display:flex;flex-direction:column;align-items:center;gap:.8rem;}
-.upload-zone{border:2px dashed var(--dark4);border-radius:4px;padding:1rem;text-align:center;cursor:pointer;position:relative;margin-bottom:.6rem;transition:border-color .2s;}
-.upload-zone:hover{border-color:var(--red);}
-.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.upload-zone-text{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);}
-.face-preview{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--red);display:none;margin:0 auto .4rem;}
-.throw-btn{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.8rem 1.5rem;cursor:pointer;width:100%;}
-.throws-left{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-align:center;}
-.throws-left span{color:var(--cream);}
-.game-result{background:var(--dark3);border:1px solid var(--dark4);border-radius:4px;padding:1rem;text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;display:none;}
-/* POOL */
-.pool-section{background:var(--dark);padding:4rem 1.5rem;border-top:1px solid var(--dark4);}
-.pool-inner{max-width:1000px;margin:0 auto;}
-.pool-layout{display:grid;grid-template-columns:200px 1fr;gap:1.5rem;align-items:start;}
-.pool-sidebar{display:flex;flex-direction:column;gap:.7rem;}
-.boss-ball-list{display:flex;flex-direction:column;gap:.25rem;max-height:380px;overflow-y:auto;}
-.bbi{display:flex;align-items:center;gap:.4rem;padding:.35rem .5rem;background:var(--dark2);border:1px solid var(--dark4);border-radius:3px;transition:opacity .3s;}
-.bbi.potted{opacity:.3;text-decoration:line-through;}
-.bb-dot{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;overflow:hidden;}
-.bb-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;flex:1;letter-spacing:.5px;color:var(--cream);}
-.bb-edit{background:none;border:none;color:var(--grey);cursor:pointer;font-size:.7rem;padding:0 .1rem;}
-.pool-msg{min-height:42px;background:var(--dark2);border:1px solid var(--dark4);border-radius:4px;padding:.5rem .7rem;font-size:.78rem;color:var(--cream);text-align:center;font-style:italic;display:flex;align-items:center;justify-content:center;}
-.power-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:.3rem;}
-.power-track{background:var(--dark4);border-radius:3px;height:7px;overflow:hidden;}
-.power-fill{height:100%;width:50%;background:linear-gradient(90deg,#00cc44,var(--yellow),var(--red));border-radius:3px;transition:width .05s;}
-.pool-canvas-wrap{position:relative;background:#0a3d1a;border:5px solid #6b4423;border-radius:8px;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,.7),inset 0 0 20px rgba(0,0,0,.4);cursor:crosshair;}
-#poolCanvas{display:block;width:100%;touch-action:none;}
-.pool-hint{position:absolute;bottom:5px;left:0;right:0;text-align:center;font-size:.65rem;color:rgba(255,255,255,.35);font-family:'Barlow Condensed',sans-serif;pointer-events:none;}
-.setup-screen{background:var(--dark2);border:1px solid var(--dark4);border-radius:6px;padding:1.2rem;margin-bottom:1.5rem;}
-.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.8rem;}
-.setup-input-wrap{display:flex;align-items:center;gap:.3rem;background:var(--dark3);border:1px solid var(--dark4);border-radius:3px;padding:.3rem .4rem;}
-.setup-dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;}
-.setup-inp{background:none;border:none;color:var(--cream);font-family:'Barlow',sans-serif;font-size:.8rem;outline:none;flex:1;min-width:0;}
-.setup-inp::placeholder{color:var(--grey);}
-.setup-legal{font-size:.68rem;color:var(--grey);font-style:italic;margin-top:.5rem;}
-/* VENTS */
-.vents-section{padding:4rem 1.5rem;background:var(--dark2);border-top:1px solid var(--dark4);}
-.vents-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
-.form-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.3rem;}
-.form-sub{font-size:.82rem;color:var(--grey);margin-bottom:.8rem;font-style:italic;}
-.anon-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.25);color:#00C896;font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .8rem;border-radius:2px;margin-bottom:.8rem;}
-.f-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:3px;color:var(--cream);font-family:'Barlow',sans-serif;font-size:.86rem;padding:.6rem .85rem;outline:none;margin-bottom:.6rem;resize:none;}
-.f-input:focus{border-color:var(--red);}
-.f-select{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:3px;color:var(--cream);font-family:'Barlow',sans-serif;font-size:.86rem;padding:.6rem .85rem;outline:none;margin-bottom:.6rem;cursor:pointer;}
-.comments-list{display:flex;flex-direction:column;gap:.8rem;max-height:580px;overflow-y:auto;}
-.comment-card{background:var(--dark);border:1px solid var(--dark4);border-radius:4px;padding:.9rem;}
-.comment-top{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;}
-.comment-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
-.comment-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.82rem;}
-.comment-time{font-size:.68rem;color:var(--grey);}
-.boss-tag{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.18rem .45rem;border-radius:2px;background:rgba(232,0,29,.12);color:var(--red);border:1px solid rgba(232,0,29,.18);margin-left:auto;white-space:nowrap;}
-.comment-text{font-size:.86rem;color:#C8B8B8;line-height:1.6;}
-.comment-reactions{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem;}
-.react-btn{background:none;border:1px solid var(--dark4);border-radius:14px;color:var(--grey);font-size:.72rem;padding:.2rem .55rem;cursor:pointer;transition:all .2s;}
-.react-btn:hover,.react-btn.liked{background:rgba(232,0,29,.12);border-color:var(--red);color:var(--red);}
-/* AI WRITING */
-.ai-box{background:rgba(232,0,29,.05);border:1px solid rgba(232,0,29,.18);border-radius:4px;padding:.8rem;margin-bottom:.6rem;}
-.ai-box-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem;}
-.ai-free{background:rgba(0,200,100,.12);border:1px solid rgba(0,200,100,.28);color:#00C864;font-size:.58rem;padding:.1rem .4rem;border-radius:2px;font-weight:700;letter-spacing:1px;}
-.ai-output{font-size:.82rem;color:var(--cream);line-height:1.6;font-style:italic;min-height:34px;}
-.ai-btn{background:none;border:1px solid rgba(232,0,29,.28);color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:.28rem .75rem;border-radius:2px;cursor:pointer;margin-top:.4rem;transition:background .2s;}
-.ai-btn:hover{background:rgba(232,0,29,.1);}
-/* COMMUNITY */
-.community-section{padding:4rem 1.5rem;background:var(--dark2);border-top:1px solid var(--dark4);}
-.community-inner{max-width:1000px;margin:0 auto;}
-.c-tabs{display:flex;gap:.4rem;margin-bottom:1.2rem;flex-wrap:wrap;}
-.c-tab{background:var(--dark3);border:1px solid var(--dark4);color:var(--grey);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;padding:.45rem .9rem;border-radius:2px;cursor:pointer;transition:all .2s;}
-.c-tab.active{background:var(--red);border-color:var(--red);color:white;}
-.c-panel{display:none;}.c-panel.active{display:block;}
-.roast-card{background:var(--dark);border:1px solid var(--dark4);border-radius:5px;padding:1rem;margin-bottom:.8rem;}
-.roast-top{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem;}
-.roast-av{width:34px;height:34px;border-radius:50%;background:rgba(232,0,29,.12);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
-.roast-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;}
-.roast-time{font-size:.68rem;color:var(--grey);}
-.roast-boss-tag{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.18rem .45rem;border-radius:2px;background:rgba(232,0,29,.1);color:var(--red);border:1px solid rgba(232,0,29,.16);margin-left:auto;white-space:nowrap;}
-.roast-text{font-size:.88rem;color:#C8B8B8;line-height:1.6;margin-bottom:.7rem;}
-.roast-reactions{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.6rem;}
-.rr{display:flex;align-items:center;gap:.25rem;background:var(--dark3);border:1px solid var(--dark4);border-radius:14px;padding:.22rem .6rem;cursor:pointer;font-size:.75rem;transition:all .2s;color:var(--grey);}
-.rr:hover,.rr.reacted{background:rgba(232,0,29,.1);border-color:rgba(232,0,29,.3);color:var(--cream);}
-.roast-actions{display:flex;gap:.4rem;flex-wrap:wrap;}
-.ra{background:none;border:1px solid var(--dark4);color:var(--grey);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:1px;text-transform:uppercase;padding:.25rem .6rem;border-radius:2px;cursor:pointer;transition:all .2s;}
-.ra:hover{border-color:var(--red);color:var(--cream);}
-.replies-wrap{display:none;margin-top:.7rem;border-top:1px solid var(--dark4);padding-top:.7rem;}
-.reply-item{display:flex;gap:.5rem;margin-bottom:.45rem;}
-.reply-av{width:22px;height:22px;border-radius:50%;background:rgba(232,0,29,.1);display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0;}
-.reply-bub{flex:1;background:var(--dark3);border-radius:4px;padding:.35rem .65rem;font-size:.8rem;color:#C8B8B8;}
-.reply-row{display:flex;gap:.4rem;margin-top:.4rem;}
-.reply-in{flex:1;background:var(--dark3);border:1px solid var(--dark4);border-radius:3px;color:var(--cream);font-family:'Barlow',sans-serif;font-size:.8rem;padding:.4rem .65rem;outline:none;}
-.reply-in:focus{border-color:var(--red);}
-.reply-send{background:var(--red);color:white;border:none;border-radius:2px;padding:.4rem .85rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:1px;cursor:pointer;}
-.post-form{background:var(--dark3);border:1px solid var(--dark4);border-radius:5px;padding:1rem;margin-bottom:1.2rem;}
-.post-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:.7rem;}
-/* BATTLE */
-.battle-card{background:var(--dark);border:1px solid var(--dark4);border-radius:5px;padding:1rem;margin-bottom:.8rem;}
-.bh{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;}
-.bt{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--red);}
-.bs{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--orange);background:rgba(255,85,0,.1);border:1px solid rgba(255,85,0,.2);padding:.18rem .55rem;border-radius:2px;}
-.bvs{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;align-items:start;margin-bottom:.7rem;}
-.bside{background:var(--dark3);border-radius:3px;padding:.6rem;}
-.bsl{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:.3rem;}
-.broast{font-size:.8rem;color:#C8B8B8;line-height:1.5;}
-.vs{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--red);align-self:center;}
-.vote-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;margin:.35rem 0;}
-.vote-bar-a{background:var(--red);transition:width .5s;}.vote-bar-b{background:var(--dark4);flex:1;}
-.vote-btns{display:flex;gap:.4rem;}
-.vote-btn{flex:1;background:var(--dark3);border:1px solid var(--dark4);color:var(--grey);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:1px;text-transform:uppercase;padding:.5rem;border-radius:2px;cursor:pointer;text-align:center;transition:all .2s;}
-.vote-btn:hover,.vote-btn.voted{background:rgba(232,0,29,.1);border-color:var(--red);color:var(--red);}
-/* BOTW */
-.botw-hero{background:linear-gradient(135deg,#1a0000,var(--dark3));border:1px solid rgba(232,0,29,.22);border-radius:6px;padding:1.2rem;text-align:center;margin-bottom:1.2rem;}
-.botw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
-.botw-item{background:var(--dark3);border:1px solid var(--dark4);border-radius:4px;padding:.7rem;text-align:center;cursor:pointer;transition:border-color .2s;}
-.botw-item:hover{border-color:var(--red);}
-.bvb{width:100%;margin-top:.35rem;background:none;border:1px solid var(--dark4);color:var(--grey);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;padding:.22rem;border-radius:2px;cursor:pointer;transition:all .2s;}
-.bvb:hover,.bvb.voted{background:rgba(232,0,29,.1);border-color:var(--red);color:var(--red);}
-/* GAMES HUB */
-.games-hub{padding:4rem 1.5rem;background:var(--dark);border-top:1px solid var(--dark4);}
-.games-inner{max-width:1000px;margin:0 auto;}
-.games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1.5rem;}
-.game-card{background:var(--dark2);border:1px solid var(--dark4);border-radius:6px;padding:1.4rem;text-align:center;cursor:pointer;transition:all .2s;}
-.game-card:hover{border-color:var(--red);transform:translateY(-2px);}
-.gc-icon{font-size:2.2rem;margin-bottom:.6rem;}
-.gc-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;margin-bottom:.25rem;}.gc-name span{color:var(--red);}
-.gc-desc{font-size:.75rem;color:var(--grey);line-height:1.5;}
-.gc-badge{display:inline-block;margin-top:.45rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;background:rgba(0,200,100,.1);border:1px solid rgba(0,200,100,.25);color:#00C864;padding:.18rem .55rem;border-radius:2px;}
-.gc-soon{background:rgba(255,184,0,.1);border-color:rgba(255,184,0,.3);color:var(--yellow);}
+.hero-sub{position:relative;z-index:1;font-size:1.05rem;color:#B8A8A8;max-width:520px;margin:.9rem auto 2rem;line-height:1.65;font-style:italic;}
+.hero-btns{position:relative;z-index:1;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;}
+.btn-primary{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2rem;border:none;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-secondary{background:transparent;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2rem;border:1px solid var(--dark4);border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;}
+.hero-stats{position:relative;z-index:1;display:flex;gap:2.5rem;margin-top:3.5rem;flex-wrap:wrap;justify-content:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);line-height:1;}
+.stat-label{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:.2rem;}
+
+/* FEATURES */
+.features{padding:5rem 1.5rem;background:var(--dark2);border-top:1px solid var(--dark4);}
+.features-inner{max-width:1000px;margin:0 auto;}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,7vw,4rem);line-height:1;margin-bottom:.5rem;}
+.sec-sub{color:var(--grey);font-size:.9rem;margin-bottom:3rem;max-width:500px;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;}
+.feat-card{background:var(--dark3);border:1px solid var(--dark4);border-radius:8px;padding:1.8rem 1.5rem;cursor:pointer;transition:all .25s;text-decoration:none;color:inherit;display:block;}
+.feat-card:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 8px 30px rgba(232,0,29,.1);}
+.feat-icon{font-size:2.5rem;margin-bottom:.9rem;}
+.feat-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;line-height:1;margin-bottom:.4rem;}
+.feat-name span{color:var(--red);}
+.feat-desc{font-size:.82rem;color:var(--grey);line-height:1.6;}
+.feat-badge{display:inline-block;margin-top:.8rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;padding:.2rem .55rem;border-radius:2px;}
+.badge-free{background:rgba(0,200,100,.1);border:1px solid rgba(0,200,100,.25);color:#00C864;}
+.badge-ai{background:rgba(255,85,0,.1);border:1px solid rgba(255,85,0,.25);color:var(--orange);}
+.badge-soon{background:rgba(255,184,0,.1);border:1px solid rgba(255,184,0,.25);color:var(--yellow);}
+
+/* HOW IT WORKS */
+.how{padding:5rem 1.5rem;background:var(--dark);}
+.how-inner{max-width:800px;margin:0 auto;text-align:center;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:2.5rem;}
+.step{text-align:center;padding:1.5rem 1rem;}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(232,0,29,.25);line-height:1;margin-bottom:.4rem;}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem;}
+.step-desc{font-size:.8rem;color:var(--grey);line-height:1.6;}
+
 footer{background:var(--dark2);border-top:1px solid var(--dark4);padding:2.5rem 1.5rem;text-align:center;}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:4px;margin-bottom:.3rem;}.footer-logo span{color:var(--red);}
-.footer-sub{font-size:.8rem;color:var(--grey);font-style:italic;margin-bottom:1.2rem;}
-.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
-.footer-links a{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:color .2s;}
-.footer-links a:hover{color:var(--cream);}
-.footer-copy{margin-top:1.5rem;font-size:.7rem;color:#444;}
-.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--dark3);border:1px solid var(--red);border-radius:4px;padding:.8rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;z-index:2000;transform:translateY(100px);opacity:0;transition:all .3s;max-width:280px;}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;margin-bottom:.2rem;}
+.foot-logo span{color:var(--red);}
+.foot-sub{font-size:.78rem;color:var(--grey);font-style:italic;margin-bottom:1.2rem;}
+.foot-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+.foot-links a{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;}
+.foot-links a:hover{color:var(--cream);}
+.foot-copy{font-size:.65rem;color:#333;line-height:1.6;}
+.toast{position:fixed;bottom:1.5rem;right:1rem;background:var(--dark3);border:1px solid var(--red);border-radius:4px;padding:.7rem 1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;z-index:9999;transform:translateY(80px);opacity:0;transition:all .3s;max-width:270px;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-@media(max-width:700px){.game-layout,.vents-inner,.pool-layout{grid-template-columns:1fr;}.nav-links{display:none;}.bvs{grid-template-columns:1fr;}.vs{display:none;}.botw-grid,.games-grid{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
-<!-- POPUP -->
-<div class="popup-overlay hidden" id="emailPopup">
-<div class="popup-box">
-<button class="popup-close" onclick="closePopup()">×</button>
-<div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:.8rem;">🔥 Limited Founding Members</div>
-<h2 class="popup-title">JOIN THE <span>REBELLION</span></h2>
-<p class="popup-sub">Get lifetime access when we launch premium. Be one of the first 100.</p>
-<div class="popup-spots" id="spotsLeft">🔴 Only 87 spots remaining!</div>
-<input class="popup-input" type="email" id="popupEmail" placeholder="your@email.com">
-<button class="popup-btn" onclick="submitEmail()">🎯 CLAIM MY SPOT</button>
-<span class="popup-skip" onclick="closePopup()">No thanks, I enjoy suffering in silence</span>
-</div>
+
+<!-- EMAIL GATE -->
+<div class="gate-overlay" id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">DISS<span>THE</span>BOSS</div>
+    <p class="gate-sub">The anonymous platform where stressed employees get sweet revenge — virtually.</p>
+    <div class="gate-badge">🔥 2,841 Employees Already Inside</div>
+    <div class="gate-perks">
+      <div class="gate-perk"><strong>🎯 Dart Board</strong>Upload your boss, throw darts</div>
+      <div class="gate-perk"><strong>🎱 Boss Pool</strong>Name & sink all 9 bosses</div>
+      <div class="gate-perk"><strong>🎨 Caricature</strong>AI cartoon of your boss</div>
+      <div class="gate-perk"><strong>🔥 Roast Arena</strong>Anonymous community</div>
+    </div>
+    <div class="gate-spots">🔴 Only 87 founding spots left — it's free!</div>
+    <input class="gate-input" type="email" id="gateEmail" placeholder="your@email.com" autocomplete="email">
+    <button class="gate-btn" onclick="submitGate()">🎯 GET FREE ACCESS</button>
+    <span class="gate-skip" onclick="skipGate()">Just browsing (limited access)</span>
+  </div>
 </div>
 
 <nav>
-<div class="nav-logo" onclick="showPage('home')">DISS<span>THE</span>BOSS</div>
-<div class="nav-links">
-<a onclick="showPage('home')">Home</a>
-<a onclick="scrollToGame()">Darts</a>
-<a onclick="scrollToPool()">Pool</a>
-<a onclick="scrollToCommunity()">Community</a>
-<a onclick="showPage('games')">All Games</a>
-<a onclick="showPage('about')">About</a>
-<a class="nav-cta" onclick="document.getElementById('emailPopup').classList.remove('hidden')">Join Free</a>
-</div>
+  <a class="nav-logo" href="index.html">DISS<span>THE</span>BOSS</a>
+  <div class="nav-links">
+    <a href="games.html">🎯 Games</a>
+    <a href="caricature.html">🎨 Caricature</a>
+    <a href="community.html">🔥 Community</a>
+    <a href="index.html#about">About</a>
+    <a class="nav-cta" href="#" onclick="openGate()">Join Free</a>
+  </div>
 </nav>
-
-<!-- HOME PAGE -->
-<div id="page-home" class="page active">
 
 <!-- HERO -->
 <div class="hero">
-<div class="hero-bg"></div>
-<div class="hero-tag">🎯 The World's #1 Boss Stress Relief Platform</div>
-<h1 class="hero-title">DISS<br><span class="red">THE BOSS</span></h1>
-<p class="hero-sub">Upload your boss photo. Throw darts at their face. Sink them in pool. Roast them anonymously. Feel amazing.</p>
-<div class="hero-btns">
-<button class="btn-primary" onclick="scrollToGame()">🎯 Throw Darts</button>
-<button class="btn-secondary" onclick="scrollToPool()">🎱 Boss Pool</button>
-</div>
-<div class="hero-stats">
-<div class="stat"><div class="stat-num" id="playCount">47,382</div><div class="stat-label">Darts Thrown</div></div>
-<div class="stat"><div class="stat-num">2,841</div><div class="stat-label">Bosses Dissed</div></div>
-<div class="stat"><div class="stat-num">98%</div><div class="stat-label">Felt Better</div></div>
-</div>
+  <div class="hero-bg"></div>
+  <div class="hero-tag">🎯 The World's #1 Boss Stress Relief Platform</div>
+  <h1 class="hero-title">DISS<br><span class="red">THE BOSS</span></h1>
+  <p class="hero-sub">Upload your boss photo. Throw darts at their face. Sink them in pool. Get an AI caricature. Roast them anonymously. Feel amazing.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="games.html">🎯 Play Now — Free</a>
+    <a class="btn-secondary" href="caricature.html">🎨 AI Caricature</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num" id="dartCount">47,382</div><div class="stat-label">Darts Thrown</div></div>
+    <div class="stat"><div class="stat-num">2,841</div><div class="stat-label">Bosses Dissed</div></div>
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Felt Better</div></div>
+  </div>
 </div>
 
-<!-- DART GAME -->
-<section class="game-section" id="gameSection">
-<div class="game-layout">
-<div>
-<div class="section-label">🎯 Game 01 — Free</div>
-<h2 class="section-title">BOSS DART BOARD</h2>
-<p class="game-desc">Upload your boss photo — it appears on the dartboard. 5 throws. Pure satisfaction.</p>
-<div class="score-display">
-<div><div class="score-label">Score</div><div class="score-value" id="totalScore">0</div></div>
-<div style="text-align:right"><div class="score-label">Best Hit</div><div class="score-value" id="bestHit">—</div></div>
-</div>
-<div class="upload-zone" id="dartUploadZone">
-<input type="file" accept="image/*" onchange="loadDartPhoto(this)">
-<img class="face-preview" id="dartFacePreview">
-<div class="upload-zone-text">📷 Upload Boss Photo (Optional)</div>
-<div style="font-size:.68rem;color:var(--grey);margin-top:.2rem;">Stays on your device — never uploaded</div>
-</div>
-<div style="margin-bottom:.7rem;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:.35rem;">Boss Nickname</div>
-<input type="text" id="dartBossName" placeholder="e.g. The Micromanager, Big Dave..." maxlength="20" class="f-input" style="margin:0;">
-</div>
-<div class="game-result" id="gameResult"></div>
-</div>
-<div class="dart-wrap">
-<canvas id="dartCanvas" width="270" height="270" style="border-radius:50%;box-shadow:0 0 30px rgba(232,0,29,.2);cursor:crosshair;max-width:100%;"></canvas>
-<div class="throws-left" id="throwsLeft">Throws: <span>5</span> remaining</div>
-<button class="throw-btn" onclick="autoThrow()">🎯 AUTO THROW</button>
-<button class="btn-secondary" style="width:100%;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:2px;margin-top:.4rem;" onclick="resetDarts()">↺ NEW GAME</button>
-</div>
-</div>
+<!-- FEATURES -->
+<section class="features" id="about">
+  <div class="features-inner">
+    <div class="sec-label">What We Do</div>
+    <h2 class="sec-title">PICK YOUR <span style="color:var(--red)">WEAPON</span></h2>
+    <p class="sec-sub">Four ways to diss your boss. All free. All anonymous. All hilarious.</p>
+    <div class="features-grid">
+      <a class="feat-card" href="games.html">
+        <div class="feat-icon">🎯</div>
+        <div class="feat-name">DART <span>BOARD</span></div>
+        <div class="feat-desc">Upload your boss photo. It appears in the bullseye. 5 throws. Click anywhere to aim. Pure satisfaction.</div>
+        <div class="feat-badge badge-free">FREE</div>
+      </a>
+      <a class="feat-card" href="games.html#pool">
+        <div class="feat-icon">🎱</div>
+        <div class="feat-name">BOSS <span>POOL</span></div>
+        <div class="feat-desc">Name all 9 bosses yourself. Upload their photos. Watch the physics. Pocket every single one.</div>
+        <div class="feat-badge badge-free">FREE</div>
+      </a>
+      <a class="feat-card" href="caricature.html">
+        <div class="feat-icon">🎨</div>
+        <div class="feat-name">AI <span>CARICATURE</span></div>
+        <div class="feat-desc">Upload a photo. Describe your boss. AI generates a savage cartoon caricature. 2 free, then ₹5 each.</div>
+        <div class="feat-badge badge-ai">AI POWERED</div>
+      </a>
+      <a class="feat-card" href="community.html">
+        <div class="feat-icon">🔥</div>
+        <div class="feat-name">ROAST <span>ARENA</span></div>
+        <div class="feat-desc">Post anonymous roasts. Battle strangers. Vote the worst boss of the week. Private rooms for your team.</div>
+        <div class="feat-badge badge-free">FREE</div>
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- BOSS POOL GAME -->
-<section class="pool-section" id="poolSection">
-<div class="pool-inner">
-<div style="text-align:center;margin-bottom:1.5rem;">
-<div class="section-label">🎱 Game 02 — Free</div>
-<h2 class="section-title">BOSS <span style="color:var(--red)">POOL</span></h2>
-<p class="game-desc" style="max-width:500px;margin:0 auto;">Name your 9 bosses. Upload their photos. Pocket every single one.</p>
-</div>
-
-<!-- SETUP -->
-<div class="setup-screen" id="poolSetup">
-<div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:.8rem;">😤 Name Your 9 Bosses — nicknames only!</div>
-<div class="setup-grid" id="bossSetupGrid"></div>
-<div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.3rem;">
-<button class="btn-primary" style="font-size:.85rem;padding:.65rem 1.4rem;" onclick="startPool()">🎱 FIRE THEM ALL!</button>
-<button class="btn-secondary" style="font-size:.85rem;padding:.65rem 1.4rem;" onclick="useDefaultNames()">Use Default Names</button>
-</div>
-<p class="setup-legal">⚖️ Nicknames only. No real full names. All characters fictional for entertainment only.</p>
-</div>
-
-<!-- GAME AREA -->
-<div id="poolGameArea" style="display:none;">
-<div class="pool-layout">
-<div class="pool-sidebar">
-<div class="score-display" style="padding:.7rem 1rem;">
-<div><div class="score-label">Fired</div><div class="score-value" id="potCount">0</div></div>
-<div style="text-align:right"><div class="score-label">Shots</div><div class="score-value" id="shotCount">0</div></div>
-</div>
-<div style="margin-bottom:.3rem;">
-<div class="power-label">Shot Power</div>
-<div class="power-track"><div class="power-fill" id="powerFill"></div></div>
-</div>
-<div class="boss-ball-list" id="bossBallList"></div>
-<div class="pool-msg" id="poolMsg">Tap the table to shoot!</div>
-<div style="display:flex;gap:.4rem;margin-top:.4rem;">
-<button class="btn-secondary" style="flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:1px;padding:.45rem;" onclick="resetPool()">↺ NEW</button>
-<button class="btn-secondary" style="flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:1px;padding:.45rem;" onclick="showPoolSetup()">✏️ RENAME</button>
-</div>
-</div>
-<div class="pool-canvas-wrap" id="poolWrap">
-<canvas id="poolCanvas"></canvas>
-<div class="pool-hint" id="poolHint">Tap anywhere to aim & shoot the white ball</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- VENTS + AI WRITING -->
-<section class="vents-section" id="ventsSection">
-<div class="vents-inner">
-<div>
-<div class="section-label">💬 Anonymous Vents</div>
-<h2 class="form-title">DROP YOUR DISS</h2>
-<p class="form-sub">No names. No judgement. Pure unfiltered truth.</p>
-<div class="anon-badge">🔒 100% Anonymous</div>
-<input class="f-input" type="text" id="ventName" placeholder="Anonymous nickname e.g. AngryEmployee_42" maxlength="30">
-<select class="f-select" id="ventBossType">
-<option>😤 Micromanager</option><option>🐍 Credit Stealer</option><option>👻 Ghost Boss</option>
-<option>📅 Meeting Addict</option><option>👊 Office Bully</option><option>🍎 Fav Player</option>
-<option>💰 Cheap Boss</option><option>🔪 Backstabber</option><option>📱 Phone Addict</option><option>🤡 Just A Clown</option>
-</select>
-<div class="ai-box">
-<div class="ai-box-label">✍️ AI Writes My Vent <span class="ai-free">ALWAYS FREE</span></div>
-<div class="ai-output" id="aiVentOutput">Hit generate — AI writes your vent in seconds!</div>
-<button class="ai-btn" onclick="aiWriteVent()">⚡ Generate AI Vent</button>
-</div>
-<textarea class="f-input" id="ventText" rows="4" placeholder="Or type your own vent..." maxlength="280"></textarea>
-<div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--grey);margin-top:-.3rem;margin-bottom:.6rem;">
-<span>Keep it anonymous!</span><span id="charCount">0/280</span>
-</div>
-<button class="submit-btn" onclick="submitVent()">😤 POST MY VENT</button>
-</div>
-<div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;">
-<div class="section-label" style="margin:0">Live Feed</div>
-<span style="font-size:.72rem;color:var(--grey);">🔥 <span id="ventCount">0</span> vents</span>
-</div>
-<div class="comments-list" id="commentsList"><div style="text-align:center;color:var(--grey);padding:2rem;font-style:italic;">Loading vents...</div></div>
-</div>
-</div>
-</section>
-
-<!-- COMMUNITY ROAST ARENA -->
-<section class="community-section" id="communitySection">
-<div class="community-inner">
-<div style="text-align:center;margin-bottom:1.8rem;">
-<div class="section-label">🔥 Community</div>
-<h2 class="section-title">ROAST <span style="color:var(--red)">ARENA</span></h2>
-<p class="game-desc" style="max-width:500px;margin:0 auto;">Post roasts. Battle strangers. Vote the worst boss of the week.</p>
-</div>
-<div class="c-tabs">
-<button class="c-tab active" onclick="switchCTab('feed',this)">🔥 Public Feed</button>
-<button class="c-tab" onclick="switchCTab('battle',this)">⚔️ Roast Battle</button>
-<button class="c-tab" onclick="switchCTab('botw',this)">🏆 Boss of Week</button>
-<button class="c-tab" onclick="switchCTab('room',this)">🔒 Private Room</button>
-</div>
-
-<!-- FEED -->
-<div class="c-panel active" id="cpanel-feed">
-<div class="post-form">
-<div class="post-label">🔥 Post Your Roast</div>
-<input class="f-input" type="text" id="roastName" placeholder="Your anonymous name" maxlength="30">
-<div class="ai-box" style="margin-bottom:.6rem;">
-<div class="ai-box-label">✍️ AI Writes My Roast <span class="ai-free">ALWAYS FREE</span></div>
-<div class="ai-output" id="aiRoastOutput">AI will write a savage boss roast for you!</div>
-<button class="ai-btn" onclick="aiWriteRoast()">⚡ Generate Roast</button>
-</div>
-<textarea class="f-input" id="roastText" rows="3" placeholder="Or write your own roast..." maxlength="300"></textarea>
-<div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;">
-<select class="f-select" id="roastBossType" style="flex:1;margin:0;">
-<option>😤 Micromanager</option><option>🐍 Credit Stealer</option><option>👻 Ghost Boss</option>
-<option>📅 Meeting Addict</option><option>👊 Office Bully</option><option>🍎 Fav Player</option>
-<option>💰 Cheap Boss</option><option>🔪 Backstabber</option><option>📱 Phone Addict</option>
-</select>
-<button class="submit-btn" style="padding:.6rem 1.1rem;font-size:.82rem;letter-spacing:2px;" onclick="postRoast()">🔥 POST</button>
-</div>
-</div>
-<div id="roastFeed"><div style="text-align:center;color:var(--grey);padding:2rem;font-style:italic;">Loading roasts...</div></div>
-</div>
-
-<!-- BATTLES -->
-<div class="c-panel" id="cpanel-battle">
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;">
-<div class="section-label" style="margin:0">⚔️ Active Battles</div>
-<button class="submit-btn" style="font-size:.68rem;padding:.38rem .85rem;letter-spacing:1px;" onclick="document.getElementById('createBattleForm').style.display='block'">+ NEW BATTLE</button>
-</div>
-<div id="createBattleForm" style="display:none;" class="post-form">
-<div class="post-label">⚔️ Start A Battle</div>
-<input class="f-input" type="text" id="battleName" placeholder="Your anonymous name" maxlength="30">
-<textarea class="f-input" id="battleRoast" rows="3" placeholder="Your opening roast — make it count!" maxlength="300"></textarea>
-<select class="f-select" id="battleBossType"><option>😤 Micromanager</option><option>🐍 Credit Stealer</option><option>👻 Ghost Boss</option><option>📅 Meeting Addict</option><option>👊 Office Bully</option></select>
-<div style="display:flex;gap:.6rem;">
-<button class="submit-btn" style="font-size:.82rem;padding:.6rem 1.1rem;" onclick="createBattle()">⚔️ START</button>
-<button style="background:none;border:1px solid var(--dark4);color:var(--grey);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;padding:.5rem .9rem;border-radius:2px;cursor:pointer;" onclick="document.getElementById('createBattleForm').style.display='none'">CANCEL</button>
-</div>
-</div>
-<div id="battleFeed"></div>
-</div>
-
-<!-- BOSS OF THE WEEK -->
-<div class="c-panel" id="cpanel-botw">
-<div class="botw-hero">
-<div style="font-size:2.5rem;margin-bottom:.4rem;">👑</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:.3rem;">BOSS OF THE WEEK</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--red);" id="botwWinner">Loading...</div>
-<div style="font-size:.78rem;color:var(--grey);" id="botwVotes"></div>
-</div>
-<div class="botw-grid" id="botwGrid"></div>
-</div>
-
-<!-- PRIVATE ROOM -->
-<div class="c-panel" id="cpanel-room">
-<div style="background:var(--dark);border:2px dashed var(--dark4);border-radius:6px;padding:1.8rem;text-align:center;margin-bottom:1rem;">
-<div style="font-size:2rem;margin-bottom:.6rem;">🔒</div>
-<div style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;margin-bottom:.3rem;">PRIVATE ROAST ROOM</div>
-<p style="color:var(--grey);font-size:.82rem;margin-bottom:1rem;">Share a secret link with colleagues — only they can see inside!</p>
-<input class="f-input" type="text" id="roomName" placeholder="Room name e.g. Floor 3 Survivors" style="text-align:center;">
-<button class="submit-btn" style="width:100%;" onclick="createRoom()">🔒 CREATE ROOM</button>
-<div style="background:var(--dark3);border:1px solid rgba(232,0,29,.28);border-radius:4px;padding:.8rem;display:none;margin-top:.8rem;" id="roomLinkBox">
-<div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:.3rem;">🔗 Your Private Link</div>
-<div style="font-size:.78rem;word-break:break-all;margin-bottom:.5rem;" id="roomLinkUrl"></div>
-<div style="display:flex;gap:.4rem;">
-<button style="flex:1;background:var(--dark4);border:none;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:1px;text-transform:uppercase;padding:.45rem;border-radius:2px;cursor:pointer;" onclick="copyRoomLink()">📋 COPY</button>
-<button style="flex:1;background:var(--dark4);border:none;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:1px;text-transform:uppercase;padding:.45rem;border-radius:2px;cursor:pointer;" onclick="shareRoomWA()">💬 WHATSAPP</button>
-</div>
-</div>
-</div>
-<div class="post-form">
-<div class="post-label">🚪 Join A Room</div>
-<input class="f-input" type="text" id="joinRoomCode" placeholder="Paste room code here...">
-<button class="submit-btn" style="width:100%;font-size:.85rem;" onclick="joinRoom()">🚪 ENTER ROOM</button>
-</div>
-</div>
-</div>
-</section>
-
-<!-- GAMES HUB -->
-<section class="games-hub" id="gamesHubSection">
-<div class="games-inner">
-<div style="text-align:center;margin-bottom:.3rem;">
-<div class="section-label">🎮 All Games</div>
-<h2 class="section-title">THE BOSS <span style="color:var(--red)">ARCADE</span></h2>
-</div>
-<div class="games-grid">
-<div class="game-card" onclick="scrollToGame()"><div class="gc-icon">🎯</div><div class="gc-name">DART <span>BOARD</span></div><div class="gc-desc">Upload your boss photo & throw darts at their face</div><div class="gc-badge">FREE</div></div>
-<div class="game-card" onclick="scrollToPool()"><div class="gc-icon">🎱</div><div class="gc-name">BOSS <span>POOL</span></div><div class="gc-desc">Name 9 bosses, upload photos, pocket them all</div><div class="gc-badge">FREE</div></div>
-<div class="game-card" onclick="showToast('🎡 Spin the Wheel — Coming Soon!')"><div class="gc-icon">🎡</div><div class="gc-name">SPIN THE <span>WHEEL</span></div><div class="gc-desc">Spin to decide your boss's fate today</div><div class="gc-badge gc-soon">COMING SOON</div></div>
-<div class="game-card" onclick="showToast('🔨 Whack-A-Boss — Coming Soon!')"><div class="gc-icon">🔨</div><div class="gc-name">WHACK-A-<span>BOSS</span></div><div class="gc-desc">Whack your bosses as they pop up</div><div class="gc-badge gc-soon">COMING SOON</div></div>
-</div>
-</div>
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="how-inner">
+    <div class="sec-label" style="text-align:center">How It Works</div>
+    <h2 class="sec-title">THREE <span style="color:var(--red)">STEPS</span></h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-title">Join Free</div><div class="step-desc">Enter your email. Get instant access to all games and features.</div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title">Upload & Play</div><div class="step-desc">Upload your boss photo. Name your bosses. It stays on your device — never sent to servers.</div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-title">Feel Amazing</div><div class="step-desc">Dart board. Pool table. AI caricature. Anonymous roasts. Walk back into the office smiling.</div></div>
+    </div>
+    <div style="margin-top:3rem;">
+      <a class="btn-primary" href="games.html" style="margin-right:.8rem;">🎯 Start Playing</a>
+      <a class="btn-secondary" href="caricature.html">🎨 AI Caricature</a>
+    </div>
+  </div>
 </section>
 
 <footer>
-<div class="footer-logo">DISS<span>THE</span>BOSS</div>
-<p class="footer-sub">"Because therapy is expensive. This is free."</p>
-<div class="footer-links">
-<a onclick="showPage('about')">About</a><a onclick="showPage('privacy')">Privacy</a><a onclick="showPage('terms')">Terms</a><a onclick="showPage('contact')">Contact</a><a onclick="showPage('games')">All Games</a>
-</div>
-<p class="footer-copy">© 2026 DissTheBoss™ — Original concept & platform created by Ankit Choudhary. All rights reserved. Unauthorised reproduction strictly prohibited. All boss dissing is fictional satire for entertainment only.</p>
+  <div class="foot-logo">DISS<span>THE</span>BOSS</div>
+  <p class="foot-sub">"Because therapy is expensive. This is free."</p>
+  <div class="foot-links">
+    <a href="games.html">Games</a>
+    <a href="caricature.html">Caricature</a>
+    <a href="community.html">Community</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="foot-copy">© 2026 DissTheBoss™ — Original concept & platform by Ankit Choudhary. All rights reserved. All boss dissing is fictional satire for entertainment only. No real persons targeted.</p>
 </footer>
-</div>
-
-<!-- GAMES PAGE -->
-<div id="page-games" class="page">
-<div class="page-inner" style="max-width:1000px;">
-<div class="back-btn" onclick="showPage('home')">← Back to Home</div>
-<h1 class="page-title">THE BOSS <span>ARCADE</span></h1>
-<p style="color:var(--grey);margin-bottom:2rem;">All games are free. Upload your boss photo. Name your bosses. Feel amazing.</p>
-<div class="games-grid">
-<div class="game-card" onclick="showPage('home');setTimeout(scrollToGame,200)"><div class="gc-icon">🎯</div><div class="gc-name">DART <span>BOARD</span></div><div class="gc-desc">Upload boss photo — throw darts at their face. 5 throws. Pure satisfaction.</div><div class="gc-badge">FREE — PLAY NOW</div></div>
-<div class="game-card" onclick="showPage('home');setTimeout(scrollToPool,200)"><div class="gc-icon">🎱</div><div class="gc-name">BOSS <span>POOL</span></div><div class="gc-desc">Name all 9 bosses yourself. Upload photos. Pocket every single one.</div><div class="gc-badge">FREE — PLAY NOW</div></div>
-<div class="game-card"><div class="gc-icon">🎡</div><div class="gc-name">SPIN THE <span>WHEEL</span></div><div class="gc-desc">Let fate decide what happens to your boss today.</div><div class="gc-badge gc-soon">COMING SOON</div></div>
-<div class="game-card"><div class="gc-icon">🔨</div><div class="gc-name">WHACK-A-<span>BOSS</span></div><div class="gc-desc">Bosses pop up — you whack them. Maximum stress relief.</div><div class="gc-badge gc-soon">COMING SOON</div></div>
-</div>
-</div>
-</div>
-
-<!-- ABOUT -->
-<div id="page-about" class="page"><div class="page-inner"><div class="back-btn" onclick="showPage('home')">← Back</div><h1 class="page-title">ABOUT <span>US</span></h1><div class="page-content"><p>DissTheBoss was born from one truth: work can be frustrating, bosses can be maddening, and sometimes you need to throw something — even if it's virtual.</p><h3>Our Mission</h3><p>A safe, anonymous, funny outlet for workplace stress. Everything is fictional satire for entertainment only.</p><h3>AI Features</h3><p>DissTheBoss uses AI writing powered by Claude (Anthropic) and OpenAI to generate funny fictional vent content. All AI content is for entertainment only. AI caricatures are cartoon illustrations — not realistic representations of real people.</p><h3>Games</h3><p>🎯 Dart Board — Upload optional photo (device-only, never sent to servers). 🎱 Boss Pool — Name and customise 9 fictional bosses. 🎡 Spin the Wheel & 🔨 Whack-A-Boss — Coming soon!</p><h3>Contact</h3><p>📧 disstheboss@gmail.com</p></div></div></div>
-
-<!-- PRIVACY -->
-<div id="page-privacy" class="page"><div class="page-inner"><div class="back-btn" onclick="showPage('home')">← Back</div><h1 class="page-title">PRIVACY <span>POLICY</span></h1><div class="page-content"><p>Last updated: March 2026</p><h3>Photos & Images</h3><p>Photos you upload are processed entirely on your device in your browser. They are NEVER uploaded to our servers, never stored, never shared. They exist only in your browser session memory.</p><h3>AI Caricatures</h3><p>When generating an AI caricature (paid feature), your text description is sent to OpenAI's API. No identifiable personal data is retained. OpenAI's privacy policy applies. The result is a fictional cartoon, not a realistic representation.</p><h3>AI Writing</h3><p>AI vent and roast writing uses Anthropic Claude API. Text prompts generate fictional content. No personal data is stored.</p><h3>Data We Collect</h3><p>Email address (if you sign up voluntarily). Anonymous vents/roasts (no personally identifiable info).</p><h3>Analytics</h3><p>Google Analytics for anonymous usage stats. Opt out via browser settings.</p><h3>Your Rights</h3><p>Email disstheboss@gmail.com to delete your data.</p></div></div></div>
-
-<!-- TERMS -->
-<div id="page-terms" class="page"><div class="page-inner"><div class="back-btn" onclick="showPage('home')">← Back</div><h1 class="page-title">TERMS & <span>CONDITIONS</span></h1><div class="page-content"><p>Last updated: March 2026</p><h3>1. Entertainment Only</h3><p>DissTheBoss is a fictional entertainment platform. All games, boss names, and content are entirely fictional. Any resemblance to real persons is coincidental and unintended.</p><h3>2. Photo Uploads</h3><p>By uploading a photo you confirm: (a) you have the right to use it; (b) it is processed locally on your device only and never sent to our servers; (c) you will not use it to target, harass, or defame any real individual.</p><h3>3. AI Caricatures</h3><p>AI caricatures are fictional cartoon illustrations for personal entertainment only. They are not realistic representations of real people. You agree not to use them to defame, harass, or harm anyone. DissTheBoss accepts no liability for misuse.</p><h3>4. AI Writing</h3><p>AI-generated content is fictional entertainment only. Do not post content targeting real named individuals or real organisations.</p><h3>5. Acceptable Use</h3><p>No real full names, real company names, defamatory content, hate speech, or content intended to harm real individuals. Violations result in removal.</p><h3>6. Age</h3><p>You must be 18 or older to use DissTheBoss.</p><h3>7. Governing Law</h3><p>Governed by Indian law. Disputes resolved in courts of Gurugram, Haryana.</p></div></div></div>
-
-<!-- CONTACT -->
-<div id="page-contact" class="page"><div class="page-inner"><div class="back-btn" onclick="showPage('home')">← Back</div><h1 class="page-title">GET IN <span>TOUCH</span></h1><div class="page-content"><p>📧 disstheboss@gmail.com</p></div><div style="margin-top:2rem;"><div class="form-group"><label>Your Name</label><input type="text" id="contactName" placeholder="Your name"></div><div class="form-group"><label>Email</label><input type="email" id="contactEmail" placeholder="your@email.com"></div><div class="form-group"><label>Subject</label><select id="contactSubject"><option>General Feedback</option><option>Partnership</option><option>Press</option><option>Bug Report</option><option>Other</option></select></div><div class="form-group"><label>Message</label><textarea id="contactMessage" rows="5" placeholder="Tell us everything..."></textarea></div><button class="submit-btn" onclick="submitContact()">📩 SEND</button></div></div></div>
 
 <div class="toast" id="toast"></div>
+
 <script>
-const SUPABASE_URL='https://cooehtreydndjwdiauuz.supabase.co';
-const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvb2VodHJleWRuZGp3ZGlhdXV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3NjI0NzIsImV4cCI6MjA1NzMzODQ3Mn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk2yJV_adQssw5c';
-const ANTHROPIC_KEY='PASTE_YOUR_CLAUDE_KEY_HERE';
-const OPENAI_KEY='PASTE_YOUR_OPENAI_KEY_HERE';
-
-async function supaFetch(table,method,data){
-  const url=`${SUPABASE_URL}/rest/v1/${table}`;
-  const h={'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`};
-  if(method==='GET')h['Accept']='application/json';
-  if(method==='POST')h['Prefer']='return=minimal';
-  const res=await fetch(method==='GET'?url+'?order=created_at.desc&limit=50':url,{method,headers:h,body:data?JSON.stringify(data):undefined});
-  if(method==='GET')return await res.json();return res;
+const SB_URL='https://cooehtreydndjwdiauuz.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvb2VodHJleWRuZGp3ZGlhdXV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3NjI0NzIsImV4cCI6MjA1NzMzODQ3Mn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk2yJV_adQssw5c';
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function checkGate(){const email=localStorage.getItem('dtb_email');const skipped=sessionStorage.getItem('dtb_skipped');if(email||skipped)document.getElementById('gate').style.display='none';}
+function openGate(){document.getElementById('gate').style.display='flex';}
+async function submitGate(){
+  const email=document.getElementById('gateEmail').value.trim();
+  if(!email||!email.includes('@')){showToast('Enter a valid email!');return;}
+  localStorage.setItem('dtb_email',email);
+  document.getElementById('gate').style.display='none';
+  try{await fetch(SB_URL+'/rest/v1/emails',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({email})});}catch(e){}
+  showToast('🎉 Welcome to the rebellion!');
 }
-
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');window.scrollTo(0,0);}
-function scrollToGame(){showPage('home');setTimeout(()=>document.getElementById('gameSection').scrollIntoView({behavior:'smooth'}),100);}
-function scrollToPool(){showPage('home');setTimeout(()=>document.getElementById('poolSection').scrollIntoView({behavior:'smooth'}),100);}
-function scrollToCommunity(){showPage('home');setTimeout(()=>document.getElementById('communitySection').scrollIntoView({behavior:'smooth'}),100);}
-
-// EMAIL POPUP
-let spots=87;
-setTimeout(()=>{if(!localStorage.getItem('dtb_popup_v2'))document.getElementById('emailPopup').classList.remove('hidden');},3000);
-function closePopup(){document.getElementById('emailPopup').classList.add('hidden');localStorage.setItem('dtb_popup_v2','1');}
-async function submitEmail(){
-  const email=document.getElementById('popupEmail').value.trim();
-  if(!email||!email.includes('@')){showToast('Please enter a valid email!');return;}
-  try{
-    const res=await supaFetch('emails','POST',{email});
-    if(res.status===201||res.status===200){spots=Math.max(spots-1,0);document.getElementById('spotsLeft').textContent='🔴 Only '+spots+' spots remaining!';closePopup();showToast('🎉 Welcome to the rebellion!');}
-    else{showToast("Already signed up — you're on the list! 🔥");closePopup();}
-  }catch(e){showToast('Saved! Welcome aboard 🎯');closePopup();}
-}
-
-// ==========================================
-// DART GAME
-// ==========================================
-let throwsLeft=5,totalScore=0,bestHit=0,dartFaceImg=null;
-let dartCanvas,dartCtx;
-
-window.addEventListener('load',()=>{
-  dartCanvas=document.getElementById('dartCanvas');
-  dartCtx=dartCanvas.getContext('2d');
-  drawBoard();
-  dartCanvas.onclick=throwDart;
-  buildSetupGrid();
-  loadVents();
-  loadRoastFeed();
-  loadBOTW();
-  loadBattles();
-  initCounterAnim();
-});
-
-function drawBoard(){
-  const ctx=dartCtx,cx=135,cy=135,r=130;
-  const rings=[{r:r,c:'#111'},{r:120,c:'#1a0000'},{r:100,c:'#0d0000'},{r:80,c:'#2a0000'},{r:60,c:'#1a0000'},{r:40,c:'#400000'},{r:24,c:'#cc0000'},{r:10,c:'#FFB800'}];
-  rings.forEach(ring=>{ctx.beginPath();ctx.arc(cx,cy,ring.r,0,Math.PI*2);ctx.fillStyle=ring.c;ctx.fill();});
-  [120,100,80,60,40,24].forEach((rv,i)=>{ctx.beginPath();ctx.arc(cx,cy,rv,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,.12)';ctx.lineWidth=1;ctx.stroke();});
-  ctx.strokeStyle='rgba(255,255,255,.06)';ctx.lineWidth=1;ctx.setLineDash([3,5]);
-  ctx.beginPath();ctx.moveTo(cx,5);ctx.lineTo(cx,265);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(5,cy);ctx.lineTo(265,cy);ctx.stroke();
-  ctx.setLineDash([]);
-  if(dartFaceImg){
-    ctx.save();ctx.beginPath();ctx.arc(cx,cy,22,0,Math.PI*2);ctx.clip();ctx.drawImage(dartFaceImg,cx-22,cy-22,44,44);ctx.restore();
-    ctx.beginPath();ctx.arc(cx,cy,22,0,Math.PI*2);ctx.strokeStyle='rgba(255,184,0,.5)';ctx.lineWidth=2;ctx.stroke();
-  } else {
-    ctx.font='22px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('😤',cx,cy+1);
-  }
-  ctx.font='bold 9px Barlow';ctx.fillStyle='rgba(255,255,255,.25)';ctx.textAlign='center';
-  [[cx,cy-88,'50'],[cx,cy-68,'40'],[cx,cy-48,'30'],[cx,cy-32,'20'],[cx,cy-16,'10']].forEach(([x,y,t])=>{ctx.fillText(t,x,y);});
-}
-
-function loadDartPhoto(input){
-  const file=input.files[0];if(!file)return;
-  if(file.size>5*1024*1024){showToast('Photo too large! Max 5MB');return;}
-  const reader=new FileReader();
-  reader.onload=e=>{
-    const img=new Image();
-    img.onload=()=>{dartFaceImg=img;document.getElementById('dartFacePreview').src=e.target.result;document.getElementById('dartFacePreview').style.display='block';document.getElementById('dartUploadZone').querySelector('.upload-zone-text').textContent='✅ Boss face loaded!';drawBoard();showToast('📷 Boss locked and loaded! 🎯');};
-    img.src=e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function getDartScore(x,y){const cx=135,cy=135,d=Math.sqrt((x-cx)**2+(y-cy)**2);if(d<=10)return 50;if(d<=24)return 40;if(d<=40)return 30;if(d<=60)return 20;if(d<=80)return 10;if(d<=100)return 5;if(d<=120)return 2;return 0;}
-
-function throwDart(e){
-  if(throwsLeft<=0)return;
-  const rect=dartCanvas.getBoundingClientRect();
-  const sx=270/rect.width,sy=270/rect.height;
-  placeDart((e.clientX-rect.left)*sx,(e.clientY-rect.top)*sy);
-}
-function autoThrow(){
-  if(throwsLeft<=0)return;
-  const a=Math.random()*Math.PI*2,d=Math.pow(Math.random(),1.4)*90;
-  placeDart(135+Math.cos(a)*d,135+Math.sin(a)*d);
-}
-function placeDart(x,y){
-  if(throwsLeft<=0)return;throwsLeft--;
-  const score=getDartScore(x,y);totalScore+=score;if(score>bestHit)bestHit=score;
-  document.getElementById('totalScore').textContent=totalScore;
-  document.getElementById('bestHit').textContent=bestHit||'—';
-  document.getElementById('throwsLeft').innerHTML='Throws: <span>'+throwsLeft+'</span> remaining';
-  const name=document.getElementById('dartBossName').value||'The Boss';
-  dartCtx.beginPath();dartCtx.arc(x,y,5,0,Math.PI*2);dartCtx.fillStyle='#FFD700';dartCtx.fill();
-  dartCtx.beginPath();dartCtx.moveTo(x,y-7);dartCtx.lineTo(x,y+7);dartCtx.strokeStyle='#888';dartCtx.lineWidth=2;dartCtx.stroke();
-  const quips=['Got em!','Direct hit!','Feel that?','Bullseye!','Take that!'];
-  showToast((score>=40?'🎯 BULLSEYE! ':score>=20?'💥 ':'😤 ')+name+' — '+quips[Math.floor(Math.random()*5)]);
-  if(throwsLeft<=0){
-    const r=document.getElementById('gameResult');r.style.display='block';
-    if(totalScore>=150){r.style.color='var(--yellow)';r.textContent='🔥 LEGENDARY! '+totalScore+' pts — '+name+' is dust!';}
-    else if(totalScore>=80){r.style.color='var(--orange)';r.textContent='💥 GREAT! '+totalScore+' pts';}
-    else{r.style.color='var(--red)';r.textContent='😤 Total: '+totalScore+' pts — '+name+' still employed.';}
-  }
-}
-function resetDarts(){throwsLeft=5;totalScore=0;bestHit=0;document.getElementById('totalScore').textContent='0';document.getElementById('bestHit').textContent='—';document.getElementById('throwsLeft').innerHTML='Throws: <span>5</span> remaining';document.getElementById('gameResult').style.display='none';drawBoard();}
-
-// ==========================================
-// BOSS POOL GAME
-// ==========================================
-const BOSS_COLORS=['#E8001D','#FF5500','#7B68EE','#FF69B4','#8B0000','#32CD32','#FFB800','#00CED1','#9370DB'];
-const BOSS_EMOJIS=['😤','🐍','👻','📅','👊','🍎','💰','🔪','📱'];
-const DEFAULT_NAMES=['The Micromanager','The Credit Stealer','The Ghost Boss','Meeting Addict','Office Bully','Fav Player','Cheap Boss','Backstabber','Phone Alan'];
-const DISS=['FIRED! No more micromanaging! 😤','Potted! Credit stolen no more! 🎱','SUNK! Ghost boss is gone! 💀','DOWN! No more pointless meetings! 📅','OUT! Bully got served! 👊','GONE! Teacher\'s pet pocketed! 🍎','FIRED! Pay rise approved! 💰','POTTED! Karma\'s a pool table! 🔪','SUNK! Put the phone DOWN! 📱'];
-let bossNames=[...DEFAULT_NAMES];
-let balls=[],cue={},poolShots=0,poolPotted=0,poolAnim=false,poolCanvas,poolCtx,poolW,poolH,powerLvl=50,powerDir=1,powerInt=null;
-const BR=15,FRIC=0.985,MINSPD=0.1;
-
-function lighten(hex){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return `rgb(${Math.min(r+70,255)},${Math.min(g+70,255)},${Math.min(b+70,255)})`;}
-function darken(hex){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return `rgb(${Math.max(r-50,0)},${Math.max(g-50,0)},${Math.max(b-50,0)})`;}
-
-function buildSetupGrid(){
-  document.getElementById('bossSetupGrid').innerHTML=DEFAULT_NAMES.map((n,i)=>`
-    <div class="setup-input-wrap">
-      <div class="setup-dot" style="background:${BOSS_COLORS[i]}">${BOSS_EMOJIS[i]}</div>
-      <input class="setup-inp" type="text" id="bi_${i}" placeholder="Boss ${i+1} nickname..." maxlength="18">
-    </div>`).join('');
-}
-
-function startPool(){
-  for(let i=0;i<9;i++){const v=document.getElementById('bi_'+i).value.trim();bossNames[i]=v||DEFAULT_NAMES[i];}
-  document.getElementById('poolSetup').style.display='none';document.getElementById('poolGameArea').style.display='block';initPool();
-}
-function useDefaultNames(){bossNames=[...DEFAULT_NAMES];document.getElementById('poolSetup').style.display='none';document.getElementById('poolGameArea').style.display='block';initPool();}
-function showPoolSetup(){document.getElementById('poolGameArea').style.display='none';document.getElementById('poolSetup').style.display='block';buildSetupGrid();}
-function renameBoss(i){const n=prompt('Rename boss '+(i+1)+':',bossNames[i]);if(n&&n.trim()){bossNames[i]=n.trim().substring(0,18);renderBallList();showToast('✏️ Renamed!');}}
-
-function initPool(){
-  poolCanvas=document.getElementById('poolCanvas');poolCtx=poolCanvas.getContext('2d');
-  const wrap=document.getElementById('poolWrap');
-  poolW=Math.min(wrap.clientWidth-10,560);poolH=Math.round(poolW*0.54);
-  poolCanvas.width=poolW;poolCanvas.height=poolH;
-  poolCanvas.style.width=poolW+'px';poolCanvas.style.height=poolH+'px';
-  setupBalls();renderBallList();drawPool();
-  poolCanvas.onclick=shootPool;
-  if(powerInt)clearInterval(powerInt);
-  powerInt=setInterval(()=>{if(poolAnim)return;powerLvl+=powerDir*2.5;if(powerLvl>=100||powerLvl<=8)powerDir*=-1;document.getElementById('powerFill').style.width=powerLvl+'%';},45);
-}
-
-function setupBalls(){
-  balls=[];poolShots=0;poolPotted=0;
-  document.getElementById('potCount').textContent='0';document.getElementById('shotCount').textContent='0';
-  document.getElementById('poolMsg').textContent='Tap the table to shoot!';
-  cue={x:poolW*.22,y:poolH/2,vx:0,vy:0,r:BR,potted:false,isCue:true};
-  const rx=poolW*.64,ry=poolH/2,sp=BR*2.1;
-  [[0,0],[1,-.5],[1,.5],[2,-1],[2,0],[2,1],[3,-1.5],[3,-.5],[3,.5]].forEach(([row,col],i)=>{
-    balls.push({x:rx+row*sp,y:ry+col*sp,vx:0,vy:0,r:BR,potted:false,isCue:false,idx:i});
-  });
-}
-
-function renderBallList(){
-  document.getElementById('bossBallList').innerHTML=bossNames.map((n,i)=>`
-    <div class="bbi" id="bbi-${i}">
-      <div class="bb-dot" style="background:${BOSS_COLORS[i]}">${BOSS_EMOJIS[i]}</div>
-      <div class="bb-name">${n}</div>
-      <button class="bb-edit" onclick="renameBoss(${i})">✏️</button>
-    </div>`).join('');
-}
-
-function getPockets(){const m=BR*1.5;return [{x:m,y:m},{x:poolW/2,y:m*.5},{x:poolW-m,y:m},{x:m,y:poolH-m},{x:poolW/2,y:poolH-m*.5},{x:poolW-m,y:poolH-m}];}
-
-function shootPool(e){
-  if(poolAnim)return;
-  const rect=poolCanvas.getBoundingClientRect();const sx=poolW/rect.width,sy=poolH/rect.height;
-  const mx=(e.clientX-rect.left)*sx,my=(e.clientY-rect.top)*sy;
-  const dx=mx-cue.x,dy=my-cue.y,d=Math.sqrt(dx*dx+dy*dy);if(d<5)return;
-  const pwr=(powerLvl/100)*13+3;cue.vx=(dx/d)*pwr;cue.vy=(dy/d)*pwr;
-  poolShots++;document.getElementById('shotCount').textContent=poolShots;
-  document.getElementById('poolHint').style.display='none';
-  poolAnim=true;animPool();
-}
-
-function animPool(){
-  const allB=[cue,...balls];const pockets=getPockets();let moving=false;
-  allB.forEach(b=>{
-    if(b.potted)return;
-    b.x+=b.vx;b.y+=b.vy;b.vx*=FRIC;b.vy*=FRIC;
-    if(Math.abs(b.vx)<MINSPD&&Math.abs(b.vy)<MINSPD){b.vx=0;b.vy=0;}else moving=true;
-    if(b.x-b.r<0){b.x=b.r;b.vx=Math.abs(b.vx)*.82;}
-    if(b.x+b.r>poolW){b.x=poolW-b.r;b.vx=-Math.abs(b.vx)*.82;}
-    if(b.y-b.r<0){b.y=b.r;b.vy=Math.abs(b.vy)*.82;}
-    if(b.y+b.r>poolH){b.y=poolH-b.r;b.vy=-Math.abs(b.vy)*.82;}
-    pockets.forEach(p=>{
-      if(b.potted)return;
-      if(Math.sqrt((b.x-p.x)**2+(b.y-p.y)**2)<BR*1.4){
-        b.potted=true;b.vx=0;b.vy=0;
-        if(!b.isCue){
-          poolPotted++;document.getElementById('potCount').textContent=poolPotted;
-          document.getElementById('bbi-'+b.idx).classList.add('potted');
-          document.getElementById('poolMsg').textContent=DISS[b.idx];
-          showToast('🎱 '+bossNames[b.idx]+' — FIRED!');
-          if(poolPotted===9)setTimeout(()=>{document.getElementById('poolMsg').textContent='🏆 ALL 9 FIRED! You are the CEO now!';showToast('🏆 LEGENDARY! You fired the WHOLE department!');},400);
-        }else{
-          setTimeout(()=>{cue.potted=false;cue.x=poolW*.22;cue.y=poolH/2;cue.vx=0;cue.vy=0;document.getElementById('poolMsg').textContent='😬 Scratch! Cue ball reset.';},700);
-        }
-      }
-    });
-  });
-  for(let i=0;i<allB.length;i++){for(let j=i+1;j<allB.length;j++){
-    const a=allB[i],b=allB[j];if(a.potted||b.potted)continue;
-    const dx=b.x-a.x,dy=b.y-a.y,dist=Math.sqrt(dx*dx+dy*dy);
-    if(dist<a.r+b.r&&dist>0){
-      const nx=dx/dist,ny=dy/dist,ov=(a.r+b.r-dist)/2;
-      a.x-=nx*ov;a.y-=ny*ov;b.x+=nx*ov;b.y+=ny*ov;
-      const dv=((a.vx-b.vx)*nx+(a.vy-b.vy)*ny);
-      if(dv>0){a.vx-=dv*nx;a.vy-=dv*ny;b.vx+=dv*nx;b.vy+=dv*ny;}
-    }
-  }}
-  drawPool();
-  if(moving)requestAnimationFrame(animPool);
-  else{poolAnim=false;if(poolPotted<9)document.getElementById('poolMsg').textContent='Tap to shoot! '+(9-poolPotted)+' bosses left.';}
-}
-
-function drawPool(){
-  const ctx=poolCtx,pockets=getPockets();
-  // Felt
-  const fg=ctx.createLinearGradient(0,0,poolW,poolH);fg.addColorStop(0,'#0e5020');fg.addColorStop(.5,'#0a3d18');fg.addColorStop(1,'#0c4a1e');
-  ctx.fillStyle=fg;ctx.fillRect(0,0,poolW,poolH);
-  // Texture
-  ctx.strokeStyle='rgba(255,255,255,.025)';ctx.lineWidth=1;
-  for(let x=0;x<poolW;x+=18){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,poolH);ctx.stroke();}
-  for(let y=0;y<poolH;y+=18){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(poolW,y);ctx.stroke();}
-  // Center markings
-  ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(poolW/2,0);ctx.lineTo(poolW/2,poolH);ctx.stroke();
-  ctx.beginPath();ctx.arc(poolW/2,poolH/2,poolH*.13,0,Math.PI*2);ctx.stroke();
-  ctx.beginPath();ctx.arc(poolW*.25,poolH/2,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.15)';ctx.fill();
-  // Rails
-  ctx.strokeStyle='#7a4520';ctx.lineWidth=10;ctx.strokeRect(5,5,poolW-10,poolH-10);
-  ctx.strokeStyle='rgba(255,200,80,.1)';ctx.lineWidth=2;ctx.strokeRect(10,10,poolW-20,poolH-20);
-  // Pockets
-  pockets.forEach(p=>{
-    const pg=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,BR*1.5);pg.addColorStop(0,'#000');pg.addColorStop(1,'#1a0a00');
-    ctx.beginPath();ctx.arc(p.x,p.y,BR*1.5,0,Math.PI*2);ctx.fillStyle=pg;ctx.fill();
-    ctx.beginPath();ctx.arc(p.x,p.y,BR*1.5,0,Math.PI*2);ctx.strokeStyle='#5a3010';ctx.lineWidth=2;ctx.stroke();
-  });
-  // Boss balls
-  balls.forEach(b=>{
-    if(b.potted)return;
-    ctx.beginPath();ctx.arc(b.x+2,b.y+3,b.r,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,.35)';ctx.fill();
-    const bg=ctx.createRadialGradient(b.x-b.r*.3,b.y-b.r*.35,b.r*.08,b.x,b.y,b.r);
-    bg.addColorStop(0,lighten(BOSS_COLORS[b.idx]));bg.addColorStop(.65,BOSS_COLORS[b.idx]);bg.addColorStop(1,darken(BOSS_COLORS[b.idx]));
-    ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fillStyle=bg;ctx.fill();
-    ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,.15)';ctx.lineWidth=1;ctx.stroke();
-    // White number circle
-    ctx.beginPath();ctx.arc(b.x,b.y,b.r*.42,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.9)';ctx.fill();
-    ctx.font='bold '+(b.r*.45)+'px Barlow';ctx.fillStyle='#333';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(b.idx+1,b.x,b.y+.5);
-    // Emoji above
-    ctx.font=(b.r*.7)+'px serif';ctx.fillText(BOSS_EMOJIS[b.idx],b.x,b.y-b.r-3);
-  });
-  // Cue ball
-  if(!cue.potted){
-    ctx.beginPath();ctx.arc(cue.x+2,cue.y+3,cue.r,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,.3)';ctx.fill();
-    const cwg=ctx.createRadialGradient(cue.x-cue.r*.25,cue.y-cue.r*.3,cue.r*.08,cue.x,cue.y,cue.r);
-    cwg.addColorStop(0,'#fff');cwg.addColorStop(.7,'#e0e0e0');cwg.addColorStop(1,'#aaa');
-    ctx.beginPath();ctx.arc(cue.x,cue.y,cue.r,0,Math.PI*2);ctx.fillStyle=cwg;ctx.fill();
-    ctx.font='10px Barlow';ctx.fillStyle='#666';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('CUE',cue.x,cue.y+.5);
-    // Aim guide
-    if(!poolAnim){
-      ctx.strokeStyle='rgba(255,255,255,.15)';ctx.lineWidth=1;ctx.setLineDash([4,6]);
-      ctx.beginPath();ctx.moveTo(cue.x,cue.y);ctx.lineTo(cue.x+(cue.x-poolW/2)*2,cue.y+(cue.y-poolH/2)*2);ctx.stroke();
-      ctx.setLineDash([]);
-    }
-  }
-}
-
-function resetPool(){setupBalls();renderBallList();drawPool();document.getElementById('poolMsg').textContent='Tap the table to shoot!';}
-
-// ==========================================
-// AI WRITING (Claude API)
-// ==========================================
-const BOSS_DISSES={
-  '😤 Micromanager':["My boss reviewed my code 9 times. His final feedback: 'Can you make it more professional?' He does not code.","Approved a project. Then asked for changes. Then reverted to version 1. Called it 'iterative thinking'.",  "Sent a 3-page email about the correct way to CC people. We're a team of 4."],
-  '🐍 Credit Stealer':["Boss put his name first on MY report. My name is in footnote 7.","Presented my 3-month project to leadership. I found out via the meeting minutes I wasn't invited to.",  "His LinkedIn says 'I led the team that built X.' There was no team. There was me."],
-  '👻 Ghost Boss':["Available for credit. Unavailable for everything else.","Last seen: October. It's March. Still somehow my boss.","Replied to a message from 3 months ago. 'Just saw this!'"],
-  '📅 Meeting Addict':["We had a meeting to plan the agenda for the meeting about the meeting.","7 meetings today. Work done: zero. Boss called it 'an incredibly productive alignment day'."," Said 'let's circle back on that' 7 times in one meeting. We circled back on nothing."],
-  '👊 Office Bully':["Calls it 'direct feedback'. HR calls it 'documentation'.", "Uses 'just asking questions' before every attack.", "Everyone else is too sensitive. Funny how that works."],
-  '🍎 Fav Player':["Meritocracy died in this office. The favourite killed it.","Same mistake. Different person. Completely different reaction.","The favourite gets: credit, flexible hours, the good chair. You get the wobbly desk."],
-  '💰 Cheap Boss':["Said 'we're a family' then denied the salary review for the third year.","The team lunch budget: ₹50 per person. He expensed a business lunch for ₹8,000 last week.","Bought the cheapest printer. It jams 6 times a day. Saving money."],
-  '🔪 Backstabber':["Agreed with everything I said in the meeting. Reported me to leadership after.","Warmest smile in the room. Coldest move in the boardroom.","Their speciality: aligning with you publicly, undermining you privately."],
-  '📱 Phone Addict':["In every meeting, never in the meeting.","Replied to my performance review update with a voice note. While driving.","Eye contact is for people without notifications."]
-};
-
-async function callClaudeAPI(prompt){
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':ANTHROPIC_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,messages:[{role:'user',content:prompt}]})
-    });
-    const data=await res.json();
-    return data.content?data.content[0].text:'';
-  }catch(e){return null;}
-}
-
-async function aiWriteVent(){
-  const boss=document.getElementById('ventBossType').value;
-  const btn=document.querySelector('#aiVentOutput').parentElement.querySelector('.ai-btn');
-  btn.textContent='⏳ Generating...';btn.disabled=true;
-  document.getElementById('aiVentOutput').textContent='Writing your vent...';
-  const disses=BOSS_DISSES[boss]||BOSS_DISSES['😤 Micromanager'];
-  const fallback=disses[Math.floor(Math.random()*disses.length)];
-  const result=await callClaudeAPI(`Write a short (max 2 sentences), funny, anonymous workplace vent about a ${boss} boss type. Make it relatable, darkly humorous, and NOT targeting any real person. No profanity.`);
-  document.getElementById('aiVentOutput').textContent=result||fallback;
-  document.getElementById('ventText').value=result||fallback;
-  btn.textContent='⚡ Generate AI Vent';btn.disabled=false;
-}
-
-async function aiWriteRoast(){
-  const boss=document.getElementById('roastBossType').value;
-  const btn=document.querySelector('#aiRoastOutput').parentElement.querySelector('.ai-btn');
-  btn.textContent='⏳ Generating...';btn.disabled=true;
-  document.getElementById('aiRoastOutput').textContent='Writing your roast...';
-  const disses=BOSS_DISSES[boss]||BOSS_DISSES['😤 Micromanager'];
-  const fallback=disses[Math.floor(Math.random()*disses.length)];
-  const result=await callClaudeAPI(`Write a short (max 2 sentences), witty, savage roast about a ${boss} boss archetype. Fictional, anonymous, no real people, no profanity. Make it shareable.`);
-  document.getElementById('aiRoastOutput').textContent=result||fallback;
-  document.getElementById('roastText').value=result||fallback;
-  btn.textContent='⚡ Generate Roast';btn.disabled=false;
-}
-
-// ==========================================
-// VENTS
-// ==========================================
-async function loadVents(){
-  try{
-    const data=await supaFetch('vents','GET');
-    document.getElementById('ventCount').textContent=data.length||0;
-    renderVents(data&&data.length?data:getDefaultVents());
-  }catch(e){renderVents(getDefaultVents());}
-}
-function getDefaultVents(){return[
-  {id:'d1',name:'AngryCoder_77',boss_type:'😤 Micromanager',message:"My boss made me redo the same slide 11 times. Version 11 was identical to version 2. He approved it immediately.",likes:234,created_at:null},
-  {id:'d2',name:'SilentQuitter_42',boss_type:'🐍 Credit Stealer',message:"Boss presented my 3-month project to leadership. I found out from the meeting minutes. I wasn't invited.",likes:456,created_at:null},
-  {id:'d3',name:'ZoomFatigue_99',boss_type:'📅 Meeting Addict',message:"7 meetings today. Actual output: zero. Boss called it a 'productive alignment day'. I called it Thursday.",likes:389,created_at:null},
-  {id:'d4',name:'DeepBreaths_Daily',boss_type:'🍎 Fav Player',message:"Same mistake. Different employee. Completely different reaction. Meritocracy is fiction in this office.",likes:201,created_at:null}
-];}
-const EMOJIS=['😤','💀','🔥','😂','😭','🫡','👊','🎯'];
-function renderVents(list){
-  const container=document.getElementById('commentsList');
-  container.innerHTML=list.map((v,i)=>{
-    const ago=v.created_at?timeAgo(v.created_at):'recently';
-    return `<div class="comment-card">
-      <div class="comment-top">
-        <div class="comment-avatar" style="background:rgba(232,0,29,.12)">${EMOJIS[i%EMOJIS.length]}</div>
-        <div><div class="comment-name">${v.name||'Anonymous'}</div><div class="comment-time">${ago}</div></div>
-        <div class="boss-tag">${v.boss_type||'Boss'}</div>
-      </div>
-      <div class="comment-text">${v.message}</div>
-      <div class="comment-reactions">
-        <button class="react-btn" onclick="likeVent(this,'${v.id}',${v.likes||0})">😤 Relatable · ${v.likes||0}</button>
-        <button class="react-btn" onclick="showToast('😂 Shared to WhatsApp!')">💬 Share</button>
-        <button class="react-btn" onclick="showToast('🔥 Reported as legendary!')">🔥 Fire</button>
-        <button class="react-btn" onclick="showToast('💀 Mood!')">💀 Same</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-async function likeVent(btn,id,current){
-  if(btn.classList.contains('liked'))return;btn.classList.add('liked');const n=current+1;btn.textContent='😤 Relatable · '+n;
-  if(!id.startsWith('d'))try{await fetch(`${SUPABASE_URL}/rest/v1/vents?id=eq.${id}`,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`},body:JSON.stringify({likes:n})});}catch(e){}
-}
-async function submitVent(){
-  const name=document.getElementById('ventName').value.trim()||'Anonymous_'+Math.floor(Math.random()*9999);
-  const boss=document.getElementById('ventBossType').value;
-  const text=document.getElementById('ventText').value.trim();
-  if(!text){showToast('Write your vent first!');return;}
-  try{await supaFetch('vents','POST',{name,boss_type:boss,message:text,likes:0});showToast('😤 Vent posted! You are not alone.');document.getElementById('ventText').value='';document.getElementById('ventName').value='';document.getElementById('charCount').textContent='0/280';setTimeout(loadVents,600);}
-  catch(e){showToast('Posted! Refreshing...');setTimeout(loadVents,600);}
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  const vt=document.getElementById('ventText');if(vt)vt.addEventListener('input',function(){document.getElementById('charCount').textContent=this.value.length+'/280';});
-});
-
-// ==========================================
-// COMMUNITY
-// ==========================================
-let battles=[
-  {id:'b1',status:'OPEN',bossType:'😤 Micromanager',challenger:{name:'AngryDev_42',roast:"My boss reviewed my code for 2 weeks. His feedback: 'Make it more professional.' He does not code.",votes:34},defender:null},
-  {id:'b2',status:'LIVE',bossType:'🐍 Credit Stealer',challenger:{name:'SilentSuffer_7',roast:"Boss put his photo on MY project poster. In the client presentation. I was in the room.",votes:67},defender:{name:'FedUp_Worker',roast:"My boss CC'd himself into my email to the client then replied first. To MY email.",votes:89}}
-];
-const botwBosses=['😤 Micromanager','🐍 Credit Stealer','👻 Ghost Boss','📅 Meeting Addict','👊 Office Bully','🍎 Fav Player','💰 Cheap Boss','🔪 Backstabber','📱 Phone Addict'].map(b=>({name:b,votes:Math.floor(Math.random()*200)+10}));
-
-function switchCTab(tab,btn){
-  document.querySelectorAll('.c-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.c-panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');document.getElementById('cpanel-'+tab).classList.add('active');
-  if(tab==='feed')loadRoastFeed();if(tab==='battle')loadBattles();if(tab==='botw')loadBOTW();
-}
-
-// FEED
-async function loadRoastFeed(){
-  try{const data=await supaFetch('roasts','GET');renderRoastFeed(data&&data.length?data:getDefaultRoasts());}
-  catch(e){renderRoastFeed(getDefaultRoasts());}
-}
-function getDefaultRoasts(){return[
-  {id:'r1',name:'AngryCoder_77',boss_type:'😤 Micromanager',roast:"Made me redo a slide deck 11 times. Version 11 was identical to version 2. He approved immediately.",reactions:{fire:34,dead:21,lol:18,relatable:67,cringe:12,iconic:44},created_at:null},
-  {id:'r2',name:'SilentQuitter_42',boss_type:'🐍 Credit Stealer',roast:"Put his name as Project Lead on a deck. He found out about the project in the debrief.",reactions:{fire:89,dead:45,lol:12,relatable:103,cringe:5,iconic:77},created_at:null},
-  {id:'r3',name:'ZoomFatigue_99',boss_type:'📅 Meeting Addict',roast:"7 meetings today. Work done: zero. Boss called it 'a productive alignment day'.",reactions:{fire:56,dead:33,lol:78,relatable:122,cringe:8,iconic:34},created_at:null}
-];}
-
-const REACTION_SET=[{e:'😤',k:'relatable'},{e:'🔥',k:'fire'},{e:'💀',k:'dead'},{e:'😂',k:'lol'},{e:'😱',k:'cringe'},{e:'👑',k:'iconic'}];
-
-function renderRoastFeed(list){
-  const c=document.getElementById('roastFeed');
-  if(!list||!list.length){c.innerHTML='<div style="text-align:center;color:var(--grey);padding:2rem;font-style:italic;">No roasts yet — fire away! 🔥</div>';return;}
-  c.innerHTML=list.map(r=>buildRoastCard(r)).join('');
-}
-function buildRoastCard(r){
-  const rx=r.reactions||{fire:0,dead:0,lol:0,relatable:0,cringe:0,iconic:0};
-  return `<div class="roast-card">
-    <div class="roast-top">
-      <div class="roast-av">😤</div>
-      <div><div class="roast-name">${r.name||'Anonymous'}</div><div class="roast-time">${r.created_at?timeAgo(r.created_at):'recently'}</div></div>
-      <div class="roast-boss-tag">${r.boss_type||'Boss'}</div>
-    </div>
-    <div class="roast-text">${r.roast||r.message||''}</div>
-    <div class="roast-reactions">
-      ${REACTION_SET.map(({e,k})=>`<div class="rr" onclick="reactRoast(this,${rx[k]||0})">${e} <span>${rx[k]||0}</span></div>`).join('')}
-    </div>
-    <div class="roast-actions">
-      <button class="ra" onclick="toggleReplies(this)">💬 Reply</button>
-      <button class="ra" onclick="shareWA('${(r.roast||'').substring(0,60).replace(/'/g,'')}')">💬 WhatsApp</button>
-      <button class="ra" onclick="shareLinkedIn()">🔗 LinkedIn</button>
-      <button class="ra" onclick="showToast('🔗 Link copied!')">🔗 Copy Link</button>
-    </div>
-    <div class="replies-wrap">
-      <div class="replies-list"></div>
-      <div class="reply-row">
-        <input class="reply-in" type="text" placeholder="Add a reply...">
-        <button class="reply-send" onclick="sendReply(this)">SEND</button>
-      </div>
-    </div>
-  </div>`;
-}
-function reactRoast(el,current){if(el.classList.contains('reacted'))return;el.classList.add('reacted');const sp=el.querySelector('span');sp.textContent=parseInt(sp.textContent)+1;}
-function toggleReplies(btn){const rw=btn.closest('.roast-card').querySelector('.replies-wrap');rw.style.display=rw.style.display==='block'?'none':'block';if(rw.style.display==='block')rw.querySelector('.reply-in').focus();}
-function sendReply(btn){const inp=btn.previousElementSibling;const t=inp.value.trim();if(!t)return;const list=btn.closest('.replies-wrap').querySelector('.replies-list');const d=document.createElement('div');d.className='reply-item';d.innerHTML=`<div class="reply-av">😤</div><div class="reply-bub">${t}</div>`;list.appendChild(d);inp.value='';showToast('💬 Reply posted!');}
-async function postRoast(){
-  const name=document.getElementById('roastName').value.trim()||'Anonymous_'+Math.floor(Math.random()*9999);
-  const text=document.getElementById('roastText').value.trim();
-  const boss=document.getElementById('roastBossType').value;
-  if(!text){showToast('Write your roast first! 🔥');return;}
-  try{await supaFetch('roasts','POST',{name,boss_type:boss,roast:text,reactions:{fire:0,dead:0,lol:0,relatable:0,cringe:0,iconic:0}});showToast('🔥 Roast posted!');document.getElementById('roastText').value='';document.getElementById('roastName').value='';setTimeout(loadRoastFeed,500);}
-  catch(e){const c=document.getElementById('roastFeed');const d=document.createElement('div');d.innerHTML=buildRoastCard({id:'l'+Date.now(),name,boss_type:boss,roast:text,reactions:{fire:0,dead:0,lol:0,relatable:0,cringe:0,iconic:0},created_at:new Date().toISOString()});c.insertBefore(d.firstChild,c.firstChild);showToast('🔥 Roast posted!');document.getElementById('roastText').value='';}
-}
-function shareWA(text){window.open('https://wa.me/?text='+encodeURIComponent('😤 Boss Roast:\n"'+text+'..."\n\ndisstheboss.com'),'_blank');}
-function shareLinkedIn(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent('https://disstheboss.com'),'_blank');}
-
-// BATTLES
-function loadBattles(){renderBattles();}
-function renderBattles(){
-  document.getElementById('battleFeed').innerHTML=battles.map(b=>{
-    const tv=(b.challenger.votes||0)+(b.defender?b.defender.votes||0:0);
-    const pct=tv?Math.round((b.challenger.votes/tv)*100):50;
-    return `<div class="battle-card">
-      <div class="bh"><div class="bt">⚔️ ${b.bossType}</div><div class="bs">${b.status==='OPEN'?'🟡 OPEN':'🔴 LIVE'}</div></div>
-      <div class="bvs">
-        <div class="bside"><div class="bsl">😤 ${b.challenger.name}</div><div class="broast">"${b.challenger.roast}"</div></div>
-        <div class="vs">VS</div>
-        <div class="bside">${b.defender?`<div class="bsl">😤 ${b.defender.name}</div><div class="broast">"${b.defender.roast}"</div>`:`<div style="text-align:center;color:var(--grey);padding:.8rem;font-size:.8rem;">Waiting for a challenger...<br><br><button class="submit-btn" style="font-size:.68rem;padding:.35rem .8rem;" onclick="joinBattle('${b.id}')">⚔️ ACCEPT</button></div>`}</div>
-      </div>
-      ${b.defender?`<div class="vote-bar"><div class="vote-bar-a" style="width:${pct}%"></div><div class="vote-bar-b"></div></div>
-      <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--grey);margin-bottom:.4rem;"><span>${b.challenger.votes}v</span><span>${b.defender.votes}v</span></div>
-      <div class="vote-btns"><button class="vote-btn" onclick="voteBattle(this,'${b.id}','a')">😤 ${b.challenger.name.split('_')[0]}</button><button class="vote-btn" onclick="voteBattle(this,'${b.id}','b')">😤 ${b.defender.name.split('_')[0]}</button></div>`:''}
-    </div>`;
-  }).join('');
-}
-function createBattle(){
-  const name=document.getElementById('battleName').value.trim()||'Anon_'+Math.floor(Math.random()*9999);
-  const roast=document.getElementById('battleRoast').value.trim();
-  const boss=document.getElementById('battleBossType').value;
-  if(!roast){showToast('Write your opening roast! ⚔️');return;}
-  battles.unshift({id:'b'+Date.now(),status:'OPEN',bossType:boss,challenger:{name,roast,votes:0},defender:null});
-  renderBattles();document.getElementById('createBattleForm').style.display='none';document.getElementById('battleRoast').value='';showToast('⚔️ Battle started!');
-}
-function joinBattle(id){
-  const b=battles.find(x=>x.id===id);if(!b||b.defender)return;
-  const r=prompt('Enter your roast:');if(!r)return;
-  b.defender={name:'Anon_'+Math.floor(Math.random()*9999),roast:r,votes:0};b.status='LIVE';
-  renderBattles();showToast('⚔️ Battle is LIVE! Vote now!');
-}
-function voteBattle(btn,id,side){
-  if(btn.classList.contains('voted'))return;btn.classList.add('voted');
-  const b=battles.find(x=>x.id===id);
-  if(b){if(side==='a')b.challenger.votes++;else if(b.defender)b.defender.votes++;}
-  renderBattles();showToast('🗳️ Vote counted!');
-}
-
-// BOTW
-function loadBOTW(){
-  const sorted=[...botwBosses].sort((a,b)=>b.votes-a.votes);
-  document.getElementById('botwWinner').textContent=sorted[0].name;
-  document.getElementById('botwVotes').textContent=sorted[0].votes+' votes this week';
-  document.getElementById('botwGrid').innerHTML=botwBosses.map((b,i)=>`
-    <div class="botw-item">
-      <div style="font-size:1.6rem">${b.name.split(' ')[0]}</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--cream);margin:.2rem 0">${b.name.substring(2)}</div>
-      <div style="font-size:.68rem;color:var(--grey)">${b.votes} votes</div>
-      <button class="bvb" id="bvb-${i}" onclick="voteBOTW(${i},this)">VOTE 👊</button>
-    </div>`).join('');
-}
-function voteBOTW(idx,btn){
-  if(btn.classList.contains('voted')){showToast('Already voted this week!');return;}
-  botwBosses[idx].votes++;btn.classList.add('voted');btn.textContent='✅ VOTED';
-  const sorted=[...botwBosses].sort((a,b)=>b.votes-a.votes);
-  document.getElementById('botwWinner').textContent=sorted[0].name;
-  document.getElementById('botwVotes').textContent=sorted[0].votes+' votes this week';
-  loadBOTW();showToast('🗳️ Voted for '+botwBosses[idx].name+'!');
-}
-
-// PRIVATE ROOM
-let currentRoom=null;
-function createRoom(){
-  const name=document.getElementById('roomName').value.trim();if(!name){showToast('Give your room a name!');return;}
-  const code='DTB-'+Math.random().toString(36).substring(2,7).toUpperCase();
-  const link='disstheboss.com/room/'+code;
-  document.getElementById('roomLinkUrl').textContent=link;document.getElementById('roomLinkBox').style.display='block';
-  currentRoom={code,name};showToast('🔒 Room created! Share with colleagues.');
-}
-function copyRoomLink(){navigator.clipboard.writeText('https://'+document.getElementById('roomLinkUrl').textContent).then(()=>showToast('📋 Link copied!'));}
-function shareRoomWA(){const l=document.getElementById('roomLinkUrl').textContent;window.open('https://wa.me/?text='+encodeURIComponent('🔥 Join our private boss roast room!\nhttps://'+l),'_blank');}
-function joinRoom(){const code=document.getElementById('joinRoomCode').value.trim();if(!code){showToast('Paste a room code!');return;}showToast('🚪 Private rooms fully launching soon!');}
-
-// UTILS
-function timeAgo(ts){const d=Date.now()-new Date(ts).getTime(),m=Math.floor(d/60000);if(m<1)return'just now';if(m<60)return m+'m ago';const h=Math.floor(m/60);if(h<24)return h+'h ago';return Math.floor(h/24)+'d ago';}
-function initCounterAnim(){let c=47382;setInterval(()=>{if(Math.random()>.75){c+=Math.floor(Math.random()*3+1);const el=document.getElementById('playCount');if(el)el.textContent=c.toLocaleString();}},4000);}
-function submitContact(){const n=document.getElementById('contactName').value.trim();const e=document.getElementById('contactEmail').value.trim();const s=document.getElementById('contactSubject').value;const m=document.getElementById('contactMessage').value.trim();if(!n||!e||!m){showToast('Please fill in all fields!');return;}window.location.href=`mailto:disstheboss@gmail.com?subject=${encodeURIComponent(s)}&body=${encodeURIComponent('From: '+n+'\nEmail: '+e+'\n\n'+m)}`;showToast('📩 Opening your email app...');}
+function skipGate(){sessionStorage.setItem('dtb_skipped','1');document.getElementById('gate').style.display='none';}
+document.getElementById('gateEmail').addEventListener('keydown',e=>{if(e.key==='Enter')submitGate();});
+// Live counter
+let c=47382;setInterval(()=>{if(Math.random()>.7){c+=Math.floor(Math.random()*3+1);const el=document.getElementById('dartCount');if(el)el.textContent=c.toLocaleString();}},4500);
+checkGate();
 </script>
 </body>
 </html>
