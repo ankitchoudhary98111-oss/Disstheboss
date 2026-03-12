@@ -1,225 +1,235 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Google tag (gtag.js) -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diss The Boss — Throw It. Spin It. Feel Better.</title>
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Q5XCYPYJM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-7Q5XCYPYJM');
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diss The Boss — Throw It. Spin It. Feel Better.</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--red:#E8001D;--red2:#FF2D45;--orange:#FF5500;--yellow:#FFB800;--dark:#0C0B0B;--dark2:#161414;--dark3:#201D1D;--dark4:#2E2929;--cream:#F5EFE0;--grey:#7A7070;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--dark);color:var(--cream);font-family:'Barlow',sans-serif;overflow-x:hidden;cursor:crosshair;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:linear-gradient(to bottom,rgba(12,11,11,.98),transparent);}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;}
+body{background:var(--dark);color:var(--cream);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(12,11,11,.97);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;cursor:pointer;}
 .nav-logo span{color:var(--red);}
-.nav-links{display:flex;gap:2rem;align-items:center;}
-.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .2s;}
+.nav-links{display:flex;gap:1.5rem;align-items:center;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--cream);}
-.nav-cta{background:var(--red)!important;color:white!important;padding:.45rem 1.2rem;border-radius:2px;}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,#2a0808 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,#1a0a00 0%,transparent 60%),var(--dark);}
-.hero-tag{position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);background:rgba(255,85,0,.12);border:1px solid rgba(255,85,0,.3);padding:.4rem 1.2rem;border-radius:2px;margin-bottom:1.5rem;animation:fadeUp .6s ease both;}
-.hero-title{position:relative;z-index:1;font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,9rem);line-height:.95;letter-spacing:4px;animation:fadeUp .7s ease .1s both;}
-.hero-title .red{color:var(--red);}
-.hero-sub{position:relative;z-index:1;font-size:1.15rem;color:#B8A8A8;max-width:520px;margin:.8rem auto 2rem;line-height:1.6;font-style:italic;animation:fadeUp .7s ease .2s both;}
-.hero-btns{position:relative;z-index:1;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .7s ease .3s both;}
-.btn-primary{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2.5rem;border:none;border-radius:2px;cursor:pointer;transition:background .2s,transform .1s;text-decoration:none;display:inline-block;}
-.btn-primary:hover{background:var(--red2);transform:translateY(-2px);}
-.btn-secondary{background:transparent;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2.5rem;border:1px solid var(--dark4);border-radius:2px;cursor:pointer;transition:border-color .2s;text-decoration:none;display:inline-block;}
-.btn-secondary:hover{border-color:var(--cream);}
-.hero-stats{position:relative;z-index:1;display:flex;gap:3rem;margin-top:3rem;animation:fadeUp .7s ease .4s both;}
-.stat{text-align:center;}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);line-height:1;}
-.stat-label{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:.2rem;}
-.scroll-hint{position:relative;z-index:1;margin-top:3rem;animation:bounce 2s infinite;font-size:1.5rem;opacity:.4;}
-@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-section{padding:5rem 2rem;}
-.section-inner{max-width:1100px;margin:0 auto;}
-.section-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);margin-bottom:.8rem;}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1;margin-bottom:1rem;}
-.game-section{background:var(--dark2);border-top:1px solid var(--dark4);border-bottom:1px solid var(--dark4);}
-.game-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-.game-info{padding-top:1rem;}
-.game-desc{font-size:1rem;color:#B8A8A8;line-height:1.7;margin-bottom:2rem;}
-.score-display{background:var(--dark3);border:1px solid var(--dark4);border-radius:4px;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
-.score-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);}
-.score-value{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--yellow);line-height:1;}
-.how-to-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:.8rem;}
-.how-to-steps{display:flex;flex-direction:column;gap:.5rem;}
-.step{display:flex;align-items:flex-start;gap:.8rem;font-size:.9rem;color:#AAA;}
-.step-num{background:var(--red);color:white;font-family:'Bebas Neue',sans-serif;font-size:.9rem;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-.dart-game-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;}
-.dartboard-container{position:relative;width:320px;height:320px;cursor:crosshair;}
-.dartboard{width:320px;height:320px;border-radius:50%;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(232,0,29,.25),0 0 120px rgba(232,0,29,.1);}
-.dart-thrown{position:absolute;width:12px;height:12px;background:var(--yellow);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:10;box-shadow:0 0 8px var(--yellow);animation:dartLand .2s ease;}
-@keyframes dartLand{from{transform:translate(-50%,-50%) scale(2);opacity:.5;}to{transform:translate(-50%,-50%) scale(1);opacity:1;}}
-.hit-flash{position:absolute;inset:0;border-radius:50%;background:rgba(255,184,0,.3);pointer-events:none;animation:flashOut .4s ease forwards;z-index:9;}
-@keyframes flashOut{from{opacity:1;}to{opacity:0;}}
-.score-popup{position:absolute;transform:translate(-50%,-100%);font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--yellow);pointer-events:none;z-index:20;animation:popUp .8s ease forwards;text-shadow:0 2px 8px rgba(0,0,0,.8);}
-@keyframes popUp{0%{opacity:1;transform:translate(-50%,-100%);}100%{opacity:0;transform:translate(-50%,-200%);}}
-.throw-btn{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.8rem 2rem;cursor:crosshair;transition:background .2s,transform .1s;width:100%;}
-.throw-btn:hover{background:var(--red2);transform:scale(1.02);}
-.throws-left{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-align:center;}
-.throws-left span{color:var(--cream);}
-.game-result{background:var(--dark3);border:1px solid var(--dark4);border-radius:4px;padding:1rem 1.5rem;text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:1px;display:none;}
-.comments-section{background:var(--dark);}
-.comments-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-.comment-form-wrap{position:sticky;top:6rem;}
-.form-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.3rem;}
-.form-sub{font-size:.9rem;color:var(--grey);margin-bottom:1.5rem;font-style:italic;}
-.anon-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.25);color:#00C896;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .8rem;border-radius:2px;margin-bottom:1.2rem;}
-.form-group{margin-bottom:.8rem;}
+.nav-cta{background:var(--red)!important;color:white!important;padding:.4rem 1rem;border-radius:2px;}
+/* EMAIL POPUP */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;animation:fadeIn .3s ease;}
+.popup-overlay.hidden{display:none;}
+.popup-box{background:var(--dark2);border:1px solid var(--red);border-radius:6px;padding:2.5rem 2rem;max-width:420px;width:100%;position:relative;text-align:center;}
+.popup-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--grey);font-size:1.5rem;cursor:pointer;}
+.popup-tag{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:.8rem;}
+.popup-title{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;margin-bottom:.5rem;}
+.popup-title span{color:var(--red);}
+.popup-sub{font-size:.9rem;color:#B8A8A8;margin-bottom:1.5rem;line-height:1.5;}
+.popup-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:3px;color:var(--cream);font-family:'Barlow',sans-serif;font-size:.95rem;padding:.8rem 1rem;outline:none;margin-bottom:.8rem;}
+.popup-input:focus{border-color:var(--red);}
+.popup-btn{width:100%;background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.9rem;cursor:pointer;}
+.popup-skip{display:block;margin-top:.8rem;font-size:.75rem;color:var(--grey);cursor:pointer;text-decoration:underline;}
+.popup-spots{font-size:.75rem;color:var(--orange);margin-bottom:1rem;font-weight:700;}
+/* PAGES */
+.page{display:none;min-height:100vh;padding:5rem 1.5rem 3rem;}
+.page.active{display:block;}
+.page-inner{max-width:800px;margin:0 auto;}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,8vw,5rem);margin-bottom:1rem;}
+.page-title span{color:var(--red);}
+.page-content{color:#C8B8B8;line-height:1.8;font-size:.95rem;}
+.page-content h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;color:var(--cream);margin:1.5rem 0 .5rem;}
+.page-content p{margin-bottom:1rem;}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);cursor:pointer;margin-bottom:2rem;transition:color .2s;}
+.back-btn:hover{color:var(--cream);}
+/* CONTACT FORM */
+.contact-form{margin-top:2rem;}
+.form-group{margin-bottom:1rem;}
 .form-group label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:.4rem;}
 .form-group input,.form-group textarea,.form-group select{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:3px;color:var(--cream);font-family:'Barlow',sans-serif;font-size:.95rem;padding:.7rem 1rem;outline:none;transition:border-color .2s;resize:none;}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--red);}
-.form-group select option{background:var(--dark3);}
-.submit-btn{width:100%;background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.9rem;cursor:pointer;transition:background .2s,transform .1s;margin-top:.5rem;}
-.feed-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;}
-.feed-count{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--grey);}
-.feed-count span{color:var(--red);}
-.comments-list{display:flex;flex-direction:column;gap:1rem;max-height:700px;overflow-y:auto;padding-right:.5rem;}
-.comment-card{background:var(--dark2);border:1px solid var(--dark4);border-radius:4px;padding:1.2rem;transition:border-color .2s;animation:fadeUp .3s ease;}
-.comment-top{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem;}
-.comment-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-.comment-meta{flex:1;}
-.comment-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:1px;}
-.comment-time{font-size:.72rem;color:var(--grey);margin-top:1px;}
-.boss-type-tag{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.2rem .5rem;border-radius:2px;background:rgba(232,0,29,.15);color:var(--red);border:1px solid rgba(232,0,29,.2);}
-.comment-text{font-size:.9rem;color:#C8B8B8;line-height:1.6;}
-.comment-actions{display:flex;gap:1rem;margin-top:.8rem;}
-.react-btn{background:none;border:1px solid var(--dark4);border-radius:2px;color:var(--grey);font-size:.8rem;padding:.25rem .6rem;cursor:pointer;transition:all .2s;font-family:'Barlow',sans-serif;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--red);}
+.submit-btn{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.9rem 2rem;cursor:pointer;}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,#2a0808 0%,transparent 70%),var(--dark);}
+.hero-tag{position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);background:rgba(255,85,0,.12);border:1px solid rgba(255,85,0,.3);padding:.4rem 1.2rem;border-radius:2px;margin-bottom:1.5rem;}
+.hero-title{position:relative;z-index:1;font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,15vw,9rem);line-height:.95;letter-spacing:4px;}
+.hero-title .red{color:var(--red);}
+.hero-sub{position:relative;z-index:1;font-size:1rem;color:#B8A8A8;max-width:500px;margin:.8rem auto 2rem;line-height:1.6;font-style:italic;}
+.hero-btns{position:relative;z-index:1;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.btn-primary{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2rem;border:none;border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-secondary{background:transparent;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2rem;border:1px solid var(--dark4);border-radius:2px;cursor:pointer;text-decoration:none;display:inline-block;}
+.hero-stats{position:relative;z-index:1;display:flex;gap:2rem;margin-top:3rem;flex-wrap:wrap;justify-content:center;}
+.stat{text-align:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--red);line-height:1;}
+.stat-label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:.2rem;}
+/* GAME */
+.game-section{background:var(--dark2);padding:4rem 1.5rem;border-top:1px solid var(--dark4);}
+.game-layout{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);margin-bottom:.8rem;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.5rem);line-height:1;margin-bottom:1rem;}
+.game-desc{font-size:.95rem;color:#B8A8A8;line-height:1.7;margin-bottom:1.5rem;}
+.score-display{background:var(--dark3);border:1px solid var(--dark4);border-radius:4px;padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.score-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);}
+.score-value{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--yellow);line-height:1;}
+.dart-game-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.dartboard-container{position:relative;width:280px;height:280px;cursor:crosshair;}
+.dartboard{width:280px;height:280px;border-radius:50%;position:relative;overflow:hidden;box-shadow:0 0 40px rgba(232,0,29,.2);}
+.dart-thrown{position:absolute;width:10px;height:10px;background:var(--yellow);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:10;box-shadow:0 0 6px var(--yellow);}
+.score-popup{position:absolute;transform:translate(-50%,-100%);font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--yellow);pointer-events:none;z-index:20;animation:popUp .8s ease forwards;}
+@keyframes popUp{0%{opacity:1;transform:translate(-50%,-100%);}100%{opacity:0;transform:translate(-50%,-200%);}}
+.throw-btn{background:var(--red);color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.8rem 1.5rem;cursor:pointer;width:100%;}
+.throws-left{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-align:center;}
+.throws-left span{color:var(--cream);}
+.game-result{background:var(--dark3);border:1px solid var(--dark4);border-radius:4px;padding:1rem;text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;display:none;}
+/* VENTS */
+.vents-section{padding:4rem 1.5rem;}
+.vents-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.3rem;}
+.form-sub{font-size:.85rem;color:var(--grey);margin-bottom:1rem;font-style:italic;}
+.anon-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.25);color:#00C896;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .8rem;border-radius:2px;margin-bottom:1rem;}
+.comments-list{display:flex;flex-direction:column;gap:1rem;max-height:600px;overflow-y:auto;}
+.comment-card{background:var(--dark2);border:1px solid var(--dark4);border-radius:4px;padding:1rem;animation:fadeUp .3s ease;}
+.comment-top{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem;}
+.comment-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.comment-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;}
+.comment-time{font-size:.7rem;color:var(--grey);}
+.boss-tag{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.2rem .5rem;border-radius:2px;background:rgba(232,0,29,.15);color:var(--red);border:1px solid rgba(232,0,29,.2);margin-left:auto;}
+.comment-text{font-size:.88rem;color:#C8B8B8;line-height:1.6;}
+.comment-actions{display:flex;gap:.8rem;margin-top:.7rem;}
+.react-btn{background:none;border:1px solid var(--dark4);border-radius:2px;color:var(--grey);font-size:.75rem;padding:.2rem .5rem;cursor:pointer;transition:all .2s;font-family:'Barlow',sans-serif;}
 .react-btn:hover{border-color:var(--red);color:var(--cream);}
 .react-btn.liked{background:rgba(232,0,29,.15);border-color:var(--red);color:var(--red);}
-footer{background:var(--dark2);border-top:1px solid var(--dark4);padding:3rem;text-align:center;}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:4px;margin-bottom:.5rem;}
+/* FOOTER */
+footer{background:var(--dark2);border-top:1px solid var(--dark4);padding:2.5rem 1.5rem;text-align:center;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:4px;margin-bottom:.3rem;}
 .footer-logo span{color:var(--red);}
-.footer-sub{font-size:.85rem;color:var(--grey);font-style:italic;margin-bottom:1.5rem;}
-.footer-links{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;}
-.footer-links a{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;transition:color .2s;}
+.footer-sub{font-size:.8rem;color:var(--grey);font-style:italic;margin-bottom:1.2rem;}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.footer-links a{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:color .2s;}
 .footer-links a:hover{color:var(--cream);}
-.footer-copy{margin-top:2rem;font-size:.75rem;color:#444;}
-.toast{position:fixed;bottom:2rem;right:2rem;background:var(--dark3);border:1px solid var(--red);border-radius:4px;padding:1rem 1.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:1px;z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s ease;max-width:300px;}
+.footer-copy{margin-top:1.5rem;font-size:.7rem;color:#444;}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--dark3);border:1px solid var(--red);border-radius:4px;padding:.8rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;z-index:2000;transform:translateY(100px);opacity:0;transition:all .3s ease;max-width:280px;}
 .toast.show{transform:translateY(0);opacity:1;}
-@media(max-width:768px){nav{padding:.8rem 1.2rem;}.nav-links{display:none;}.hero-stats{gap:1.5rem;}.game-layout,.comments-grid{grid-template-columns:1fr;}.comment-form-wrap{position:static;}.dartboard-container,.dartboard{width:280px;height:280px;}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:700px){.game-layout,.vents-inner{grid-template-columns:1fr;}.nav-links{display:none;}.dartboard-container,.dartboard{width:260px;height:260px;}}
 </style>
 </head>
 <body>
+
+<!-- EMAIL POPUP -->
+<div class="popup-overlay" id="emailPopup">
+<div class="popup-box">
+<button class="popup-close" onclick="closePopup()">×</button>
+<div class="popup-tag">🔥 Limited Founding Members</div>
+<h2 class="popup-title">JOIN THE <span>REBELLION</span></h2>
+<p class="popup-sub">Get lifetime access when we launch premium. Be one of the first 100 founding members of DissTheBoss.</p>
+<div class="popup-spots" id="spotsLeft">🔴 Only 87 spots remaining!</div>
+<input class="popup-input" type="email" id="popupEmail" placeholder="your@email.com">
+<button class="popup-btn" onclick="submitEmail()">🎯 CLAIM MY SPOT</button>
+<span class="popup-skip" onclick="closePopup()">No thanks, I enjoy suffering in silence</span>
+</div>
+</div>
+
 <nav>
-<div class="nav-logo">DISS<span>THE</span>BOSS</div>
+<div class="nav-logo" onclick="showPage('home')">DISS<span>THE</span>BOSS</div>
 <div class="nav-links">
-<a href="#game">Play</a>
-<a href="#vent">Vent</a>
-<a href="#" class="nav-cta">Join Free</a>
+<a href="#" onclick="showPage('home')">Home</a>
+<a href="#" onclick="scrollToGame()">Play</a>
+<a href="#" onclick="showPage('about')">About</a>
+<a href="#" onclick="showPage('contact')">Contact</a>
+<a href="#" class="nav-cta" onclick="document.getElementById('emailPopup').classList.remove('hidden')">Join Free</a>
 </div>
 </nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
 <div class="hero">
 <div class="hero-bg"></div>
 <div class="hero-tag">🎯 The World's #1 Boss Stress Relief Platform</div>
 <h1 class="hero-title">DISS<br><span class="red">THE BOSS</span></h1>
-<p class="hero-sub">Your boss is driving you crazy. We get it. Throw some darts, spin the wheel, and actually feel better. 100% anonymous. 100% satisfying.</p>
+<p class="hero-sub">Your boss is driving you crazy. We get it. Throw some darts, vent anonymously, and actually feel better.</p>
 <div class="hero-btns">
-<a href="#game" class="btn-primary">🎯 Throw A Dart</a>
-<a href="#vent" class="btn-secondary">💬 Read The Vents</a>
+<button class="btn-primary" onclick="scrollToGame()">🎯 Throw A Dart</button>
+<button class="btn-secondary" onclick="scrollToVents()">💬 Read Vents</button>
 </div>
 <div class="hero-stats">
 <div class="stat"><div class="stat-num" id="playCount">47,382</div><div class="stat-label">Darts Thrown</div></div>
 <div class="stat"><div class="stat-num">2,841</div><div class="stat-label">Bosses Dissed</div></div>
-<div class="stat"><div class="stat-num">98%</div><div class="stat-label">Felt Better After</div></div>
+<div class="stat"><div class="stat-num">98%</div><div class="stat-label">Felt Better</div></div>
 </div>
-<div class="scroll-hint">↓</div>
 </div>
-<section class="game-section" id="game">
-<div class="section-inner">
+
+<!-- GAME -->
+<section class="game-section" id="gameSection">
 <div class="game-layout">
-<div class="game-info">
-<div class="section-label">🎯 Game 01 — Free To Play</div>
-<h2 class="section-title">BOSS<br>DART BOARD</h2>
-<p class="game-desc">Pick your boss type, aim carefully, and let it rip. Every dart you throw is one less thing you'll say in the office. You've got 5 throws — make them count.</p>
+<div>
+<div class="section-label">🎯 Game 01 — Free</div>
+<h2 class="section-title">BOSS DART BOARD</h2>
+<p class="game-desc">Pick your boss type, aim, and let it rip. 5 throws to get it out of your system.</p>
 <div class="score-display">
-<div><div class="score-label">Your Score</div><div class="score-value" id="totalScore">0</div></div>
-<div style="text-align:right"><div class="score-label">Best Hit</div><div class="score-value" id="bestHit">—</div></div>
+<div><div class="score-label">Score</div><div class="score-value" id="totalScore">0</div></div>
+<div style="text-align:right"><div class="score-label">Best</div><div class="score-value" id="bestHit">—</div></div>
 </div>
 <div class="game-result" id="gameResult"></div>
-<div style="margin-top:1.5rem">
-<div class="how-to-title">How To Play</div>
-<div class="how-to-steps">
-<div class="step"><div class="step-num">1</div><span>Pick your boss type from the dropdown</span></div>
-<div class="step"><div class="step-num">2</div><span>Click anywhere on the dartboard to throw</span></div>
-<div class="step"><div class="step-num">3</div><span>Bullseye = 50pts. Outer rings = less points</span></div>
-<div class="step"><div class="step-num">4</div><span>Share your score and feel the relief 😤</span></div>
-</div>
-</div>
-</div>
-<div class="dart-game-wrap">
-<div style="width:100%;max-width:340px;">
-<div class="form-group" style="margin-bottom:1rem;">
-<label>Choose Your Boss Type</label>
+<div class="form-group" style="margin-top:1rem;">
+<label>Boss Type</label>
 <select id="bossType">
 <option value="micromanager">😤 The Micromanager</option>
 <option value="creditstealer">🐍 The Credit Stealer</option>
 <option value="ghostboss">👻 The Ghost Boss</option>
-<option value="favouriteplayer">🍎 The Teacher's Pet Maker</option>
 <option value="meetingaddict">📅 The Meeting Addict</option>
 <option value="bully">👊 The Office Bully</option>
+<option value="favouriteplayer">🍎 The Favourite Player Maker</option>
 </select>
 </div>
+</div>
+<div class="dart-game-wrap">
 <div class="dartboard-container" id="dartboard" onclick="throwDart(event)">
-<svg class="dartboard" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
-<circle cx="160" cy="160" r="158" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
-<circle cx="160" cy="160" r="150" fill="#2a0000"/>
-<circle cx="160" cy="160" r="125" fill="#1a0000"/>
-<circle cx="160" cy="160" r="100" fill="#300000"/>
-<circle cx="160" cy="160" r="75" fill="#1a0000"/>
-<circle cx="160" cy="160" r="50" fill="#500000"/>
-<circle cx="160" cy="160" r="30" fill="#800000"/>
-<circle cx="160" cy="160" r="15" fill="#cc0000"/>
-<circle cx="160" cy="160" r="7" fill="#FFB800"/>
-<circle cx="160" cy="160" r="150" fill="none" stroke="#444" stroke-width="1.5"/>
-<circle cx="160" cy="160" r="125" fill="none" stroke="#444" stroke-width="1.5"/>
-<circle cx="160" cy="160" r="100" fill="none" stroke="#555" stroke-width="1.5"/>
-<circle cx="160" cy="160" r="75" fill="none" stroke="#555" stroke-width="2"/>
-<circle cx="160" cy="160" r="50" fill="none" stroke="#666" stroke-width="2"/>
-<circle cx="160" cy="160" r="30" fill="none" stroke="#888" stroke-width="2"/>
-<circle cx="160" cy="160" r="15" fill="none" stroke="#AAA" stroke-width="2"/>
-<text x="160" y="26" text-anchor="middle" fill="#888" font-size="11" font-family="Barlow Condensed" font-weight="700">5</text>
-<text x="160" y="52" text-anchor="middle" fill="#888" font-size="10" font-family="Barlow Condensed">10</text>
-<text x="160" y="80" text-anchor="middle" fill="#999" font-size="10" font-family="Barlow Condensed">20</text>
-<text x="160" y="108" text-anchor="middle" fill="#AAA" font-size="10" font-family="Barlow Condensed">30</text>
-<text x="160" y="135" text-anchor="middle" fill="#CCC" font-size="10" font-family="Barlow Condensed">40</text>
-<text x="160" y="158" text-anchor="middle" fill="#FFB800" font-size="9" font-family="Bebas Neue" letter-spacing="1">BULL</text>
-<line x1="160" y1="10" x2="160" y2="310" stroke="#333" stroke-width="1" stroke-dasharray="4,6"/>
-<line x1="10" y1="160" x2="310" y2="160" stroke="#333" stroke-width="1" stroke-dasharray="4,6"/>
-<text x="160" y="172" text-anchor="middle" font-size="14">😤</text>
+<svg class="dartboard" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+<circle cx="140" cy="140" r="138" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+<circle cx="140" cy="140" r="130" fill="#2a0000"/>
+<circle cx="140" cy="140" r="108" fill="#1a0000"/>
+<circle cx="140" cy="140" r="87" fill="#300000"/>
+<circle cx="140" cy="140" r="65" fill="#1a0000"/>
+<circle cx="140" cy="140" r="44" fill="#500000"/>
+<circle cx="140" cy="140" r="26" fill="#800000"/>
+<circle cx="140" cy="140" r="13" fill="#cc0000"/>
+<circle cx="140" cy="140" r="6" fill="#FFB800"/>
+<circle cx="140" cy="140" r="130" fill="none" stroke="#444" stroke-width="1.5"/>
+<circle cx="140" cy="140" r="108" fill="none" stroke="#444" stroke-width="1.5"/>
+<circle cx="140" cy="140" r="87" fill="none" stroke="#555" stroke-width="1.5"/>
+<circle cx="140" cy="140" r="65" fill="none" stroke="#555" stroke-width="2"/>
+<circle cx="140" cy="140" r="44" fill="none" stroke="#666" stroke-width="2"/>
+<circle cx="140" cy="140" r="26" fill="none" stroke="#888" stroke-width="2"/>
+<line x1="140" y1="10" x2="140" y2="270" stroke="#333" stroke-width="1" stroke-dasharray="4,6"/>
+<line x1="10" y1="140" x2="270" y2="140" stroke="#333" stroke-width="1" stroke-dasharray="4,6"/>
+<text x="140" y="148" text-anchor="middle" font-size="16">😤</text>
 </svg>
 </div>
-<div class="throws-left" id="throwsLeft">Throws remaining: <span>5</span></div>
-<br>
+<div class="throws-left" id="throwsLeft">Throws: <span>5</span> left</div>
 <button class="throw-btn" id="throwBtn" onclick="autoThrow()">🎯 THROW DART</button>
-<br><br>
-<button class="btn-secondary" style="width:100%;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:3px;" onclick="resetGame()">↺ PLAY AGAIN</button>
-</div>
-</div>
+<button class="btn-secondary" style="width:100%;margin-top:.5rem;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:2px;" onclick="resetGame()">↺ PLAY AGAIN</button>
 </div>
 </div>
 </section>
-<section class="comments-section" id="vent">
-<div class="section-inner">
-<div class="comments-grid">
-<div class="comment-form-wrap">
+
+<!-- VENTS -->
+<section class="vents-section" id="ventsSection">
+<div class="vents-inner">
+<div>
 <div class="section-label">💬 Anonymous Vents</div>
 <h2 class="form-title">DROP YOUR DISS</h2>
-<p class="form-sub">No names. No judgement. Just pure unfiltered workplace truth.</p>
+<p class="form-sub">No names. No judgement. Pure unfiltered workplace truth.</p>
 <div class="anon-badge">🔒 100% Anonymous</div>
 <div class="form-group">
 <label>Your Anonymous Name</label>
@@ -228,66 +238,338 @@ footer{background:var(--dark2);border-top:1px solid var(--dark4);padding:3rem;te
 <div class="form-group">
 <label>Boss Type</label>
 <select id="ventBossType">
-<option value="😤 Micromanager">😤 Micromanager</option>
-<option value="🐍 Credit Stealer">🐍 Credit Stealer</option>
-<option value="👻 Ghost Boss">👻 Ghost Boss</option>
-<option value="📅 Meeting Addict">📅 Meeting Addict</option>
-<option value="👊 Office Bully">👊 Office Bully</option>
-<option value="🍎 Favourite Player">🍎 Favourite Player</option>
-<option value="🤡 Just A Clown">🤡 Just A Clown</option>
+<option>😤 Micromanager</option>
+<option>🐍 Credit Stealer</option>
+<option>👻 Ghost Boss</option>
+<option>📅 Meeting Addict</option>
+<option>👊 Office Bully</option>
+<option>🍎 Favourite Player</option>
+<option>🤡 Just A Clown</option>
 </select>
 </div>
 <div class="form-group">
-<label>Your Vent (keep it anonymous!)</label>
-<textarea id="ventText" rows="4" placeholder="My boss literally cc's themselves on every single email I send..." maxlength="280"></textarea>
+<label>Your Vent</label>
+<textarea id="ventText" rows="4" placeholder="My boss literally..." maxlength="280"></textarea>
 </div>
-<div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--grey);margin-top:-.5rem;margin-bottom:.5rem;">
-<span>Keep it funny, keep it anonymous</span>
-<span id="charCount">0/280</span>
+<div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--grey);margin-top:-.5rem;margin-bottom:.5rem;">
+<span>Keep it anonymous!</span><span id="charCount">0/280</span>
 </div>
 <button class="submit-btn" onclick="submitVent()">😤 POST MY VENT</button>
 </div>
 <div>
-<div class="feed-header">
-<div class="section-label" style="margin:0">Live Vent Feed</div>
-<div class="feed-count">🔥 <span id="ventCount">6</span> vents today</div>
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+<div class="section-label" style="margin:0">Live Feed</div>
+<span style="font-size:.75rem;color:var(--grey);">🔥 <span id="ventCount">0</span> vents</span>
 </div>
-<div class="comments-list" id="commentsList"></div>
+<div class="comments-list" id="commentsList">
+<div style="text-align:center;color:var(--grey);padding:2rem;font-style:italic;">Loading vents...</div>
 </div>
 </div>
 </div>
 </section>
+
 <footer>
 <div class="footer-logo">DISS<span>THE</span>BOSS</div>
 <p class="footer-sub">"Because therapy is expensive. This is free."</p>
 <div class="footer-links">
-<a href="#">About</a>
-<a href="#">Privacy</a>
-<a href="#">Terms</a>
-<a href="#">Contact</a>
-<a href="#">All Games</a>
+<a onclick="showPage('about')">About</a>
+<a onclick="showPage('privacy')">Privacy</a>
+<a onclick="showPage('terms')">Terms</a>
+<a onclick="showPage('contact')">Contact</a>
 </div>
-<p class="footer-copy">© 2026 DissTheBoss — All boss dissing is fictional and for entertainment purposes only.</p>
+<p class="footer-copy">© 2026 DissTheBoss — All boss dissing is fictional and for entertainment only.</p>
 </footer>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="page-about" class="page">
+<div class="page-inner">
+<div class="back-btn" onclick="showPage('home')">← Back to Home</div>
+<h1 class="page-title">ABOUT <span>US</span></h1>
+<div class="page-content">
+<p>DissTheBoss was born out of one simple truth: work can be frustrating, bosses can be maddening, and sometimes you just need to throw something — even if it's virtual.</p>
+<h3>Our Mission</h3>
+<p>We believe every worker deserves a safe, anonymous, and fun outlet for workplace stress. DissTheBoss is that outlet. No real people are harmed. No real names are used. Just pure, satisfying stress relief through games and community.</p>
+<h3>What We Offer</h3>
+<p>🎯 Boss Dart Board — Throw darts at your virtual boss and score points based on accuracy.</p>
+<p>💬 Anonymous Vent Feed — Share your workplace frustrations anonymously with thousands of others who totally get it.</p>
+<p>🎡 More Games Coming — Spin the Wheel, Whack-A-Boss, Boss Pool and more launching soon.</p>
+<h3>Who We Are</h3>
+<p>DissTheBoss is an entertainment platform built for the millions of workers around the world who deserve better. We are not affiliated with any employer or HR department. Everything here is fictional satire for entertainment purposes only.</p>
+<h3>Contact Us</h3>
+<p>Got questions, feedback, or partnership enquiries? Reach us at <strong>disstheboss@gmail.com</strong></p>
+</div>
+</div>
+</div>
+
+<!-- PRIVACY PAGE -->
+<div id="page-privacy" class="page">
+<div class="page-inner">
+<div class="back-btn" onclick="showPage('home')">← Back to Home</div>
+<h1 class="page-title">PRIVACY <span>POLICY</span></h1>
+<div class="page-content">
+<p>Last updated: March 2026</p>
+<h3>What We Collect</h3>
+<p>We only collect your email address if you voluntarily sign up as a founding member. We also store anonymous vents you post — these contain no personally identifiable information.</p>
+<h3>How We Use Your Data</h3>
+<p>Your email is used only to notify you about DissTheBoss updates and the launch of our premium features. We will never sell, rent, or share your email with third parties.</p>
+<h3>Cookies & Analytics</h3>
+<p>We use Google Analytics to understand how visitors use our site. This data is anonymous and aggregated. You can opt out via your browser settings.</p>
+<h3>Anonymous Vents</h3>
+<p>Vents posted on our platform are anonymous by design. Do not include real names, company names, or identifying information in your vents. We reserve the right to remove any content that violates our Terms of Service.</p>
+<h3>Data Storage</h3>
+<p>Your data is stored securely using Supabase infrastructure hosted in Mumbai, India. We take reasonable measures to protect your information.</p>
+<h3>Your Rights</h3>
+<p>You can request deletion of your email from our database at any time by emailing us at disstheboss@gmail.com</p>
+<h3>Contact</h3>
+<p>For privacy concerns contact: disstheboss@gmail.com</p>
+</div>
+</div>
+</div>
+
+<!-- TERMS PAGE -->
+<div id="page-terms" class="page">
+<div class="page-inner">
+<div class="back-btn" onclick="showPage('home')">← Back to Home</div>
+<h1 class="page-title">TERMS & <span>CONDITIONS</span></h1>
+<div class="page-content">
+<p>Last updated: March 2026</p>
+<h3>1. Entertainment Only</h3>
+<p>DissTheBoss is a fictional entertainment and stress relief platform. All games, characters, and content are entirely fictional. Any resemblance to real persons, living or dead, is purely coincidental.</p>
+<h3>2. Acceptable Use</h3>
+<p>You agree not to post real names, real company names, defamatory content, harassment, hate speech, or any content that could harm a real individual. Violation of these rules will result in removal of your content.</p>
+<h3>3. Anonymous Content</h3>
+<p>By posting a vent, you grant DissTheBoss a non-exclusive licence to display that content on our platform. You confirm the content is anonymous and does not identify real individuals.</p>
+<h3>4. No Legal Liability</h3>
+<p>DissTheBoss is not responsible for any content posted by users. We are not liable for any damages arising from use of this platform. Use at your own risk.</p>
+<h3>5. Age Requirement</h3>
+<p>You must be 18 years or older to use DissTheBoss. By using this site you confirm you meet this requirement.</p>
+<h3>6. Changes to Terms</h3>
+<p>We reserve the right to update these terms at any time. Continued use of the platform constitutes acceptance of the updated terms.</p>
+<h3>7. Governing Law</h3>
+<p>These terms are governed by the laws of India. Any disputes shall be resolved in the courts of Gurugram, Haryana.</p>
+<h3>Contact</h3>
+<p>Questions about these terms? Email: disstheboss@gmail.com</p>
+</div>
+</div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="page-contact" class="page">
+<div class="page-inner">
+<div class="back-btn" onclick="showPage('home')">← Back to Home</div>
+<h1 class="page-title">GET IN <span>TOUCH</span></h1>
+<div class="page-content">
+<p>Got feedback, a partnership idea, press enquiry, or just want to vent at us? We'd love to hear from you.</p>
+<p>📧 Direct email: <strong>disstheboss@gmail.com</strong></p>
+</div>
+<div class="contact-form">
+<div class="form-group">
+<label>Your Name</label>
+<input type="text" id="contactName" placeholder="Your name">
+</div>
+<div class="form-group">
+<label>Your Email</label>
+<input type="email" id="contactEmail" placeholder="your@email.com">
+</div>
+<div class="form-group">
+<label>Subject</label>
+<select id="contactSubject">
+<option>General Feedback</option>
+<option>Partnership / Business</option>
+<option>Press Enquiry</option>
+<option>Bug Report</option>
+<option>Other</option>
+</select>
+</div>
+<div class="form-group">
+<label>Message</label>
+<textarea id="contactMessage" rows="5" placeholder="Tell us everything..."></textarea>
+</div>
+<button class="submit-btn" onclick="submitContact()">📩 SEND MESSAGE</button>
+</div>
+</div>
+</div>
+
 <div class="toast" id="toast"></div>
+
 <script>
+const SUPABASE_URL = 'https://cooehtreydndjwdiauuz.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvb2VodHJleWRuZGp3ZGlhdXV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3NjI0NzIsImV4cCI6MjA1NzMzODQ3Mn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk2yJV_adQssw5c';
+
+async function supabase(table, method, data){
+  const url = `${SUPABASE_URL}/rest/v1/${table}`;
+  const headers = {'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`};
+  if(method==='GET') headers['Accept']='application/json';
+  if(method==='POST') headers['Prefer']='return=minimal';
+  const res = await fetch(method==='GET'?url+'?order=created_at.desc&limit=50':url,{method,headers,body:data?JSON.stringify(data):undefined});
+  if(method==='GET') return await res.json();
+  return res;
+}
+
+// POPUP
+let spots = 87;
+setTimeout(()=>{
+  const seen = localStorage.getItem('dtb_popup');
+  if(!seen) document.getElementById('emailPopup').classList.remove('hidden');
+},2500);
+
+function closePopup(){
+  document.getElementById('emailPopup').classList.add('hidden');
+  localStorage.setItem('dtb_popup','1');
+}
+
+async function submitEmail(){
+  const email = document.getElementById('popupEmail').value.trim();
+  if(!email||!email.includes('@')){showToast('Please enter a valid email!');return;}
+  try{
+    const res = await supabase('emails','POST',{email});
+    if(res.status===201||res.status===200){
+      spots = Math.max(spots-1,0);
+      document.getElementById('spotsLeft').textContent = `🔴 Only ${spots} spots remaining!`;
+      closePopup();
+      showToast('🎉 Welcome to the rebellion! Check your email soon.');
+    } else {
+      showToast('Already signed up — you\'re on the list! 🔥');
+      closePopup();
+    }
+  } catch(e){showToast('Saved! Welcome aboard 🎯');closePopup();}
+}
+
+// PAGES
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  window.scrollTo(0,0);
+}
+function scrollToGame(){showPage('home');setTimeout(()=>document.getElementById('gameSection').scrollIntoView({behavior:'smooth'}),100);}
+function scrollToVents(){showPage('home');setTimeout(()=>document.getElementById('ventsSection').scrollIntoView({behavior:'smooth'}),100);}
+
+// DART GAME
 let throwsLeft=5,totalScore=0,bestHit=0;
-const bossInsults={micromanager:["Classic micromanager move","Bet they'll want to review this throw","Direct hit on the control freak!"],creditstealer:["They can't steal this score!","Hit! But they'll take credit for it","Bulls-eye on the glory grabber!"],ghostboss:["They weren't even there to dodge it","Hit! They'll reply in 3 business weeks","Bullseye — if they show up!"],favouriteplayer:["Teacher's pet got hit!","The golden child takes a dart!","Direct hit on the apple polisher!"],meetingaddict:["Could've been an email... and a dart!","Direct hit on the calendar blocker!","Bullseye in this week's sync!"],bully:["Bully got served!","Not so tough now!","Bulls-eye on the big bad boss!"]};
-function getScore(x,y,w,h){const cx=w/2,cy=h/2,dist=Math.sqrt((x-cx)**2+(y-cy)**2),r=w/2;if(dist<=r*0.05)return 50;if(dist<=r*0.19)return 40;if(dist<=r*0.31)return 30;if(dist<=r*0.47)return 20;if(dist<=r*0.63)return 10;if(dist<=r*0.78)return 5;if(dist<=r*0.94)return 2;return 0;}
-function throwDart(e){if(throwsLeft<=0)return;const board=document.getElementById('dartboard'),rect=board.getBoundingClientRect(),x=e.clientX-rect.left,y=e.clientY-rect.top;placeDart(x,y,rect.width,rect.height);}
-function autoThrow(){if(throwsLeft<=0)return;const board=document.getElementById('dartboard'),rect=board.getBoundingClientRect(),angle=Math.random()*Math.PI*2,dist=Math.pow(Math.random(),1.5)*rect.width*0.48,x=rect.width/2+Math.cos(angle)*dist,y=rect.height/2+Math.sin(angle)*dist;placeDart(x,y,rect.width,rect.height);}
-function placeDart(x,y,w,h){if(throwsLeft<=0)return;throwsLeft--;const score=getScore(x,y,w,h);totalScore+=score;if(score>bestHit)bestHit=score;document.getElementById('totalScore').textContent=totalScore;document.getElementById('bestHit').textContent=bestHit===0?'—':bestHit;document.getElementById('throwsLeft').innerHTML='Throws remaining: <span>'+throwsLeft+'</span>';const board=document.getElementById('dartboard'),dot=document.createElement('div');dot.className='dart-thrown';dot.style.left=x+'px';dot.style.top=y+'px';board.appendChild(dot);const flash=document.createElement('div');flash.className='hit-flash';board.appendChild(flash);setTimeout(()=>flash.remove(),400);const popup=document.createElement('div');popup.className='score-popup';popup.style.left=x+'px';popup.style.top=y+'px';popup.textContent=score===50?'BULLSEYE!':'+'+score;board.appendChild(popup);setTimeout(()=>popup.remove(),800);const bossKey=document.getElementById('bossType').value,insults=bossInsults[bossKey],msg=insults[Math.floor(Math.random()*insults.length)];showToast((score>=40?'🎯 ':score>=20?'💥 ':'😤 ')+msg);if(throwsLeft<=0)endGame();}
-function endGame(){const result=document.getElementById('gameResult');result.style.display='block';let msg,color;if(totalScore>=150){msg='🔥 LEGENDARY! Total: '+totalScore+' pts';color='var(--yellow)';}else if(totalScore>=100){msg='💥 GREAT! Total: '+totalScore+' pts';color='var(--orange)';}else if(totalScore>=50){msg='😤 NOT BAD! Total: '+totalScore+' pts';color='var(--red)';}else{msg='🎯 Total: '+totalScore+' pts — Even a miss feels good!';color='var(--grey)';}result.style.color=color;result.textContent=msg;document.getElementById('throwBtn').textContent='↺ Play Again';document.getElementById('throwBtn').onclick=resetGame;}
-function resetGame(){throwsLeft=5;totalScore=0;bestHit=0;document.getElementById('totalScore').textContent='0';document.getElementById('bestHit').textContent='—';document.getElementById('throwsLeft').innerHTML='Throws remaining: <span>5</span>';document.getElementById('gameResult').style.display='none';document.getElementById('throwBtn').textContent='🎯 THROW DART';document.getElementById('throwBtn').onclick=autoThrow;document.querySelectorAll('.dart-thrown').forEach(d=>d.remove());}
-const defaultVents=[{name:"FrustratedFred_99",boss:"😤 Micromanager",text:"My boss asked me to CC him on an email to myself. FOR MY OWN NOTES. I am losing my mind.",time:"2 min ago",emoji:"🔴",likes:47},{name:"SilentSufferer_7",boss:"👻 Ghost Boss",text:"Boss hasn't replied to a single email in 3 weeks but showed up to claim credit in the board meeting. ICONIC.",time:"15 min ago",emoji:"🟠",likes:83},{name:"AnonymousEmployee_42",boss:"🐍 Credit Stealer",text:"Spent 3 months on a project. Boss presented it as 'our work.' I was not in the room.",time:"32 min ago",emoji:"🟡",likes:124},{name:"DeepBreaths_Daily",boss:"📅 Meeting Addict",text:"We had a meeting to plan the agenda for the meeting about the meeting. I wish I was joking.",time:"1 hr ago",emoji:"🔵",likes:201},{name:"QuietlyRaging_88",boss:"🍎 Favourite Player",text:"My boss laughed at Jake's identical idea that I suggested two weeks ago.",time:"2 hrs ago",emoji:"🟢",likes:67},{name:"EnduranceMode_ON",boss:"👊 Office Bully",text:"Got told in front of the whole team that my presentation needed more energy. It was a budget spreadsheet.",time:"3 hrs ago",emoji:"🔴",likes:156}];
-function renderComments(list){const container=document.getElementById('commentsList');container.innerHTML='';list.forEach((v,i)=>{const card=document.createElement('div');card.className='comment-card';card.innerHTML='<div class="comment-top"><div class="comment-avatar" style="background:rgba(232,0,29,.12);font-size:1.3rem;">'+v.emoji+'</div><div class="comment-meta"><div class="comment-name">'+v.name+'</div><div class="comment-time">'+v.time+'</div></div><div class="boss-type-tag">'+v.boss+'</div></div><div class="comment-text">'+v.text+'</div><div class="comment-actions"><button class="react-btn" onclick="likeVent(this,'+i+')">😤 Relatable · '+v.likes+'</button><button class="react-btn" onclick="showToast(\'😂 Shared!\')">↗ Share</button></div>';container.appendChild(card);});document.getElementById('ventCount').textContent=list.length;}
-let vents=[...defaultVents];
-function likeVent(btn,idx){if(btn.classList.contains('liked'))return;btn.classList.add('liked');vents[idx].likes++;btn.textContent='😤 Relatable · '+vents[idx].likes;}
-function submitVent(){const name=document.getElementById('ventName').value.trim()||'Anonymous_'+Math.floor(Math.random()*9999),boss=document.getElementById('ventBossType').value,text=document.getElementById('ventText').value.trim();if(!text){showToast('Write your vent first!');return;}const emojis=['🔴','🟠','🟡','🟢','🔵','🟣'];vents.unshift({name,boss,text,time:'Just now',emoji:emojis[Math.floor(Math.random()*emojis.length)],likes:0});renderComments(vents);document.getElementById('ventText').value='';document.getElementById('ventName').value='';document.getElementById('charCount').textContent='0/280';showToast('😤 Vent posted! You are not alone.');}
+const msgs={micromanager:["Classic micromanager!","They'll want to approve this throw!","Direct hit on the control freak!"],creditstealer:["Can't steal this score!","Hit! But they'll take credit...","Bulls-eye on the glory grabber!"],ghostboss:["They weren't even there!","Hit! Reply in 3 weeks...","Bullseye — if they show up!"],meetingaddict:["Could've been an email!","Hit the calendar blocker!","Bullseye in this week's sync!"],bully:["Bully got served!","Not so tough now!","Bulls-eye on the big bad boss!"],favouriteplayer:["Teacher's pet got hit!","The golden child takes a dart!","Direct hit!"]};
+
+function getScore(x,y,w,h){const cx=w/2,cy=h/2,dist=Math.sqrt((x-cx)**2+(y-cy)**2),r=w/2;if(dist<=r*.05)return 50;if(dist<=r*.19)return 40;if(dist<=r*.31)return 30;if(dist<=r*.47)return 20;if(dist<=r*.63)return 10;if(dist<=r*.78)return 5;if(dist<=r*.94)return 2;return 0;}
+
+function throwDart(e){if(throwsLeft<=0)return;const b=document.getElementById('dartboard'),r=b.getBoundingClientRect();placeDart(e.clientX-r.left,e.clientY-r.top,r.width,r.height);}
+function autoThrow(){if(throwsLeft<=0)return;const b=document.getElementById('dartboard'),r=b.getBoundingClientRect(),a=Math.random()*Math.PI*2,d=Math.pow(Math.random(),1.5)*r.width*.47;placeDart(r.width/2+Math.cos(a)*d,r.height/2+Math.sin(a)*d,r.width,r.height);}
+
+function placeDart(x,y,w,h){
+  if(throwsLeft<=0)return;
+  throwsLeft--;
+  const score=getScore(x,y,w,h);
+  totalScore+=score;if(score>bestHit)bestHit=score;
+  document.getElementById('totalScore').textContent=totalScore;
+  document.getElementById('bestHit').textContent=bestHit||'—';
+  document.getElementById('throwsLeft').innerHTML='Throws: <span>'+throwsLeft+'</span> left';
+  const board=document.getElementById('dartboard');
+  const dot=document.createElement('div');dot.className='dart-thrown';dot.style.left=x+'px';dot.style.top=y+'px';board.appendChild(dot);
+  const pop=document.createElement('div');pop.className='score-popup';pop.style.left=x+'px';pop.style.top=y+'px';pop.textContent=score===50?'BULLSEYE!':'+'+score;board.appendChild(pop);setTimeout(()=>pop.remove(),800);
+  const key=document.getElementById('bossType').value;
+  const m=msgs[key]||msgs.micromanager;
+  showToast((score>=40?'🎯 ':score>=20?'💥 ':'😤 ')+m[Math.floor(Math.random()*m.length)]);
+  if(throwsLeft<=0)endGame();
+}
+
+function endGame(){
+  const r=document.getElementById('gameResult');r.style.display='block';
+  let msg,color;
+  if(totalScore>=150){msg='🔥 LEGENDARY! '+totalScore+' pts';color='var(--yellow)';}
+  else if(totalScore>=80){msg='💥 GREAT! '+totalScore+' pts';color='var(--orange)';}
+  else{msg='😤 Total: '+totalScore+' pts';color='var(--red)';}
+  r.style.color=color;r.textContent=msg;
+}
+
+function resetGame(){throwsLeft=5;totalScore=0;bestHit=0;document.getElementById('totalScore').textContent='0';document.getElementById('bestHit').textContent='—';document.getElementById('throwsLeft').innerHTML='Throws: <span>5</span> left';document.getElementById('gameResult').style.display='none';document.querySelectorAll('.dart-thrown').forEach(d=>d.remove());}
+
+// VENTS
+const emojis=['🔴','🟠','🟡','🟢','🔵','🟣'];
+
+async function loadVents(){
+  try{
+    const data = await supabase('vents','GET');
+    if(data&&data.length>0){
+      renderVents(data);
+    } else {
+      renderDefaultVents();
+    }
+  } catch(e){renderDefaultVents();}
+}
+
+function renderVents(list){
+  const container=document.getElementById('commentsList');
+  container.innerHTML='';
+  document.getElementById('ventCount').textContent=list.length;
+  list.forEach((v,i)=>{
+    const card=document.createElement('div');
+    card.className='comment-card';
+    const ago = v.created_at ? timeAgo(v.created_at) : 'recently';
+    card.innerHTML=`<div class="comment-top"><div class="comment-avatar" style="background:rgba(232,0,29,.12)">${emojis[i%emojis.length]}</div><div><div class="comment-name">${v.name||'Anonymous'}</div><div class="comment-time">${ago}</div></div><div class="boss-tag">${v.boss_type||'Boss'}</div></div><div class="comment-text">${v.message}</div><div class="comment-actions"><button class="react-btn" onclick="likeVent(this,'${v.id}',${v.likes||0})">😤 Relatable · ${v.likes||0}</button><button class="react-btn" onclick="showToast('😂 Shared!')">↗ Share</button></div>`;
+    container.appendChild(card);
+  });
+}
+
+function renderDefaultVents(){
+  const defaults=[
+    {id:'d1',name:'FrustratedFred_99',boss_type:'😤 Micromanager',message:"My boss asked me to CC him on an email to myself. FOR MY OWN NOTES.",likes:47,created_at:null},
+    {id:'d2',name:'SilentSufferer_7',boss_type:'👻 Ghost Boss',message:"Boss hasn't replied in 3 weeks but showed up to claim credit in the board meeting.",likes:83,created_at:null},
+    {id:'d3',name:'AnonymousEmployee_42',boss_type:'🐍 Credit Stealer',message:"Spent 3 months on a project. Boss presented it as 'our work.' I was not in the room.",likes:124,created_at:null},
+    {id:'d4',name:'DeepBreaths_Daily',boss_type:'📅 Meeting Addict',message:"We had a meeting to plan the agenda for the meeting about the meeting.",likes:201,created_at:null}
+  ];
+  renderVents(defaults);
+}
+
+function timeAgo(ts){
+  const diff=Date.now()-new Date(ts).getTime();
+  const mins=Math.floor(diff/60000);
+  if(mins<1)return'just now';if(mins<60)return mins+'m ago';
+  const hrs=Math.floor(mins/60);if(hrs<24)return hrs+'h ago';
+  return Math.floor(hrs/24)+'d ago';
+}
+
+async function likeVent(btn,id,current){
+  if(btn.classList.contains('liked'))return;
+  btn.classList.add('liked');
+  const newLikes=current+1;
+  btn.textContent=`😤 Relatable · ${newLikes}`;
+  if(!id.startsWith('d')){
+    try{await fetch(`${SUPABASE_URL}/rest/v1/vents?id=eq.${id}`,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`},body:JSON.stringify({likes:newLikes})});}catch(e){}
+  }
+}
+
+async function submitVent(){
+  const name=document.getElementById('ventName').value.trim()||'Anonymous_'+Math.floor(Math.random()*9999);
+  const boss=document.getElementById('ventBossType').value;
+  const text=document.getElementById('ventText').value.trim();
+  if(!text){showToast('Write your vent first!');return;}
+  try{
+    const res=await supabase('vents','POST',{name,boss_type:boss,message:text,likes:0});
+    showToast('😤 Vent posted! You are not alone.');
+    document.getElementById('ventText').value='';
+    document.getElementById('ventName').value='';
+    document.getElementById('charCount').textContent='0/280';
+    setTimeout(loadVents,500);
+  } catch(e){showToast('Posted! Refreshing feed...');setTimeout(loadVents,500);}
+}
+
 document.getElementById('ventText').addEventListener('input',function(){document.getElementById('charCount').textContent=this.value.length+'/280';});
+
+// CONTACT
+function submitContact(){
+  const name=document.getElementById('contactName').value.trim();
+  const email=document.getElementById('contactEmail').value.trim();
+  const msg=document.getElementById('contactMessage').value.trim();
+  if(!name||!email||!msg){showToast('Please fill in all fields!');return;}
+  const mailto=`mailto:disstheboss@gmail.com?subject=${encodeURIComponent(document.getElementById('contactSubject').value)}&body=${encodeURIComponent('From: '+name+'\nEmail: '+email+'\n\n'+msg)}`;
+  window.location.href=mailto;
+  showToast('📩 Opening your email app...');
+}
+
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-renderComments(vents);
+
 let count=47382;setInterval(()=>{if(Math.random()>.7){count+=Math.floor(Math.random()*3+1);document.getElementById('playCount').textContent=count.toLocaleString();}},4000);
+
+loadVents();
 </script>
 </body>
 </html>
