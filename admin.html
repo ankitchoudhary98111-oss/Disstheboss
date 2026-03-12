@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTB Admin — Control Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0C0B0B;color:#F5EFE0;font-family:'Barlow',sans-serif;min-height:100vh;}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;}
+.login-box{background:#161414;border:1px solid #E8001D;border-radius:6px;padding:3rem 2rem;max-width:380px;width:100%;text-align:center;}
+.login-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;margin-bottom:.3rem;}
+.login-logo span{color:#E8001D;}
+.login-sub{font-size:.8rem;color:#7A7070;letter-spacing:3px;text-transform:uppercase;margin-bottom:2rem;}
+.login-input{width:100%;background:#201D1D;border:1px solid #2E2929;border-radius:3px;color:#F5EFE0;font-family:'Barlow',sans-serif;font-size:1rem;padding:.9rem 1rem;outline:none;margin-bottom:1rem;text-align:center;letter-spacing:3px;}
+.login-input:focus{border-color:#E8001D;}
+.login-btn{width:100%;background:#E8001D;color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:2px;padding:.9rem;cursor:pointer;}
+.login-error{color:#E8001D;font-size:.85rem;margin-top:.8rem;display:none;}
+.admin-screen{display:none;padding:1.5rem;}
+.admin-nav{display:flex;align-items:center;justify-content:space-between;background:#161414;border:1px solid #2E2929;border-radius:4px;padding:1rem 1.5rem;margin-bottom:1.5rem;}
+.admin-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;}
+.admin-title span{color:#E8001D;}
+.logout-btn{background:none;border:1px solid #2E2929;color:#7A7070;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;padding:.4rem .8rem;border-radius:2px;cursor:pointer;}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem;}
+.stat-card{background:#161414;border:1px solid #2E2929;border-radius:4px;padding:1.2rem;text-align:center;}
+.stat-card-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:#E8001D;line-height:1;}
+.stat-card-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:#7A7070;margin-top:.3rem;}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.tab{background:#161414;border:1px solid #2E2929;color:#7A7070;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;padding:.5rem 1rem;border-radius:2px;cursor:pointer;transition:all .2s;}
+.tab.active{background:#E8001D;border-color:#E8001D;color:white;}
+.panel{display:none;}
+.panel.active{display:block;}
+.panel-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:3px;text-transform:uppercase;color:#7A7070;margin-bottom:1rem;}
+.data-card{background:#161414;border:1px solid #2E2929;border-radius:4px;padding:1rem;margin-bottom:.8rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
+.data-info{flex:1;}
+.data-main{font-size:.95rem;font-weight:600;margin-bottom:.3rem;}
+.data-meta{font-size:.75rem;color:#7A7070;}
+.delete-btn{background:rgba(232,0,29,.15);border:1px solid rgba(232,0,29,.3);color:#E8001D;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:.3rem .6rem;border-radius:2px;cursor:pointer;flex-shrink:0;transition:background .2s;}
+.delete-btn:hover{background:rgba(232,0,29,.3);}
+.empty-state{text-align:center;color:#7A7070;padding:3rem;font-style:italic;}
+.ban-form{display:flex;gap:.8rem;margin-bottom:1rem;}
+.ban-input{flex:1;background:#201D1D;border:1px solid #2E2929;border-radius:3px;color:#F5EFE0;font-family:'Barlow',sans-serif;font-size:.9rem;padding:.6rem 1rem;outline:none;}
+.ban-input:focus{border-color:#E8001D;}
+.ban-btn{background:#E8001D;color:white;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:2px;padding:.6rem 1rem;cursor:pointer;}
+.banned-word{display:inline-flex;align-items:center;gap:.4rem;background:#201D1D;border:1px solid #2E2929;border-radius:2px;padding:.3rem .7rem;margin:.3rem;font-size:.8rem;}
+.remove-word{background:none;border:none;color:#E8001D;cursor:pointer;font-size:1rem;line-height:1;}
+.refresh-btn{background:#201D1D;border:1px solid #2E2929;color:#F5EFE0;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;padding:.4rem .8rem;border-radius:2px;cursor:pointer;margin-bottom:1rem;}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:#201D1D;border:1px solid #E8001D;border-radius:4px;padding:.8rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;z-index:2000;transform:translateY(100px);opacity:0;transition:all .3s ease;}
+.toast.show{transform:translateY(0);opacity:1;}
+.search-input{width:100%;background:#201D1D;border:1px solid #2E2929;border-radius:3px;color:#F5EFE0;font-family:'Barlow',sans-serif;font-size:.9rem;padding:.6rem 1rem;outline:none;margin-bottom:1rem;}
+.search-input:focus{border-color:#E8001D;}
+@media(min-width:600px){.stats-grid{grid-template-columns:repeat(4,1fr);}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+<div class="login-box">
+<div class="login-logo">DISS<span>THE</span>BOSS</div>
+<div class="login-sub">Admin Control Panel</div>
+<input class="login-input" type="password" id="passwordInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()">
+<button class="login-btn" onclick="login()">🔐 ENTER</button>
+<div class="login-error" id="loginError">❌ Wrong password. Try again.</div>
+</div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div class="admin-screen" id="adminScreen">
+<div class="admin-nav">
+<div class="admin-title">DTB <span>ADMIN</span></div>
+<div style="display:flex;align-items:center;gap:1rem;">
+<span style="font-size:.75rem;color:#7A7070;" id="lastRefresh"></span>
+<button class="logout-btn" onclick="logout()">↩ LOGOUT</button>
+</div>
+</div>
+
+<!-- STATS -->
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-card-num" id="statEmails">—</div>
+<div class="stat-card-label">📧 Emails</div>
+</div>
+<div class="stat-card">
+<div class="stat-card-num" id="statVents">—</div>
+<div class="stat-card-label">💬 Vents</div>
+</div>
+<div class="stat-card">
+<div class="stat-card-num" id="statToday">—</div>
+<div class="stat-card-label">🔥 Today</div>
+</div>
+<div class="stat-card">
+<div class="stat-card-num" id="statLikes">—</div>
+<div class="stat-card-label">😤 Likes</div>
+</div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+<button class="tab active" onclick="switchTab('emails')">📧 Emails</button>
+<button class="tab" onclick="switchTab('vents')">💬 Vents</button>
+<button class="tab" onclick="switchTab('banned')">🚫 Banned Words</button>
+</div>
+
+<!-- EMAILS PANEL -->
+<div class="panel active" id="panel-emails">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;">
+<div class="panel-title">All Signups</div>
+<button class="refresh-btn" onclick="loadEmails()">↺ Refresh</button>
+</div>
+<input class="search-input" type="text" placeholder="Search emails..." oninput="filterEmails(this.value)">
+<div id="emailsList"><div class="empty-state">Loading...</div></div>
+</div>
+
+<!-- VENTS PANEL -->
+<div class="panel" id="panel-vents">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;">
+<div class="panel-title">All Vents</div>
+<button class="refresh-btn" onclick="loadVents()">↺ Refresh</button>
+</div>
+<input class="search-input" type="text" placeholder="Search vents..." oninput="filterVents(this.value)">
+<div id="ventsList"><div class="empty-state">Loading...</div></div>
+</div>
+
+<!-- BANNED WORDS PANEL -->
+<div class="panel" id="panel-banned">
+<div class="panel-title">Banned Words</div>
+<p style="font-size:.85rem;color:#7A7070;margin-bottom:1rem;">Words added here will be blocked from the vent feed automatically.</p>
+<div class="ban-form">
+<input class="ban-input" type="text" id="banWordInput" placeholder="Type word to ban...">
+<button class="ban-btn" onclick="addBannedWord()">+ BAN</button>
+</div>
+<div id="bannedWordsList"></div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL = 'https://cooehtreydndjwdiauuz.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvb2VodHJleWRuZGp3ZGlhdXV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3NjI0NzIsImV4cCI6MjA1NzMzODQ3Mn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk2yJV_adQssw5c';
+const ADMIN_PASSWORD = 'dissthebossTripti@#007';
+
+let allEmails = [];
+let allVents = [];
+let bannedWords = JSON.parse(localStorage.getItem('dtb_banned') || '[]');
+
+function login(){
+  const pwd = document.getElementById('passwordInput').value;
+  if(pwd === ADMIN_PASSWORD){
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminScreen').style.display = 'block';
+    loadAll();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('passwordInput').value = '';
+  }
+}
+
+function logout(){
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('adminScreen').style.display = 'none';
+  document.getElementById('passwordInput').value = '';
+}
+
+async function fetchData(table, extra=''){
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?order=created_at.desc${extra}`, {
+    headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}
+  });
+  return await res.json();
+}
+
+async function loadAll(){
+  document.getElementById('lastRefresh').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+  await loadEmails();
+  await loadVents();
+  renderBannedWords();
+}
+
+async function loadEmails(){
+  try{
+    allEmails = await fetchData('emails');
+    renderEmails(allEmails);
+    document.getElementById('statEmails').textContent = allEmails.length;
+  } catch(e){document.getElementById('emailsList').innerHTML='<div class="empty-state">Error loading emails</div>';}
+}
+
+async function loadVents(){
+  try{
+    allVents = await fetchData('vents');
+    renderVents(allVents);
+    document.getElementById('statVents').textContent = allVents.length;
+    const totalLikes = allVents.reduce((sum,v)=>sum+(v.likes||0),0);
+    document.getElementById('statLikes').textContent = totalLikes;
+    const today = new Date().toDateString();
+    const todayVents = allVents.filter(v=>new Date(v.created_at).toDateString()===today).length;
+    document.getElementById('statToday').textContent = todayVents;
+  } catch(e){document.getElementById('ventsList').innerHTML='<div class="empty-state">Error loading vents</div>';}
+}
+
+function renderEmails(list){
+  const container = document.getElementById('emailsList');
+  if(!list.length){container.innerHTML='<div class="empty-state">No signups yet — go share the site!</div>';return;}
+  container.innerHTML = list.map((e,i)=>`
+    <div class="data-card">
+      <div class="data-info">
+        <div class="data-main">📧 ${e.email}</div>
+        <div class="data-meta">#${i+1} · Signed up ${timeAgo(e.created_at)}</div>
+      </div>
+      <button class="delete-btn" onclick="deleteEmail('${e.id}','${e.email}')">🗑 DELETE</button>
+    </div>`).join('');
+}
+
+function renderVents(list){
+  const container = document.getElementById('ventsList');
+  if(!list.length){container.innerHTML='<div class="empty-state">No vents yet</div>';return;}
+  container.innerHTML = list.map(v=>`
+    <div class="data-card" id="vent-${v.id}">
+      <div class="data-info">
+        <div class="data-main">${v.message}</div>
+        <div class="data-meta">${v.name||'Anonymous'} · ${v.boss_type||''} · 😤 ${v.likes||0} likes · ${timeAgo(v.created_at)}</div>
+      </div>
+      <button class="delete-btn" onclick="deleteVent('${v.id}')">🗑 DELETE</button>
+    </div>`).join('');
+}
+
+function filterEmails(q){
+  const filtered = allEmails.filter(e=>e.email.toLowerCase().includes(q.toLowerCase()));
+  renderEmails(filtered);
+}
+
+function filterVents(q){
+  const filtered = allVents.filter(v=>v.message.toLowerCase().includes(q.toLowerCase())||( v.name&&v.name.toLowerCase().includes(q.toLowerCase())));
+  renderVents(filtered);
+}
+
+async function deleteEmail(id, email){
+  if(!confirm(`Delete ${email}?`))return;
+  await fetch(`${SUPABASE_URL}/rest/v1/emails?id=eq.${id}`,{method:'DELETE',headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}});
+  showToast('📧 Email deleted');
+  loadEmails();
+}
+
+async function deleteVent(id){
+  if(!confirm('Delete this vent?'))return;
+  await fetch(`${SUPABASE_URL}/rest/v1/vents?id=eq.${id}`,{method:'DELETE',headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}});
+  showToast('💬 Vent deleted');
+  loadVents();
+}
+
+function addBannedWord(){
+  const word = document.getElementById('banWordInput').value.trim().toLowerCase();
+  if(!word)return;
+  if(!bannedWords.includes(word)){
+    bannedWords.push(word);
+    localStorage.setItem('dtb_banned',JSON.stringify(bannedWords));
+    renderBannedWords();
+    document.getElementById('banWordInput').value='';
+    showToast('🚫 Word banned: '+word);
+  }
+}
+
+function removeBannedWord(word){
+  bannedWords = bannedWords.filter(w=>w!==word);
+  localStorage.setItem('dtb_banned',JSON.stringify(bannedWords));
+  renderBannedWords();
+}
+
+function renderBannedWords(){
+  const container = document.getElementById('bannedWordsList');
+  if(!bannedWords.length){container.innerHTML='<div class="empty-state">No banned words yet</div>';return;}
+  container.innerHTML = bannedWords.map(w=>`<span class="banned-word">${w}<button class="remove-word" onclick="removeBannedWord('${w}')">×</button></span>`).join('');
+}
+
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+
+function timeAgo(ts){
+  if(!ts)return'recently';
+  const diff=Date.now()-new Date(ts).getTime();
+  const mins=Math.floor(diff/60000);
+  if(mins<1)return'just now';if(mins<60)return mins+'m ago';
+  const hrs=Math.floor(mins/60);if(hrs<24)return hrs+'h ago';
+  return Math.floor(hrs/24)+'d ago';
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+document.getElementById('passwordInput').focus();
+</script>
+</body>
+</html>
